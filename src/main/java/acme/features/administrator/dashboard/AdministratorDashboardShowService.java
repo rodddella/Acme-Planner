@@ -31,7 +31,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		request.unbind(entity, model, 
 			"totalNumberOfPublicTasks","totalNumberOfPrivateTasks",
 			"totalNumberOfFinishedTasks","totalNumberOfNonFinishedTasks",
-			"averageNumberOfTaskExecutionPeriods",
+			"averageNumberOfTaskExecutionPeriods","deviationNumberOfTaskExecutionPeriods",
+			"minimumNumberOfTaskExecutionPeriods","maximumNumberOfTaskExecutionPeriods",
 			"averageNumberOfTaskWorkloads", "deviationNumberOfTaskWorkloads",
 			"minimumNumberOfTaskWorkloads", "maximumNumberOfTaskWorkloads");
 		
@@ -47,12 +48,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		final Double totalNumberOfPrivateTasks;
 		final Double totalNumberOfFinishedTasks;
 		final Double totalNumberOfNonFinishedTasks;
-		/*
 		final Double averageNumberOfTaskExecutionPeriods;
 		final Double deviationNumberOfTaskExecutionPeriods;
 		final Double minimumNumberOfTaskExecutionPeriods;
 		final Double maximumNumberOfTaskExecutionPeriods;
-		*/
 		final Double averageNumberOfTaskWorkloads;
 		final Double deviationNumberOfTaskWorkloads;
 		final Double minimumNumberOfTaskWorkloads;
@@ -63,12 +62,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		totalNumberOfPrivateTasks = this.repository.totalNumberOfPrivateTasks();
 		totalNumberOfFinishedTasks = this.repository.totalNumberOfFinishedTasks();
 		totalNumberOfNonFinishedTasks = this.repository.totalNumberOfNonFinishedTasks();
-		/*
 		averageNumberOfTaskExecutionPeriods = this.repository.averageNumberOfTaskExecutionPeriods();
 		deviationNumberOfTaskExecutionPeriods = this.repository.deviationNumberOfTaskExecutionPeriods();
 		minimumNumberOfTaskExecutionPeriods = this.repository.minimumNumberOfTaskExecutionPeriods();
 		maximumNumberOfTaskExecutionPeriods = this.repository.maximumNumberOfTaskExecutionPeriods();
-		*/
 		averageNumberOfTaskWorkloads = this.repository.averageNumberOfTaskWorkloads();
 		deviationNumberOfTaskWorkloads = this.repository.deviationNumberOfTaskWorkloads();
 		minimumNumberOfTaskWorkloads = this.repository.minimumNumberOfTaskWorkloads();
@@ -80,12 +77,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setTotalNumberOfPrivateTasks(totalNumberOfPrivateTasks);
 		result.setTotalNumberOfFinishedTasks(totalNumberOfFinishedTasks);
 		result.setTotalNumberOfNonFinishedTasks(totalNumberOfNonFinishedTasks);
-		/*
 		result.setAverageNumberOfTaskExecutionPeriods(averageNumberOfTaskExecutionPeriods);
 		result.setDeviationNumberOfTaskExecutionPeriods(deviationNumberOfTaskExecutionPeriods);
 		result.setMinimumNumberOfTaskExecutionPeriods(minimumNumberOfTaskExecutionPeriods);
 		result.setMaximumNumberOfTaskExecutionPeriods(maximumNumberOfTaskExecutionPeriods);
-		*/
 		result.setAverageNumberOfTaskWorkloads(averageNumberOfTaskWorkloads);
 		result.setDeviationNumberOfTaskWorkloads(deviationNumberOfTaskWorkloads);
 		result.setMinimumNumberOfTaskWorkloads(minimumNumberOfTaskWorkloads);

@@ -22,19 +22,19 @@ public interface AdministratorDashboardRepository extends AbstractRepository{
 	
 	@Query("select count(t) from Task t where t.endPeriod > current_timestamp()")
 	Double totalNumberOfNonFinishedTasks ();
-	/*
-	//@Query(value="select avg(TIMESTAMPDIFF(HOUR,t.startPeriod, t.endPeriod)) from Task t",nativeQuery = true)
+	
+	@Query("select avg((day(t.endPeriod)*24 + hour(t.endPeriod))-(day(t.startPeriod)*24 + hour(t.startPeriod))) from Task t")
 	Double averageNumberOfTaskExecutionPeriods ();
 	
-	/*
+	@Query("select stddev((day(t.endPeriod)*24 + hour(t.endPeriod))-(day(t.startPeriod)*24 + hour(t.startPeriod))) from Task t")
 	Double deviationNumberOfTaskExecutionPeriods ();
 	
-	
+	@Query("select min((day(t.endPeriod)*24 + hour(t.endPeriod))-(day(t.startPeriod)*24 + hour(t.startPeriod))) from Task t")
 	Double minimumNumberOfTaskExecutionPeriods ();
 	
-	
+	@Query("select max((day(t.endPeriod)*24 + hour(t.endPeriod))-(day(t.startPeriod)*24 + hour(t.startPeriod))) from Task t")
 	Double maximumNumberOfTaskExecutionPeriods ();
-	*/
+	
 	
 	@Query("select avg(t.workload) from Task t")
 	Double averageNumberOfTaskWorkloads ();
