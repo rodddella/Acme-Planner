@@ -55,6 +55,15 @@
 			<acme:print value="${totalNumberOfNonFinishedTasks}"/>
 		</td>
 	</tr>
+</table>
+
+<h2>
+	<acme:message code="administrator.dashboard.form.title.execution-period"/>
+</h2>
+<table class="table table-sm">
+	<caption>
+		<acme:message code="administrator.dashboard.form.title.execution-period"/>
+	</caption>	
 	<tr>
 		<th scope="row">
 			<acme:message code="administrator.dashboard.form.label.average-number-task-execution-period"/>
@@ -88,6 +97,14 @@
 			<acme:print value="${maximumNumberOfTaskExecutionPeriods}"/>
 		</td>
 	</tr>
+</table>
+<h2>
+	<acme:message code="administrator.dashboard.form.title.workloads"/>
+</h2>
+<table class="table table-sm">
+	<caption>
+		<acme:message code="administrator.dashboard.form.title.workloads"/>
+	</caption>	
 	<tr>
 		<th scope="row">
 			<acme:message code="administrator.dashboard.form.label.average-number-task-workloads"/>
@@ -121,7 +138,4 @@
 			<acme:print value="${maximumNumberOfTaskWorkloads}"/>
 		</td>
 	</tr>
-	
 </table>
-
-
