@@ -6,3 +6,12 @@ anonymous.task.list.label.link = Enlace
 anonymous.task.list.label.start_period = Comienzo
 anonymous.task.list.label.end_period = Fin
 anonymous.task.list.label.visibility = Visibilidad
+
+anonymous.task.form.label.title = Título
+anonymous.task.form.label.description = Descripción
+anonymous.task.form.label.workload = Carga de Trabajo
+anonymous.task.form.label.link = Enlace
+anonymous.task.form.label.start_period = Comienzo
+anonymous.task.form.label.end_period = Fin
+anonymous.task.form.label.visibility = Visibilidad
+anonymous.task.form.button.return = Volver
