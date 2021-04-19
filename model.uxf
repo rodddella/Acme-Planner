@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>790</x>
-      <y>510</y>
+      <x>890</x>
+      <y>460</y>
       <w>240</w>
       <h>60</h>
     </coordinates>
@@ -18,8 +18,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
-      <y>510</y>
+      <x>830</x>
+      <y>460</y>
       <w>80</w>
       <h>60</h>
     </coordinates>
@@ -29,8 +29,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>410</y>
+      <x>390</x>
+      <y>360</y>
       <w>220</w>
       <h>120</h>
     </coordinates>
@@ -49,8 +49,8 @@ bg=orange
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>290</x>
-      <y>320</y>
+      <x>390</x>
+      <y>270</y>
       <w>240</w>
       <h>60</h>
     </coordinates>
@@ -62,8 +62,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>370</y>
+      <x>490</x>
+      <y>320</y>
       <w>30</w>
       <h>60</h>
     </coordinates>
@@ -74,8 +74,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
-      <y>560</y>
+      <x>830</x>
+      <y>510</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -85,8 +85,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1140</x>
-      <y>520</y>
+      <x>1240</x>
+      <y>470</y>
       <w>100</w>
       <h>60</h>
     </coordinates>
@@ -100,8 +100,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1140</x>
-      <y>440</y>
+      <x>1240</x>
+      <y>390</y>
       <w>100</w>
       <h>60</h>
     </coordinates>
@@ -115,8 +115,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1140</x>
-      <y>590</y>
+      <x>1240</x>
+      <y>540</y>
       <w>100</w>
       <h>60</h>
     </coordinates>
@@ -130,8 +130,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>480</y>
+      <x>1120</x>
+      <y>430</y>
       <w>140</w>
       <h>80</h>
     </coordinates>
@@ -141,8 +141,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>530</y>
+      <x>1120</x>
+      <y>480</y>
       <w>140</w>
       <h>30</h>
     </coordinates>
@@ -152,8 +152,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>530</y>
+      <x>1120</x>
+      <y>480</y>
       <w>140</w>
       <h>90</h>
     </coordinates>
@@ -163,8 +163,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>550</y>
+      <x>390</x>
+      <y>500</y>
       <w>220</w>
       <h>70</h>
     </coordinates>
@@ -179,8 +179,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>480</y>
+      <x>640</x>
+      <y>430</y>
       <w>200</w>
       <h>90</h>
     </coordinates>
@@ -194,8 +194,8 @@ Provider
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>590</y>
+      <x>630</x>
+      <y>540</y>
       <w>210</w>
       <h>80</h>
     </coordinates>
@@ -209,8 +209,8 @@ Consumer
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>410</y>
+      <x>150</x>
+      <y>360</y>
       <w>220</w>
       <h>80</h>
     </coordinates>
@@ -226,8 +226,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>510</y>
+      <x>150</x>
+      <y>460</y>
       <w>220</w>
       <h>130</h>
     </coordinates>
@@ -246,8 +246,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>660</y>
+      <x>150</x>
+      <y>610</y>
       <w>220</w>
       <h>90</h>
     </coordinates>
@@ -263,8 +263,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>730</x>
-      <y>290</y>
+      <x>830</x>
+      <y>240</y>
       <w>340</w>
       <h>130</h>
     </coordinates>
@@ -285,8 +285,8 @@ UserAccount
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>410</y>
+      <x>1000</x>
+      <y>360</y>
       <w>70</w>
       <h>120</h>
     </coordinates>
@@ -299,8 +299,8 @@ has v</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>130</y>
+      <x>550</x>
+      <y>80</y>
       <w>370</w>
       <h>120</h>
     </coordinates>
@@ -312,6 +312,52 @@ Shout
 + text: String {NotBlank, Length(0, 100)}
 + info: String {URL, Optional}
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>630</y>
+      <w>340</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+Dashboard
+--
++ totalNumberOfPublicTasks: Double
++ totalNumberOfPrivateTasks: Double
++ totalNumberOfFinishedTasks: Double
++ totalNumberOfNonFinishedTasks: Double
++ averageNumberOfTaskExecutionPeriods: Double
++ deviationNumberOfTaskExecutionPeriods: Double
++ minimumNumberOfTaskExecutionPeriods: Double
++ maximumNumberOfTaskExecutionPeriods: Double
++ averageNumberOfTaskWorkloads: Double
++ deviationNumberOfTaskWorkloads: Double
++ minimumNumberOfTaskWorkloads: Double
++ maximumNumberOfTaskWorkloads: Double
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>70</y>
+      <w>360</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Task
+--
++ title: String{NotEmpty,Length(0,80)}
++ description: String {NotEmpty,Length(0,500)}
++ workload: Double{NotNull}
++ link: String
++ startPeriod: Date {NotNull, Temporal(TIMESTAMP)}
++ endPeriod: Date {NotNull, Temporal(TIMESTAMP)}
++ visibility : Visibility{Enumerated(STRING)}</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
