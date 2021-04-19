@@ -1,0 +1,8 @@
+
+anonymous.task.list.label.title = Título
+anonymous.task.list.label.description = Descripción
+anonymous.task.list.label.workload = Carga de Trabajo
+anonymous.task.list.label.link = Enlace
+anonymous.task.list.label.start_period = Comienzo
+anonymous.task.list.label.end_period = Fin
+anonymous.task.list.label.visibility = Visibilidad
