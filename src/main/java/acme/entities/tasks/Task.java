@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -39,12 +38,10 @@ public class Task extends DomainEntity {
 	String link;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Future
 	@NotNull
 	protected Date startPeriod;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Future
 	@NotNull
 	protected Date endPeriod;	
 

@@ -1,8 +1,16 @@
+authenticated.task.list.label.title = Título
+authenticated.task.list.label.description = Descripción
+authenticated.task.list.label.workload = Carga de Trabajo
+authenticated.task.list.label.link = Enlace
+authenticated.task.list.label.start_period = Comienzo
+authenticated.task.list.label.end_period = Fin
+authenticated.task.list.label.visibility = Visibilidad
 
-anonymous.task.list.label.title = Título
-anonymous.task.list.label.description = Descripción
-anonymous.task.list.label.workload = Carga de Trabajo
-anonymous.task.list.label.link = Enlace
-anonymous.task.list.label.start_period = Comienzo
-anonymous.task.list.label.end_period = Fin
-anonymous.task.list.label.visibility = Visibilidad
+authenticated.task.form.label.title = Título
+authenticated.task.form.label.description = Descripción
+authenticated.task.form.label.workload = Carga de Trabajo
+authenticated.task.form.label.link = Enlace
+authenticated.task.form.label.start_period = Comienzo
+authenticated.task.form.label.end_period = Fin
+authenticated.task.form.label.visibility = Visibilidad
+authenticated.task.form.button.return = Volver
