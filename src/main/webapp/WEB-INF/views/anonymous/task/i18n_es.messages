@@ -25,3 +25,4 @@ anonymous.task.form.label.start_period = Start
 anonymous.task.form.label.end_period = End
 anonymous.task.form.label.visibility = Visibility
 anonymous.task.form.button.return = Return
+anonymous.task.list.button.show = Details

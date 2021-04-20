@@ -15,3 +15,4 @@ anonymous.task.form.label.start_period = Comienzo
 anonymous.task.form.label.end_period = Fin
 anonymous.task.form.label.visibility = Visibilidad
 anonymous.task.form.button.return = Volver
+anonymous.task.list.button.show = Detalles

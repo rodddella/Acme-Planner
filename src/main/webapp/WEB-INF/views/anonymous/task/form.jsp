@@ -23,8 +23,8 @@
 	<acme:form-textbox code="anonymous.task.form.label.end_period" path="endPeriod"/>
 	<acme:form-textbox code="anonymous.task.form.label.end_period" path="endPeriod"/>
 	<acme:form-select code="anonymous.task.form.label.visibility" path="visibility">
-		<acme:form-option code="PUBLIC" value="PUBLIC" selected= "${visibility == 'Public'}"/>
-		<acme:form-option code="PRIVATE" value="PRIVATE" selected= "${visibility == 'Private'}"/>
+		<acme:form-option code="PUBLIC" value="PUBLIC" selected= "${visibility == 'PUBLIC'}"/>
+		<acme:form-option code="PRIVATE" value="PRIVATE" selected= "${visibility == 'PRIVATE'}"/>
 	</acme:form-select>
 	
   	<acme:form-return code="anonymous.task.form.button.return"/>
