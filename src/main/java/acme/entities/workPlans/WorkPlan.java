@@ -1,4 +1,4 @@
-package acme.entities.tasks;
+package acme.entities.workPlans;
 
 import java.util.Date;
 import java.util.Set;
@@ -10,12 +10,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
-import acme.entities.workPlans.WorkPlan;
+import acme.entities.tasks.Task;
 import acme.enums.Visibility;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
@@ -24,22 +21,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Task extends DomainEntity {
-
-	static final long serialVersionUID = 8331441137571663368L;
-
-	@NotEmpty
-	@Length(max = 80, min = 0)
-	String title;
-	
-	@NotEmpty
-	@Length(max = 500, min = 0)
-	String description;
-	
-	@NotNull
-	Double workload;
-	
-	String link;
+public class WorkPlan extends DomainEntity{
+	protected static final long	serialVersionUID	= 1L;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
@@ -54,8 +37,7 @@ public class Task extends DomainEntity {
 	
 	@NotNull
 	@Valid
-	@ManyToMany()
-	protected Set<WorkPlan> workPlans;
-	
-	
+	@ManyToMany(mappedBy="workPlans")
+	protected Set<Task> tasks;
+
 }
