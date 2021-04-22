@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import acme.entities.workPlans.WorkPlan;
 import acme.enums.Visibility;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
@@ -52,10 +51,9 @@ public class Task extends DomainEntity {
 	@Enumerated(EnumType.STRING)
 	Visibility visibility;
 	
-	@NotNull
 	@Valid
-	@ManyToMany()
-	protected Set<WorkPlan> workPlans;
+	@OneToMany(mappedBy="task")
+	protected Set<TaskPlan> taskPlans;
 	
 	
 }

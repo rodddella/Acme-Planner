@@ -6,13 +6,13 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import acme.entities.tasks.Task;
+import acme.entities.tasks.TaskPlan;
 import acme.enums.Visibility;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
@@ -35,9 +35,8 @@ public class WorkPlan extends DomainEntity{
 	@Enumerated(EnumType.STRING)
 	Visibility visibility;
 	
-	@NotNull
 	@Valid
-	@ManyToMany(mappedBy="workPlans")
-	protected Set<Task> tasks;
+	@OneToMany(mappedBy="workPlan")
+	protected Set<TaskPlan> taskPlans;
 
 }
