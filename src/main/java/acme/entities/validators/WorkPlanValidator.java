@@ -2,6 +2,7 @@ package acme.entities.validators;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -10,6 +11,7 @@ import acme.entities.tasks.TaskPlan;
 import acme.entities.workPlans.WorkPlan;
 import acme.enums.Visibility;
 
+@Component
 public class WorkPlanValidator implements Validator{
 
 	@Override
@@ -24,6 +26,10 @@ public class WorkPlanValidator implements Validator{
 		 final Date startPeriod = workPlan.getStartPeriod();
 		 final Date endPeriod = workPlan.getEndPeriod();
 		 final Visibility visibility = workPlan.getVisibility();
+		 
+		 if(startPeriod.after(endPeriod)) {
+			 errors.rejectValue("startPeriod", "Start period cannot be after end period.");
+		 }
 		 
 		 for (final TaskPlan taskPlan: workPlan.getTaskPlans()) {
 			 final Task task= taskPlan.getTask();
