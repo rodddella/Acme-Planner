@@ -1,8 +1,11 @@
 package acme.features.administrator.dashboard;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.tasks.Task;
 import acme.forms.Dashboard;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -37,6 +40,75 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			"minimumNumberOfTaskWorkloads", "maximumNumberOfTaskWorkloads");
 		
 	}
+	
+	public Double getAverageNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+		assert request != null;
+		
+		Long res =  0L;
+		final Set<Task> tasks= this.repository.findAllTasks();
+		
+		for(final Task task: tasks) {
+			System.out.println(task.getWorkload());
+			final Long executionPeriodDiff=task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
+			res+=executionPeriodDiff;
+			System.out.println(res);
+		}
+		res = res/tasks.size();
+		return res.doubleValue()*0.0000166667;
+	}
+	
+	public Double getDeviationNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+		assert request != null;
+		
+		final Double num =  this.getAverageNumberOfTaskExecutionPeriods(request)/0.0000166667;
+		final Long average= num.longValue();
+		
+		Long res =  0L;
+		final Set<Task> tasks= this.repository.findAllTasks();
+		
+		for(final Task task: tasks) {
+			System.out.println(task.getWorkload());
+			final Long executionPeriodDiff = task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
+			final Long individualDeviation = Math.abs(executionPeriodDiff-average)^2;
+			res+=individualDeviation;
+			System.out.println(res);
+		}
+		res = res/tasks.size();
+		return res.doubleValue()*0.0000166667;
+	}
+	
+	public Double geMinNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+		assert request != null;
+		
+		final Double num =  this.geMaxNumberOfTaskExecutionPeriods(request)/0.0000166667;
+		Long min= num.longValue();
+		
+		
+		final Set<Task> tasks= this.repository.findAllTasks();
+		
+		for(final Task task: tasks) {
+			final Long executionPeriodDiff=task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
+			if(min>executionPeriodDiff) {
+				min=executionPeriodDiff;
+			}
+		}
+		return min.doubleValue()*0.0000166667;
+	}
+	
+	public Double geMaxNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+		assert request != null;
+		
+		Long max =  0L;
+		final Set<Task> tasks= this.repository.findAllTasks();
+		
+		for(final Task task: tasks) {
+			final Long executionPeriodDiff=task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
+			if(max<executionPeriodDiff) {
+				max=executionPeriodDiff;
+			}
+		}
+		return max.doubleValue()*0.0000166667;
+	}
 
 	@Override
 	public Dashboard findOne(final Request<Dashboard> request) {
@@ -62,10 +134,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		totalNumberOfPrivateTasks = this.repository.totalNumberOfPrivateTasks();
 		totalNumberOfFinishedTasks = this.repository.totalNumberOfFinishedTasks();
 		totalNumberOfNonFinishedTasks = this.repository.totalNumberOfNonFinishedTasks();
-		averageNumberOfTaskExecutionPeriods = this.repository.averageNumberOfTaskExecutionPeriods();
-		deviationNumberOfTaskExecutionPeriods = this.repository.deviationNumberOfTaskExecutionPeriods();
-		minimumNumberOfTaskExecutionPeriods = this.repository.minimumNumberOfTaskExecutionPeriods();
-		maximumNumberOfTaskExecutionPeriods = this.repository.maximumNumberOfTaskExecutionPeriods();
+		averageNumberOfTaskExecutionPeriods = this.getAverageNumberOfTaskExecutionPeriods(request);
+		deviationNumberOfTaskExecutionPeriods = this.getDeviationNumberOfTaskExecutionPeriods(request);
+		minimumNumberOfTaskExecutionPeriods = this.geMinNumberOfTaskExecutionPeriods(request);
+		maximumNumberOfTaskExecutionPeriods = this.geMaxNumberOfTaskExecutionPeriods(request);
 		averageNumberOfTaskWorkloads = this.repository.averageNumberOfTaskWorkloads();
 		deviationNumberOfTaskWorkloads = this.repository.deviationNumberOfTaskWorkloads();
 		minimumNumberOfTaskWorkloads = this.repository.minimumNumberOfTaskWorkloads();
