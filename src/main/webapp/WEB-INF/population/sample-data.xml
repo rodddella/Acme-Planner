@@ -51,10 +51,10 @@
 		<property name="title" value="Task 001" />
 		<property name="description"
 			value="This is my first task ever!!" />
-		<property name="workload" value="3.00" />
-		<property name="link" value="https://www.iorl.org/" />
-		<property name="startPeriod" value="2021/02/13 12:30" />
-		<property name="endPeriod" value="2021/02/14 16:50" />
+		<property name="workload" value="1.0" />
+		<property name="link" value="http://www.sample-app.com" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 13:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
@@ -62,10 +62,10 @@
 		<property name="title" value="Task 002" />
 		<property name="description"
 			value="This is my first task ever!!" />
-		<property name="workload" value="3.00" />
-		<property name="link" value="https://www.iorl.org/" />
-		<property name="startPeriod" value="2021/02/13 12:30" />
-		<property name="endPeriod" value="2021/05/14 16:50" />
+		<property name="workload" value="1.0" />
+		<property name="link" value="http://www.sample-app.com" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
@@ -73,10 +73,10 @@
 		<property name="title" value="Task 003" />
 		<property name="description"
 			value="This is my first task ever!!" />
-		<property name="workload" value="3.00" />
-		<property name="link" value="https://www.iorl.org/" />
-		<property name="startPeriod" value="2030/02/13 12:30" />
-		<property name="endPeriod" value="2031/05/14 16:50" />
+		<property name="workload" value="1.0" />
+		<property name="link" value="http://www.sample-app.com" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
@@ -84,30 +84,30 @@
 		<property name="title" value="Task 004" />
 		<property name="description"
 			value="This is my first task ever!!" />
-		<property name="workload" value="3.00" />
-		<property name="link" value="https://www.iorl.org/" />
-		<property name="startPeriod" value="2030/02/13 12:30" />
-		<property name="endPeriod" value="2031/05/14 16:50" />
+		<property name="workload" value="1.0" />
+		<property name="link" value="http://www.sample-app.com" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PRIVATE" />
 	</bean>
 
 	<bean id="task05" class="acme.entities.tasks.Task">
 		<property name="title" value="Test description 1" />
 		<property name="description" value="Random description 1" />
-		<property name="workload" value="2.0" />
+		<property name="workload" value="1.0" />
 		<property name="link" value="http://www.sample-app.com" />
-		<property name="startPeriod" value="2021/07/18 12:30" />
-		<property name="endPeriod" value="2021/07/18 14:30" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
 	<bean id="task06" class="acme.entities.tasks.Task">
 		<property name="title" value="Test description 2" />
 		<property name="description" value="Random description 2" />
-		<property name="workload" value="3.0" />
+		<property name="workload" value="1.0" />
 		<property name="link" value="http://www.sample-app.com" />
-		<property name="startPeriod" value="2021/07/19 12:30" />
-		<property name="endPeriod" value="2021/07/19 15:30" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
@@ -124,10 +124,10 @@
 	<bean id="task08" class="acme.entities.tasks.Task">
 		<property name="title" value="Test description 4" />
 		<property name="description" value="Random description 4" />
-		<property name="workload" value="5.0" />
+		<property name="workload" value="1.0" />
 		<property name="link" value="http://www.sample-app.com" />
 		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2021/07/11 16:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PRIVATE" />
 	</bean>
 </beans>
