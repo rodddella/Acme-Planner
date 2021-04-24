@@ -47,12 +47,45 @@
 		<property name="info" value="http://www.sample-app.com" />
 	</bean>
 	
+	<bean id="shout05" class="acme.entities.shouts.Shout">
+		<property name="moment" value="2021/01/18 17:38" />
+		<property name="author" value="Guillermo Diz" />
+		<property name="text" value="I'm sad" />
+		<property name="info">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="shout06" class="acme.entities.shouts.Shout">
+		<property name="moment" value="2015/09/20 15:55" />
+		<property name="author" value="Peter Parker" />
+		<property name="text" value="I'm amazing!" />
+		<property name="info" value="http://www.example.org" />
+	</bean>
+
+	<bean id="shout07" class="acme.entities.shouts.Shout">
+		<property name="moment" value="2021/04/24 14:18" />
+		<property name="author" value="Carmen María" />
+		<property name="text" value="I love cinema!" />
+		<property name="info">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="shout08" class="acme.entities.shouts.Shout">
+		<property name="author" value="Alexander Hamilton" />
+		<property name="text" value="I'm not throwing away my shot!" />
+		<property name="moment" value="2019/07/04 12:30" />
+		<property name="info">
+			<null />
+		</property>
+	</bean>
+	
 	<!-- Tasks -->
 
 	<bean id="task01" class="acme.entities.tasks.Task">
-		<property name="title" value="Task 001" />
-		<property name="description"
-			value="This is my first task ever!!" />
+		<property name="title" value="Test description 1" />
+		<property name="description" value="Random description 1" />
 		<property name="workload" value="3.00" />
 		<property name="link" value="https://www.iorl.org/" />
 		<property name="startPeriod" value="2021/02/13 12:30" />
@@ -61,9 +94,8 @@
 	</bean>
 
 	<bean id="task02" class="acme.entities.tasks.Task">
-		<property name="title" value="Task 002" />
-		<property name="description"
-			value="This is my first task ever!!" />
+		<property name="title" value="Test description 2" />
+		<property name="description" value="Random description 2" />
 		<property name="workload" value="3.00" />
 		<property name="link" value="https://www.iorl.org/" />
 		<property name="startPeriod" value="2021/02/13 12:30" />
@@ -72,9 +104,8 @@
 	</bean>
 
 	<bean id="task03" class="acme.entities.tasks.Task">
-		<property name="title" value="Task 003" />
-		<property name="description"
-			value="This is my first task ever!!" />
+		<property name="title" value="Test description 3" />
+		<property name="description" value="Random description 3" />
 		<property name="workload" value="3.00" />
 		<property name="link" value="https://www.iorl.org/" />
 		<property name="startPeriod" value="2030/02/13 12:30" />
@@ -83,19 +114,19 @@
 	</bean>
 
 	<bean id="task04" class="acme.entities.tasks.Task">
-		<property name="title" value="Task 004" />
+		<property name="title" value="Test description 4" />
 		<property name="description"
 			value="This is my first task ever!!" />
 		<property name="workload" value="3.00" />
 		<property name="link" value="https://www.iorl.org/" />
-		<property name="startPeriod" value="2030/02/13 12:30" />
-		<property name="endPeriod" value="2031/05/14 16:50" />
+		<property name="startPeriod" value="2020/02/13 12:30" />
+		<property name="endPeriod" value="2021/04/14 16:50" />
 		<property name="visibility" value="PRIVATE" />
 	</bean>
 
 	<bean id="task05" class="acme.entities.tasks.Task">
-		<property name="title" value="Test description 1" />
-		<property name="description" value="Random description 1" />
+		<property name="title" value="Test description 5" />
+		<property name="description" value="Random description 5" />
 		<property name="workload" value="2.0" />
 		<property name="link" value="http://www.sample-app.com" />
 		<property name="startPeriod" value="2021/07/18 12:30" />
@@ -104,8 +135,8 @@
 	</bean>
 
 	<bean id="task06" class="acme.entities.tasks.Task">
-		<property name="title" value="Test description 2" />
-		<property name="description" value="Random description 2" />
+		<property name="title" value="Test description 6" />
+		<property name="description" value="Random description 6" />
 		<property name="workload" value="3.0" />
 		<property name="link" value="http://www.sample-app.com" />
 		<property name="startPeriod" value="2021/07/19 12:30" />
@@ -114,8 +145,8 @@
 	</bean>
 
 	<bean id="task07" class="acme.entities.tasks.Task">
-		<property name="title" value="Test description 3" />
-		<property name="description" value="Random description 3" />
+		<property name="title" value="Test description 7" />
+		<property name="description" value="Random description 7" />
 		<property name="workload" value="1.0" />
 		<property name="link" value="http://www.sample-app.com" />
 		<property name="startPeriod" value="2021/07/11 11:30" />
@@ -124,13 +155,83 @@
 	</bean>
 
 	<bean id="task08" class="acme.entities.tasks.Task">
-		<property name="title" value="Test description 4" />
-		<property name="description" value="Random description 4" />
+		<property name="title" value="Test description 8" />
+		<property name="description" value="Random description 8" />
 		<property name="workload" value="5.0" />
 		<property name="link" value="http://www.sample-app.com" />
 		<property name="startPeriod" value="2021/07/11 11:30" />
 		<property name="endPeriod" value="2021/07/11 16:30" />
 		<property name="visibility" value="PRIVATE" />
+	</bean>
+	
+	<bean id="task09" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 9" />
+		<property name="description" value="Random description 9" />
+		<property name="workload" value="5.0" />
+		<property name="link" value="http://www.sample-app.com" />
+		<property name="startPeriod" value="2021/11/11 11:30" />
+		<property name="endPeriod" value="2021/11/11 16:30" />
+		<property name="visibility" value="PUBLIC" />
+	</bean>
+	
+	<bean id="task10" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 10" />
+		<property name="description" value="Random description 10" />
+		<property name="workload" value="5.0" />
+		<property name="link" value="http://www.sample-app.com" />
+		<property name="startPeriod" value="2021/09/11 11:30" />
+		<property name="endPeriod" value="2021/09/11 16:30" />
+		<property name="visibility" value="PUBLIC" />
+	</bean>
+	
+		<bean id="task11" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 11" />
+		<property name="description" value="Random description 11" />
+		<property name="workload" value="5.00" />
+		<property name="link" value="https://www.iorl.org/" />
+		<property name="startPeriod" value="2021/03/13 12:30" />
+		<property name="endPeriod" value="2021/03/14 16:50" />
+		<property name="visibility" value="PUBLIC" />
+	</bean>
+	
+		<bean id="task12" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 12" />
+		<property name="description" value="Random description 12" />
+		<property name="workload" value="8.00" />
+		<property name="link" value="https://www.iorl.org/" />
+		<property name="startPeriod" value="2021/03/13 12:30" />
+		<property name="endPeriod" value="2021/03/18 16:50" />
+		<property name="visibility" value="PUBLIC" />
+	</bean>
+	
+		<bean id="task013" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 13" />
+		<property name="description" value="Random description 13" />
+		<property name="workload" value="3.00" />
+		<property name="link" value="https://www.iorl.org/" />
+		<property name="startPeriod" value="2021/02/13 12:30" />
+		<property name="endPeriod" value="2021/03/14 16:50" />
+		<property name="visibility" value="PUBLIC" />
+	</bean>
+	
+		<bean id="task014" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 14" />
+		<property name="description" value="Random description 14" />
+		<property name="workload" value="14.00" />
+		<property name="link" value="https://www.iorl.org/" />
+		<property name="startPeriod" value="2021/02/01 12:30" />
+		<property name="endPeriod" value="2021/02/14 16:50" />
+		<property name="visibility" value="PUBLIC" />
+	</bean>
+	
+		<bean id="task015" class="acme.entities.tasks.Task">
+		<property name="title" value="Test description 15" />
+		<property name="description" value="Random description 15" />
+		<property name="workload" value="3.00" />
+		<property name="link" value="https://www.iorl.org/" />
+		<property name="startPeriod" value="2021/03/08 12:30" />
+		<property name="endPeriod" value="2021/03/10 16:50" />
+		<property name="visibility" value="PUBLIC" />
 	</bean>
 	
 	<!-- WorkPlans -->
