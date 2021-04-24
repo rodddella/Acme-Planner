@@ -1,6 +1,7 @@
 package acme.entities.workPlans;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -35,8 +36,16 @@ public class WorkPlan extends DomainEntity{
 	@Enumerated(EnumType.STRING)
 	Visibility visibility;
 	
+	public Double workload() {
+		Double res = 0.0;
+		for (final TaskPlan taskplan : this.taskPlans) {
+			res+=taskplan.getTask().getWorkload();
+		}
+		return res;
+
+	}
+	
 	@Valid
 	@OneToMany(mappedBy="workPlan")
-	protected Set<TaskPlan> taskPlans;
-
+	protected Set<TaskPlan> taskPlans = new HashSet<TaskPlan>();
 }

@@ -1,6 +1,7 @@
 package acme.entities.tasks;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -53,7 +54,7 @@ public class Task extends DomainEntity {
 	
 	@Valid
 	@OneToMany(mappedBy="task")
-	protected Set<TaskPlan> taskPlans;
+	protected Set<TaskPlan> taskPlans= new HashSet<TaskPlan>();
 	
 	
 }
