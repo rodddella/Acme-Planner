@@ -129,8 +129,8 @@
 		<property name="description" value="Random description 5" />
 		<property name="workload" value="2.0" />
 		<property name="link" value="http://www.sample-app.com" />
-		<property name="startPeriod" value="2021/07/18 12:30" />
-		<property name="endPeriod" value="2021/07/18 14:30" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
@@ -139,8 +139,8 @@
 		<property name="description" value="Random description 6" />
 		<property name="workload" value="3.0" />
 		<property name="link" value="http://www.sample-app.com" />
-		<property name="startPeriod" value="2021/07/19 12:30" />
-		<property name="endPeriod" value="2021/07/19 15:30" />
+		<property name="startPeriod" value="2021/07/11 11:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PUBLIC" />
 	</bean>
 
@@ -160,7 +160,7 @@
 		<property name="workload" value="5.0" />
 		<property name="link" value="http://www.sample-app.com" />
 		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2021/07/11 16:30" />
+		<property name="endPeriod" value="2021/07/11 12:30" />
 		<property name="visibility" value="PRIVATE" />
 	</bean>
 	
