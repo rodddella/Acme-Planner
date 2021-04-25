@@ -34,7 +34,7 @@
 	</bean>
 
 	<bean id="shout03" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2020/09/07 00:00" />
+		<property name="moment" value="2021/04/18 00:00" />
 		<property name="author" value="Foo Bar" />
 		<property name="text" value="Just turning 50!" />
 		<property name="info" value="http://happybirthday.com" />
@@ -43,7 +43,7 @@
 	<bean id="shout04" class="acme.entities.shouts.Shout">
 		<property name="author" value="Leslie Design-Testing" />
 		<property name="text" value="Woa! This app's so cool!" />
-		<property name="moment" value="2021/02/13 12:30" />
+		<property name="moment" value="2021/04/13 12:30" />
 		<property name="info" value="http://www.sample-app.com" />
 	</bean>
 	
