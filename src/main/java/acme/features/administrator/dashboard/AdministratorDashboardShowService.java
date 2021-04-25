@@ -14,7 +14,7 @@ import acme.framework.services.AbstractShowService;
 
 @Service
 public class AdministratorDashboardShowService implements AbstractShowService<Administrator, Dashboard> {
-	static final Long MILISECONDS_TO_MINUTES = 1L/(60*60);
+	static final Long MILISECONDS_TO_MINUTES = 1L/(60*1000);
 
 	@Autowired
 	protected AdministratorDashboardRepository repository;
