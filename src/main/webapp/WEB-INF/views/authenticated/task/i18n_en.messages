@@ -1,5 +1,4 @@
 authenticated.task.list.label.title = Título
-authenticated.task.list.label.description = Descripción
 authenticated.task.list.label.workload = Carga de Trabajo
 authenticated.task.list.label.link = Enlace
 authenticated.task.list.label.start_period = Comienzo
