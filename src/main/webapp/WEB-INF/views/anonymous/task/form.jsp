@@ -20,7 +20,7 @@
 	<acme:form-textarea code="anonymous.task.form.label.description" path="description"/>
 	<acme:form-double code="anonymous.task.form.label.workload" path="workload"/>
 	<acme:form-textbox code="anonymous.task.form.label.start_period" path="startPeriod"/>
-	<acme:form-textbox code="anonymous.task.form.label.end_period" path="endPeriod"/>>
+	<acme:form-textbox code="anonymous.task.form.label.end_period" path="endPeriod"/>
 	<acme:form-select code="anonymous.task.form.label.visibility" path="visibility">
 		<acme:form-option code="PUBLIC" value="PUBLIC" selected= "${visibility == 'PUBLIC'}"/>
 		<acme:form-option code="PRIVATE" value="PRIVATE" selected= "${visibility == 'PRIVATE'}"/>
