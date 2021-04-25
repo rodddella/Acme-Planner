@@ -14,7 +14,7 @@ import acme.framework.services.AbstractShowService;
 
 @Service
 public class AdministratorDashboardShowService implements AbstractShowService<Administrator, Dashboard> {
-	static final Long MILISECONDS_TO_MINUTES = 1L/(60*1000);
+	static final Double MILISECONDS_TO_MINUTES = 1.0 / (60 * 1000);
 
 	@Autowired
 	protected AdministratorDashboardRepository repository;
@@ -32,101 +32,100 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, 
-			"totalNumberOfPublicTasks","totalNumberOfPrivateTasks",
-			"totalNumberOfFinishedTasks","totalNumberOfNonFinishedTasks",
-			"averageNumberOfTaskExecutionPeriods","deviationNumberOfTaskExecutionPeriods",
-			"minimumNumberOfTaskExecutionPeriods","maximumNumberOfTaskExecutionPeriods",
-			"averageNumberOfTaskWorkloads", "deviationNumberOfTaskWorkloads",
-			"minimumNumberOfTaskWorkloads", "maximumNumberOfTaskWorkloads");
-		
+		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks",
+				"totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageNumberOfTaskExecutionPeriods",
+				"deviationNumberOfTaskExecutionPeriods", "minimumNumberOfTaskExecutionPeriods",
+				"maximumNumberOfTaskExecutionPeriods", "averageNumberOfTaskWorkloads", "deviationNumberOfTaskWorkloads",
+				"minimumNumberOfTaskWorkloads", "maximumNumberOfTaskWorkloads");
+
 	}
-	
-	public Double getAverageNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+
+	public Double getAverageNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
 		assert request != null;
-		
-		Long averageTimeExecutionPeriods =  0L;
-		final Set<Task> tasks= this.repository.findAllTasks();
-		
-		for(final Task task: tasks) {
-			final Long executionPeriodDiff=task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
-			averageTimeExecutionPeriods+=executionPeriodDiff;
+
+		Long averageTimeExecutionPeriods = 0L;
+		final Set<Task> tasks = this.repository.findAllTasks();
+
+		for (final Task task : tasks) {
+			final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
+			averageTimeExecutionPeriods += executionPeriodDiff;
 		}
-		averageTimeExecutionPeriods = averageTimeExecutionPeriods/tasks.size();
-		return averageTimeExecutionPeriods.doubleValue()*AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+		
+		averageTimeExecutionPeriods = averageTimeExecutionPeriods / tasks.size();
+		return averageTimeExecutionPeriods.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
-	
-	public Double getDeviationNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+
+	public Double getDeviationNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
 		assert request != null;
-		
-		final Double average_task_executioPeriods_double =  this.getAverageNumberOfTaskExecutionPeriods(request)/AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
-		final Long average_task_executioPeriods= average_task_executioPeriods_double.longValue();
-		
-		Long deviationTimeExecutionPeriods =  0L;
-		final Set<Task> tasks= this.repository.findAllTasks();
-		
-		for(final Task task: tasks) {
-			final Long executionPeriodDiff = task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
-			final Long individualDeviation = (long) Math.pow(executionPeriodDiff-average_task_executioPeriods,2);
-			deviationTimeExecutionPeriods+=individualDeviation;
+
+		final Double averageTaskExecutionPeriods = this.getAverageNumberOfTaskExecutionPeriods(request)
+				/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+
+		Double deviationTimeExecutionPeriods = 0.0;
+		final Set<Task> tasks = this.repository.findAllTasks();
+
+		for (final Task task : tasks) {
+			final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
+			final Double individualDeviation = Math.pow(executionPeriodDiff - averageTaskExecutionPeriods, 2);
+			deviationTimeExecutionPeriods += individualDeviation;
 		}
-		deviationTimeExecutionPeriods = deviationTimeExecutionPeriods/tasks.size();
-		return deviationTimeExecutionPeriods.doubleValue()*AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+		
+		deviationTimeExecutionPeriods = Math.sqrt(deviationTimeExecutionPeriods / tasks.size());
+		return deviationTimeExecutionPeriods * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
-	
-	public Double geMinNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+
+	public Double getMinNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
 		assert request != null;
-		
-		final Double maxTimeExecutionPeriod =  this.geMaxNumberOfTaskExecutionPeriods(request)/0.0000166667;
-		Long minTimeExecutionPeriod= maxTimeExecutionPeriod.longValue();
-		
-		
-		final Set<Task> tasks= this.repository.findAllTasks();
-		
-		for(final Task task: tasks) {
-			final Long executionPeriodDiff=task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
-			if(minTimeExecutionPeriod>executionPeriodDiff) {
-				minTimeExecutionPeriod=executionPeriodDiff;
+
+		final Double maxTimeExecutionPeriod = this.getMaxNumberOfTaskExecutionPeriods(request) / 0.0000166667;
+		Long minTimeExecutionPeriod = maxTimeExecutionPeriod.longValue();
+
+		final Set<Task> tasks = this.repository.findAllTasks();
+
+		for (final Task task : tasks) {
+			final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
+			if (minTimeExecutionPeriod > executionPeriodDiff) {
+				minTimeExecutionPeriod = executionPeriodDiff;
 			}
 		}
-		return minTimeExecutionPeriod.doubleValue()*AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+		
+		return minTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
-	
-	public Double geMaxNumberOfTaskExecutionPeriods (final Request<Dashboard> request) {
+
+	public Double getMaxNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
 		assert request != null;
-		
-		Long maxTimeExecutionPeriod =  0L;
-		final Set<Task> tasks= this.repository.findAllTasks();
-		
-		for(final Task task: tasks) {
-			final Long executionPeriodDiff=task.getEndPeriod().getTime()-task.getStartPeriod().getTime();
-			if(maxTimeExecutionPeriod<executionPeriodDiff) {
-				maxTimeExecutionPeriod=executionPeriodDiff;
+
+		Long maxTimeExecutionPeriod = 0L;
+		final Set<Task> tasks = this.repository.findAllTasks();
+
+		for (final Task task : tasks) {
+			final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
+			if (maxTimeExecutionPeriod < executionPeriodDiff) {
+				maxTimeExecutionPeriod = executionPeriodDiff;
 			}
 		}
-		return maxTimeExecutionPeriod.doubleValue()*AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+		return maxTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
 
 	@Override
 	public Dashboard findOne(final Request<Dashboard> request) {
 		assert request != null;
-	
+
 		final Dashboard result = new Dashboard();
-		
+
 		result.setTotalNumberOfPublicTasks(this.repository.totalNumberOfPublicTasks());
 		result.setTotalNumberOfPrivateTasks(this.repository.totalNumberOfPrivateTasks());
 		result.setTotalNumberOfFinishedTasks(this.repository.totalNumberOfFinishedTasks());
 		result.setTotalNumberOfNonFinishedTasks(this.repository.totalNumberOfNonFinishedTasks());
 		result.setAverageNumberOfTaskExecutionPeriods(this.getAverageNumberOfTaskExecutionPeriods(request));
 		result.setDeviationNumberOfTaskExecutionPeriods(this.getDeviationNumberOfTaskExecutionPeriods(request));
-		result.setMinimumNumberOfTaskExecutionPeriods(this.geMinNumberOfTaskExecutionPeriods(request));
-		result.setMaximumNumberOfTaskExecutionPeriods(this.geMaxNumberOfTaskExecutionPeriods(request));
+		result.setMinimumNumberOfTaskExecutionPeriods(this.getMinNumberOfTaskExecutionPeriods(request));
+		result.setMaximumNumberOfTaskExecutionPeriods(this.getMaxNumberOfTaskExecutionPeriods(request));
 		result.setAverageNumberOfTaskWorkloads(this.repository.averageNumberOfTaskWorkloads());
 		result.setDeviationNumberOfTaskWorkloads(this.repository.deviationNumberOfTaskWorkloads());
 		result.setMinimumNumberOfTaskWorkloads(this.repository.minimumNumberOfTaskWorkloads());
 		result.setMaximumNumberOfTaskWorkloads(this.repository.maximumNumberOfTaskWorkloads());
-		
+
 		return result;
 	}
-
 }
