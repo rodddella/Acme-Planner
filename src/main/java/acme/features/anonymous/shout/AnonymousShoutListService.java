@@ -1,7 +1,9 @@
 
 package acme.features.anonymous.shout;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,15 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 		
 		Collection<Shout> result;
 		
-		result = this.repository.findMany();
+		final Date referenceDate = new Date();
+		final Calendar c = Calendar.getInstance(); 
+		c.setTime(referenceDate);
+		// Remove one month from the current date
+		c.add(Calendar.MONTH, -1);
+		
+		final Date oneMonthOldDate = c.getTime();
+		System.out.println(oneMonthOldDate);
+		result = this.repository.findShoutsNotOlderThanDateAndSortedByDate(oneMonthOldDate);
 		
 		return result;
 	}
