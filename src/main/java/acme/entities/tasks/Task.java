@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -34,6 +35,7 @@ public class Task extends DomainEntity {
 	
 	@NotEmpty
 	@Length(max = 500, min = 0)
+	@Column(length = 512)
 	String description;
 	
 	@NotNull
