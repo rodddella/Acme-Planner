@@ -35,7 +35,7 @@ master.menu.anonymous.task-list = Listado de tareas
 
 # master.menu.authenticated ###################################################
 
-master.menu.authenticated = Autentificadx/autentificade/autentificad@
+master.menu.authenticated = Autentificado
 master.menu.authenticated.task-list = Lista de tareas
 
 # master.menu.administrator ###################################################

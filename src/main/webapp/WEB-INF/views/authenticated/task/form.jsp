@@ -18,13 +18,12 @@
 <acme:form readonly="true">
 	<acme:form-textbox code="authenticated.task.form.label.title" path="title"/>
 	<acme:form-textarea code="authenticated.task.form.label.description" path="description"/>
-	<acme:form-double code="authenticated.task.form.label.info" path="workload"/>
+	<acme:form-double code="authenticated.task.form.label.workload" path="workload"/>
 	<acme:form-textbox code="authenticated.task.form.label.start_period" path="startPeriod"/>
 	<acme:form-textbox code="authenticated.task.form.label.end_period" path="endPeriod"/>
-	<acme:form-textbox code="authenticated.task.form.label.end_period" path="endPeriod"/>
 	<acme:form-select code="authenticated.task.form.label.visibility" path="visibility">
-		<acme:form-option code="PUBLIC" value="PUBLIC" selected= "${visibility == 'Public'}"/>
-		<acme:form-option code="PRIVATE" value="PRIVATE" selected= "${visibility == 'Private'}"/>
+		<acme:form-option code="PUBLIC" value="PUBLIC" selected= "${visibility == 'PUBLIC'}"/>
+		<acme:form-option code="PRIVATE" value="PRIVATE" selected= "${visibility == 'PRIVATE'}"/>
 	</acme:form-select>
 	
   	<acme:form-return code="authenticated.task.form.button.return"/>
