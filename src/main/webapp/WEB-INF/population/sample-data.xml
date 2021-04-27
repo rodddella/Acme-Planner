@@ -93,7 +93,61 @@
 		<property name="userAccount" ref="authenticatedUserAccount3" />
 	</bean>
 
+	<!-- Manager user 1 -->
 
+	<bean name="managerUserAccount1"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager1" />
+		<property name="password" value="manager1" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="John" />
+				<property name="surname" value="Dow" />
+				<property name="email" value="johndoe@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerRole1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerRole1"
+		class="acme.entities.roles.Manager">
+		<property name="userAccount" ref="managerUserAccount1" />
+		<property name="sector" value="Informatic" />
+		<property name="company" value="Acme" />
+	</bean>
+	
+	<!-- Manager user 2 -->
+
+	<bean name="managerUserAccount2"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager2" />
+		<property name="password" value="manager2" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Will" />
+				<property name="surname" value="Acmen" />
+				<property name="email" value="will@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerRole2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerRole2"
+		class="acme.entities.roles.Manager">
+		<property name="userAccount" ref="managerUserAccount2" />
+		<property name="sector" value="Finance" />
+		<property name="company" value="MecMec" />
+	</bean>
 	<!-- Shouts -->
 
 	<!-- Shouts: older than one month -->
@@ -219,6 +273,7 @@
 		<property name="startPeriod" value="2021/04/13 12:30" />
 		<property name="endPeriod" value="2021/04/13 14:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task02" class="acme.entities.tasks.Task">
@@ -232,6 +287,7 @@
 		<property name="startPeriod" value="2021/04/20 14:30" />
 		<property name="endPeriod" value="2021/04/20 15:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task03" class="acme.entities.tasks.Task">
@@ -244,6 +300,7 @@
 		<property name="startPeriod" value="2021/04/23 14:00" />
 		<property name="endPeriod" value="2021/04/23 15:15" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task04" class="acme.entities.tasks.Task">
@@ -256,6 +313,7 @@
 		<property name="startPeriod" value="2021/04/24 00:30" />
 		<property name="endPeriod" value="2021/04/24 01:15" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task05" class="acme.entities.tasks.Task">
@@ -268,6 +326,7 @@
 		<property name="startPeriod" value="2021/04/24 07:30" />
 		<property name="endPeriod" value="2021/04/24 09:15" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task06" class="acme.entities.tasks.Task">
@@ -280,6 +339,7 @@
 		<property name="startPeriod" value="2021/04/25 14:30" />
 		<property name="endPeriod" value="2021/04/25 16:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task07" class="acme.entities.tasks.Task">
@@ -292,6 +352,7 @@
 		<property name="startPeriod" value="2021/04/25 17:30" />
 		<property name="endPeriod" value="2021/04/25 18:15" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task08" class="acme.entities.tasks.Task">
@@ -304,6 +365,7 @@
 		<property name="startPeriod" value="2021/04/25 19:30" />
 		<property name="endPeriod" value="2021/04/25 20:15" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task09" class="acme.entities.tasks.Task">
@@ -316,6 +378,7 @@
 		<property name="startPeriod" value="2021/04/26 00:30" />
 		<property name="endPeriod" value="2021/04/26 01:15" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<!-- Tasks: private and closed -->
@@ -331,6 +394,7 @@
 		<property name="startPeriod" value="2021/04/25 20:10" />
 		<property name="endPeriod" value="2021/04/25 22:30" />
 		<property name="visibility" value="PRIVATE" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<!-- Tasks: public and opened -->
@@ -346,6 +410,7 @@
 		<property name="startPeriod" value="2021/05/13 14:30" />
 		<property name="endPeriod" value="2021/05/13 17:00" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task12" class="acme.entities.tasks.Task">
@@ -358,6 +423,7 @@
 		<property name="startPeriod" value="2021/06/13 19:30" />
 		<property name="endPeriod" value="2021/06/13 20:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task13" class="acme.entities.tasks.Task">
@@ -370,6 +436,7 @@
 		<property name="startPeriod" value="2021/06/13 20:30" />
 		<property name="endPeriod" value="2021/06/13 21:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task14" class="acme.entities.tasks.Task">
@@ -382,6 +449,7 @@
 		<property name="startPeriod" value="2021/06/13 21:30" />
 		<property name="endPeriod" value="2021/06/13 22:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task15" class="acme.entities.tasks.Task">
@@ -394,6 +462,7 @@
 		<property name="startPeriod" value="2021/06/13 22:30" />
 		<property name="endPeriod" value="2021/06/13 23:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task16" class="acme.entities.tasks.Task">
@@ -407,6 +476,7 @@
 		<property name="startPeriod" value="2021/06/13 23:30" />
 		<property name="endPeriod" value="2021/06/14 00:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task17" class="acme.entities.tasks.Task">
@@ -419,6 +489,7 @@
 		<property name="startPeriod" value="2021/06/14 00:30" />
 		<property name="endPeriod" value="2021/06/14 01:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task018" class="acme.entities.tasks.Task">
@@ -431,6 +502,7 @@
 		<property name="startPeriod" value="2021/06/13 01:30" />
 		<property name="endPeriod" value="2021/06/13 02:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 
 	<bean id="task019" class="acme.entities.tasks.Task">
@@ -443,6 +515,7 @@
 		<property name="startPeriod" value="2021/06/13 02:30" />
 		<property name="endPeriod" value="2021/06/13 03:30" />
 		<property name="visibility" value="PUBLIC" />
+		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<!-- Tasks: private and opened -->
@@ -457,6 +530,7 @@
 		<property name="startPeriod" value="2021/06/13 02:30" />
 		<property name="endPeriod" value="2021/06/13 03:30" />
 		<property name="visibility" value="PRIVATE" />
+		<property name="manager" ref="managerRole1" />
 	</bean>
 	
 	
