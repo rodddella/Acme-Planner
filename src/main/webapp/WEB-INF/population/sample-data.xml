@@ -114,13 +114,12 @@
 		</property>
 	</bean>
 
-	<bean name="managerRole1"
-		class="acme.entities.roles.Manager">
+	<bean name="managerRole1" class="acme.entities.roles.Manager">
 		<property name="userAccount" ref="managerUserAccount1" />
 		<property name="sector" value="Informatic" />
 		<property name="company" value="Acme" />
 	</bean>
-	
+
 	<!-- Manager user 2 -->
 
 	<bean name="managerUserAccount2"
@@ -142,8 +141,7 @@
 		</property>
 	</bean>
 
-	<bean name="managerRole2"
-		class="acme.entities.roles.Manager">
+	<bean name="managerRole2" class="acme.entities.roles.Manager">
 		<property name="userAccount" ref="managerUserAccount2" />
 		<property name="sector" value="Finance" />
 		<property name="company" value="MecMec" />
@@ -343,7 +341,8 @@
 	</bean>
 
 	<bean id="task07" class="acme.entities.tasks.Task">
-		<property name="title" value="Prepare the cheesecake to serve" />
+		<property name="title"
+			value="Prepare the cheesecake to serve" />
 		<property name="description"
 			value="Remove the cake from the refrigerator. Remove the foil from the sides of the pan, and place the cake on your cake serving dish. Run the side of a blunt knife between the edge of the cake and the pan." />
 		<property name="workload" value="0.5" />
@@ -532,8 +531,8 @@
 		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole1" />
 	</bean>
-	
-	
+
+
 	<!-- WorkPlans -->
 
 	<bean id="workPlan01" class="acme.entities.workPlans.WorkPlan">
@@ -582,5 +581,46 @@
 		<property name="startPeriod" value="2022/07/11 11:30" />
 		<property name="endPeriod" value="2022/08/11 16:30" />
 		<property name="visibility" value="PUBLIC" />
+	</bean>
+
+	<!-- Spam words -->
+	<bean id="spamWord01" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="sex" />
+	</bean>
+	
+	<bean id="spamWord02" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="sexo" />
+	</bean>
+
+	<bean id="spamWord03" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="hard core" />
+	</bean>
+	
+	<bean id="spamWord04" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="viagra" />
+	</bean>
+
+	<bean id="spamWord05" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="cialis" />
+	</bean>
+
+	<bean id="spamWord06" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="nigeria" />
+	</bean>
+
+	<bean id="spamWord07" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="you've won" />
+	</bean>
+	
+	<bean id="spamWord08" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="has ganado" />
+	</bean>
+
+	<bean id="spamWord09" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="million dollar" />
+	</bean>
+	
+	<bean id="spamWord11" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="millón de dólares" />
 	</bean>
 </beans>
