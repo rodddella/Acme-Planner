@@ -4,10 +4,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +20,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import acme.entities.roles.Manager;
 import acme.enums.Visibility;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
@@ -57,6 +61,9 @@ public class Task extends DomainEntity {
 	@Valid
 	@OneToMany(mappedBy="task")
 	protected Set<TaskPlan> taskPlans= new HashSet<TaskPlan>();
+	
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	Manager manager;
 	
 	
 }
