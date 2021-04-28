@@ -16,7 +16,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="administrator.spam-word.form.label.text" path="text" />
+	<acme:form-textbox code="administrator.spam-word.form.label.text" path="text" readonly="${command != 'create'}" />
 	<acme:form-submit test="${command == 'create'}" code="administrator.spam-word.form.button.create" action="/administrator/spam-word/create" />
 	<acme:form-submit test="${command != 'create'}" code="administrator.spam-word.form.button.delete" action="/administrator/spam-word/delete" />
 	<acme:form-return code="administrator.spam-word.form.button.return" />

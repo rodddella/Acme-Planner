@@ -17,6 +17,6 @@
 
 <acme:form>
 	<acme:form-double code="administrator.spam-threshold.form.label.value" path="value" />
-	<acme:form-submit code="administrator.spam-threshold.form.button.update" action="/administrator/spamthreshold/update" />
+	<acme:form-submit code="administrator.spam-threshold.form.button.update" action="/administrator/spam-threshold/update" />
 	<acme:form-return code="administrator.spam-threshold.form.button.return" />
 </acme:form>

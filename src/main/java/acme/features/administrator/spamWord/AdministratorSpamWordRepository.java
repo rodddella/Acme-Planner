@@ -17,6 +17,6 @@ public interface AdministratorSpamWordRepository extends AbstractRepository {
 	@Query("SELECT word FROM SpamWord word WHERE word.id = :id")
 	SpamWord getSpamWordById(@Param("id") Integer id);
 	
-	@Query("SELECT word FROM SpamWord word WHERE lower(word.text) LIKE lower(concat('%', :text, '%'))")
-	SpamWord getSpamWordByCaseInsensitiveText(@Param("text") String text);
+	@Query("SELECT word FROM SpamWord word WHERE lower(word.text) = lower(:text)")
+	List<SpamWord> getSpamWordsByText(@Param("text") String text);
 }
