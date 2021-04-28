@@ -56,8 +56,8 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 		assert entity != null;
 		assert errors != null;
 		
-		if (!errors.hasErrors() && repository.getSpamWordByCaseInsensitiveText(entity.getText()) != null) {
-			errors.add("text", "acme.validation.already-exists");
+		if (!errors.hasErrors()) {
+			errors.state(request, repository.getSpamWordsByText(entity.getText()).isEmpty(), "text", "acme.validation.already-exists");
 		}
 	}
 
