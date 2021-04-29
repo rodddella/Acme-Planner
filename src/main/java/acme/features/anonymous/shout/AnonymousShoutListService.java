@@ -1,7 +1,9 @@
 
 package acme.features.anonymous.shout;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,36 +18,44 @@ import acme.framework.services.AbstractListService;
 public class AnonymousShoutListService implements AbstractListService<Anonymous, Shout> {
 
 	// Internal state ----------------------------------------------------
-	
+
 	@Autowired
 	AnonymousShoutRepository repository;
-	
-	
+
 	// AbstractListService<Administrator, Shout> interface ---------------
-	
+
+
 	@Override
 	public boolean authorise(final Request<Shout> request) {
 		assert request != null;
 		return true;
 	}
-	
+
 	@Override
 	public void unbind(final Request<Shout> request, final Shout entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
-		request.unbind(entity,  model, "author", "text", "moment");
+
+		request.unbind(entity, model, "author", "text", "moment");
 	}
-	
+
 	@Override
 	public Collection<Shout> findMany(final Request<Shout> request) {
 		assert request != null;
-		
+
 		Collection<Shout> result;
-		
-		result = this.repository.findMany();
-		
+
+		final Date referenceDate = new Date();
+		final Calendar c = Calendar.getInstance();
+		c.setTime(referenceDate);
+		// Remove one month from the current date
+		c.add(Calendar.MONTH, -1);
+
+		final Date oneMonthOldDate = c.getTime();
+
+		result = this.repository.findShoutsNotOlderThanDateAndSortedByDate(oneMonthOldDate);
+
 		return result;
 	}
 }

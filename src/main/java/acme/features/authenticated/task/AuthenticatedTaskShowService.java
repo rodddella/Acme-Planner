@@ -21,7 +21,7 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
-		return false;
+		return true;
 	}
 
 	@Override

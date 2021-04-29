@@ -13,9 +13,11 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface ManagerTaskRepository extends AbstractRepository {
 
-	@Query("SELECT m FROM Manager m JOIN UserAccount us WHERE m.userAccount.id = ?1")
-	Optional<Manager> findManagerById(Integer id);
+
 	
 	@Query("SELECT t FROM Task t JOIN Manager m JOIN UserAccount us where t.id = :taskId and m.userAccount.id = :managerId")
+	Optional<Manager> findManagerById(Integer id);
+	
+	@Query("SELECT t FROM Task t JOIN Manager m where t.id = :taskId and m.id = :managerId")
 	Task findTaskByIdAndManager(@Param("taskId") Integer taskId, @Param("managerId") Integer managerId);
 }

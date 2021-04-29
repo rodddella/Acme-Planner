@@ -30,3 +30,4 @@ authenticated.manager.task.form.label.workload = Workload :
 authenticated.manager.task.form.label.link = Link (Optional):
 authenticated.manager.task.form.label.description = Description:
 authenticated.manager.task.form.label.state = Public
+

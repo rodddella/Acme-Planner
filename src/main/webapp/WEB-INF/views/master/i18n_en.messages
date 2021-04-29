@@ -43,6 +43,8 @@ master.menu.authenticated.task-list = Task list
 master.menu.administrator = Administrator
 master.menu.administrator.dashboard = Dashboard
 master.menu.administrator.user-accounts = User accounts
+master.menu.administrator.spam-threshold = Spam threshold
+master.menu.administrator.spam-words = Spam words
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shutdown = Shut down
@@ -57,11 +59,11 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
-
 # master.menu.manager ##########################################################
 
 master.menu.manager = Manager
 master.menu.manager.favourite-link = Favourite link
+
 master.menu.manager.task-list = Listado de Tareas
 
 
@@ -73,6 +75,8 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.manager = Manager data
+master.menu.user-account.become-manager = Become a manager
 
 # master.footer ###############################################################
 

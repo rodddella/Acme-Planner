@@ -18,15 +18,12 @@
 
 <acme:list >
 		
-		<acme:list-column code="anonymous.task.list.label.title"
-			path="title" />
-		<acme:list-column code="anonymous.task.list.label.workload"
-			path="workload" />
-		<acme:list-column code="anonymous.task.list.label.link"
-			path="link" />
-		<acme:list-column code="anonymous.task.list.label.visibility"
-			path="visibility" />
-
+	<acme:list-column code="anonymous.task.list.label.title" path="title" />
+	<acme:list-column code="anonymous.task.list.label.workload" path="workload" />
+	<acme:list-column code="anonymous.task.list.label.link" path="link" />
+	<acme:list-column code="anonymous.task.list.label.start_period" path="startPeriod" />
+	<acme:list-column code="anonymous.task.list.label.end_period" path="endPeriod" />
+	<acme:list-column code="anonymous.task.list.label.visibility" path="visibility" />
 </acme:list>
 
 
