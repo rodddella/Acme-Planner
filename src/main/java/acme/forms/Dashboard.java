@@ -16,13 +16,13 @@ public class Dashboard implements Serializable{
 	Double totalNumberOfPrivateTasks;
 	Double totalNumberOfFinishedTasks;
 	Double totalNumberOfNonFinishedTasks;
-	Double averageNumberOfTaskExecutionPeriods;
-	Double deviationNumberOfTaskExecutionPeriods;
-	Double minimumNumberOfTaskExecutionPeriods;
-	Double maximumNumberOfTaskExecutionPeriods;
-	Double averageNumberOfTaskWorkloads;
-	Double deviationNumberOfTaskWorkloads;
-	Double minimumNumberOfTaskWorkloads;
-	Double maximumNumberOfTaskWorkloads;
+	String averageNumberOfTaskExecutionPeriods;
+	String deviationNumberOfTaskExecutionPeriods;
+	String minimumNumberOfTaskExecutionPeriods;
+	String maximumNumberOfTaskExecutionPeriods;
+	String averageNumberOfTaskWorkloads;
+	String deviationNumberOfTaskWorkloads;
+	String minimumNumberOfTaskWorkloads;
+	String maximumNumberOfTaskWorkloads;
 
 }

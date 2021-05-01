@@ -25,16 +25,4 @@ public interface AdministratorDashboardRepository extends AbstractRepository{
 	
 	@Query("select count(t) from Task t where t.endPeriod > current_timestamp()")
 	Double totalNumberOfNonFinishedTasks ();
-	
-	@Query("select avg(t.workload) from Task t")
-	Double averageNumberOfTaskWorkloads ();
-	
-	@Query("select stddev(t.workload) from Task t")
-	Double deviationNumberOfTaskWorkloads ();
-	
-	@Query("select min(t.workload) from Task t")
-	Double minimumNumberOfTaskWorkloads ();
-	
-	@Query("select max(t.workload) from Task t")
-	Double maximumNumberOfTaskWorkloads ();
 }
