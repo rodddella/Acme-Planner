@@ -19,15 +19,17 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
 
-		final Integer managerId = request.getPrincipal().getAccountId();
+		final Integer managerId = request.getPrincipal().getActiveRoleId();
 		final Integer taskId = request.getModel().getInteger("id");
 
 		assert managerId != null;
 		assert taskId != null;
 
-		final Task task = this.repository.findTaskByIdAndManager(taskId, managerId);
-
-		return task != null;
+		final Task task = this.repository.findTaskById(taskId);
+		
+		assert task != null;
+		
+		return task.getManager().getId() == managerId.intValue();
 	}
 
 	@Override
@@ -54,7 +56,7 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 		assert request != null;
 
 		final Integer taskId = request.getModel().getInteger("id");
-		return (Task) this.repository.findById(taskId).get();
+		return repository.findTaskById(taskId);
 	}
 
 	@Override

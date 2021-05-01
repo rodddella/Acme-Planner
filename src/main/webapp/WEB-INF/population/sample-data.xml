@@ -110,17 +110,22 @@
 		<property name="roles">
 			<list>
 				<ref bean="managerRole1" />
+				<ref bean="authenticatedManagerRole1" />
 			</list>
 		</property>
 	</bean>
 
-	<bean name="managerRole1"
-		class="acme.entities.roles.Manager">
+	<bean name="managerRole1" class="acme.entities.roles.Manager">
 		<property name="userAccount" ref="managerUserAccount1" />
 		<property name="sector" value="Informatic" />
 		<property name="company" value="Acme" />
 	</bean>
-	
+
+	<bean name="authenticatedManagerRole1"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount1" />
+	</bean>
+
 	<!-- Manager user 2 -->
 
 	<bean name="managerUserAccount2"
@@ -138,15 +143,20 @@
 		<property name="roles">
 			<list>
 				<ref bean="managerRole2" />
+				<ref bean="authenticatedManagerRole2" />
 			</list>
 		</property>
 	</bean>
 
-	<bean name="managerRole2"
-		class="acme.entities.roles.Manager">
+	<bean name="managerRole2" class="acme.entities.roles.Manager">
 		<property name="userAccount" ref="managerUserAccount2" />
 		<property name="sector" value="Finance" />
 		<property name="company" value="MecMec" />
+	</bean>
+
+	<bean name="authenticatedManagerRole2"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount2" />
 	</bean>
 	<!-- Shouts -->
 
@@ -343,7 +353,8 @@
 	</bean>
 
 	<bean id="task07" class="acme.entities.tasks.Task">
-		<property name="title" value="Prepare the cheesecake to serve" />
+		<property name="title"
+			value="Prepare the cheesecake to serve" />
 		<property name="description"
 			value="Remove the cake from the refrigerator. Remove the foil from the sides of the pan, and place the cake on your cake serving dish. Run the side of a blunt knife between the edge of the cake and the pan." />
 		<property name="workload" value="0.5" />
@@ -531,56 +542,5 @@
 		<property name="endPeriod" value="2021/06/13 03:30" />
 		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole1" />
-	</bean>
-	
-	
-	<!-- WorkPlans -->
-
-	<bean id="workPlan01" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2021/07/11 16:30" />
-		<property name="visibility" value="PRIVATE" />
-	</bean>
-
-	<bean id="workPlan02" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2021/07/11 16:30" />
-		<property name="visibility" value="PUBLIC" />
-	</bean>
-
-	<bean id="workPlan03" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2022/07/18 16:30" />
-		<property name="visibility" value="PUBLIC" />
-	</bean>
-
-	<bean id="workPlan04" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2021/09/11 16:30" />
-		<property name="visibility" value="PUBLIC" />
-	</bean>
-
-	<bean id="workPlan05" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/03/11 11:30" />
-		<property name="endPeriod" value="2021/08/11 15:30" />
-		<property name="visibility" value="PUBLIC" />
-	</bean>
-
-	<bean id="workPlan06" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/07/11 11:30" />
-		<property name="endPeriod" value="2022/08/11 16:30" />
-		<property name="visibility" value="PRIVATE" />
-	</bean>
-
-	<bean id="workPlan07" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2021/03/11 11:30" />
-		<property name="endPeriod" value="2022/08/11 15:30" />
-		<property name="visibility" value="PUBLIC" />
-	</bean>
-
-	<bean id="workPlan08" class="acme.entities.workPlans.WorkPlan">
-		<property name="startPeriod" value="2022/07/11 11:30" />
-		<property name="endPeriod" value="2022/08/11 16:30" />
-		<property name="visibility" value="PUBLIC" />
 	</bean>
 </beans>

@@ -24,9 +24,11 @@ public class ManagerTaskShowService implements AbstractShowService<Manager, Task
 		assert managerId != null;
 		assert taskId != null;
 
-		final Task task = this.repository.findTaskByIdAndManager(taskId, managerId);
-
-		return task != null;
+		final Task task = this.repository.findTaskById(taskId);
+		
+		assert task != null;
+		
+		return task.getManager().getId() == managerId.intValue();
 	}
 
 	@Override
