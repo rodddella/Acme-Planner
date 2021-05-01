@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.tasks.Task;
 import acme.forms.Dashboard;
+import acme.forms.HoursAndMinutes;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Administrator;
@@ -14,8 +15,7 @@ import acme.framework.services.AbstractShowService;
 
 @Service
 public class AdministratorDashboardShowService implements AbstractShowService<Administrator, Dashboard> {
-	static final Double MILISECONDS_TO_MINUTES = 1.0 / (60 * 1000);
-	static final Double DECIMAL_CONVERTER = 1 / 0.6;
+	static final Double MILISECONDS_TO_MINUTES = 1.0 / (60* 60 * 1000);
 
 	@Autowired
 	protected AdministratorDashboardRepository repository;
@@ -38,121 +38,106 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 				"deviationNumberOfTaskExecutionPeriods", "minimumNumberOfTaskExecutionPeriods",
 				"maximumNumberOfTaskExecutionPeriods", "averageNumberOfTaskWorkloads", "deviationNumberOfTaskWorkloads",
 				"minimumNumberOfTaskWorkloads", "maximumNumberOfTaskWorkloads");
+	}
 
-	}
-	public Double doDecimalTransformation(final Double workload) {
-		final Double decimalWorkloadPart= workload-Math.floor(workload);
-		final Double integerWorkloadPart=Math.floor(workload);
-		return  integerWorkloadPart+(decimalWorkloadPart*AdministratorDashboardShowService.DECIMAL_CONVERTER);
-	}
-	
-	public Double undoDecimalTransformation(final Double workload) {
-		final Double decimalWorkloadPart= workload-Math.floor(workload);
-		final Double integerWorkloadPart=Math.floor(workload);
-		return  integerWorkloadPart+(decimalWorkloadPart/AdministratorDashboardShowService.DECIMAL_CONVERTER);
-	}
-	
-	public String stringTimeTransformation(final Double workload) {
-		final Double hours=Math.floor(workload);
-		final Double minutes=Math.floor((workload-Math.floor(workload))*100);
-		return String.format("%.2f hours %.2f minutes", hours,minutes);
-	}
-	
 	public Double getAverageNumberOfTaskWorkloads(final Request<Dashboard> request) {
 		assert request != null;
 
 		final Set<Task> tasks = this.repository.findAllTasks();
-		
-		if(tasks.isEmpty()) {
+
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {
+		} else {
 			Double averageWorkloads = 0.0;
-			
+
 			for (final Task task : tasks) {
-				final Double decimalWorkLoad= this.doDecimalTransformation(task.getWorkload());
+				final Double decimalWorkLoad = task.getWorkload();
 				averageWorkloads += decimalWorkLoad;
 			}
-			
-			averageWorkloads = this.undoDecimalTransformation(averageWorkloads / tasks.size());
+
+			averageWorkloads /= tasks.size();
 			return averageWorkloads;
 		}
 	}
-	
+
 	public Double getDeviationNumberOfTaskWorkloads(final Request<Dashboard> request) {
 		assert request != null;
 
 		final Set<Task> tasks = this.repository.findAllTasks();
-		
-		if(tasks.isEmpty()) {
+
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {
+		} else {
 			Double deviationWorkloads = 0.0;
-			final Double averageWorkloads = this.doDecimalTransformation(this.getAverageNumberOfTaskWorkloads(request));
-			
+			final Double averageWorkloads = this.getAverageNumberOfTaskWorkloads(request);
+
 			for (final Task task : tasks) {
-				final Double decimalWorkLoad= this.doDecimalTransformation(task.getWorkload());
+				final Double decimalWorkLoad = task.getWorkload();
 				final Double individualDeviation = Math.pow(decimalWorkLoad - averageWorkloads, 2);
 				deviationWorkloads += individualDeviation;
 			}
-			
-			deviationWorkloads = this.undoDecimalTransformation(averageWorkloads / tasks.size());
+
+			deviationWorkloads = averageWorkloads / tasks.size();
 			return deviationWorkloads;
 		}
 	}
+
 	public Double getMinimumNumberOfTaskWorkloads(final Request<Dashboard> request) {
 		assert request != null;
 
 		final Set<Task> tasks = this.repository.findAllTasks();
-		
-		if(tasks.isEmpty()) {
+
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {
-			Double minTimeWorkload = this.doDecimalTransformation(this.getMaximumNumberOfTaskWorkloads(request));
+		} else {
+			Double minTimeWorkload = this.getMaximumNumberOfTaskWorkloads(request);
 
 			for (final Task task : tasks) {
-				final Double decimalWorkLoad= this.doDecimalTransformation(task.getWorkload());
+				final Double decimalWorkLoad = task.getWorkload();
 				if (minTimeWorkload > decimalWorkLoad) {
 					minTimeWorkload = decimalWorkLoad;
 				}
 			}
-			return this.undoDecimalTransformation(minTimeWorkload);
+
+			return minTimeWorkload;
 		}
 	}
-	
+
 	public Double getMaximumNumberOfTaskWorkloads(final Request<Dashboard> request) {
 		assert request != null;
 
 		final Set<Task> tasks = this.repository.findAllTasks();
-		
-		if(tasks.isEmpty()) {
+
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {
+		} else {
 			Double maxTimeWorkload = 0.0;
-			
+
 			for (final Task task : tasks) {
-				final Double decimalWorkLoad= this.doDecimalTransformation(task.getWorkload());
+				final Double decimalWorkLoad = task.getWorkload();
 				if (maxTimeWorkload < decimalWorkLoad) {
 					maxTimeWorkload = decimalWorkLoad;
 				}
 			}
-			return this.undoDecimalTransformation(maxTimeWorkload);
+			return maxTimeWorkload;
 		}
 	}
+
 	public Double getAverageNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
 		assert request != null;
 
 		final Set<Task> tasks = this.repository.findAllTasks();
-		
-		if(tasks.isEmpty()) {
+
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {
+		} else {
 			Long averageTimeExecutionPeriods = 0L;
-			
+
 			for (final Task task : tasks) {
 				final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
 				averageTimeExecutionPeriods += executionPeriodDiff;
 			}
-			
+
 			averageTimeExecutionPeriods = averageTimeExecutionPeriods / tasks.size();
 			return averageTimeExecutionPeriods.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 		}
@@ -162,20 +147,20 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert request != null;
 
 		final Set<Task> tasks = this.repository.findAllTasks();
-		
-		if(tasks.isEmpty()) {
+
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {
+		} else {
 			final Double averageTaskExecutionPeriods = this.getAverageNumberOfTaskExecutionPeriods(request)
-				/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+					/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 			Double deviationTimeExecutionPeriods = 0.0;
-			
+
 			for (final Task task : tasks) {
 				final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
 				final Double individualDeviation = Math.pow(executionPeriodDiff - averageTaskExecutionPeriods, 2);
 				deviationTimeExecutionPeriods += individualDeviation;
 			}
-			
+
 			deviationTimeExecutionPeriods = Math.sqrt(deviationTimeExecutionPeriods / tasks.size());
 			return deviationTimeExecutionPeriods * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 		}
@@ -189,8 +174,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		if (tasks.isEmpty()) {
 			return 0.0;
 		} else {
-			final Double maxTimeExecutionPeriod = this.getMaxNumberOfTaskExecutionPeriods(request) 
-				/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+			final Double maxTimeExecutionPeriod = this.getMaxNumberOfTaskExecutionPeriods(request)
+					/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 			Long minTimeExecutionPeriod = maxTimeExecutionPeriod.longValue();
 
 			for (final Task task : tasks) {
@@ -206,11 +191,11 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	public Double getMaxNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
 		assert request != null;
 		final Set<Task> tasks = this.repository.findAllTasks();
-		if(tasks.isEmpty()) {
+		if (tasks.isEmpty()) {
 			return 0.0;
-		}else {	
+		} else {
 			Long maxTimeExecutionPeriod = 0L;
-			
+
 			for (final Task task : tasks) {
 				final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
 				if (maxTimeExecutionPeriod < executionPeriodDiff) {
@@ -231,14 +216,23 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setTotalNumberOfPrivateTasks(this.repository.totalNumberOfPrivateTasks());
 		result.setTotalNumberOfFinishedTasks(this.repository.totalNumberOfFinishedTasks());
 		result.setTotalNumberOfNonFinishedTasks(this.repository.totalNumberOfNonFinishedTasks());
-		result.setAverageNumberOfTaskExecutionPeriods(this.stringTimeTransformation(this.getAverageNumberOfTaskExecutionPeriods(request)));
-		result.setDeviationNumberOfTaskExecutionPeriods(this.stringTimeTransformation(this.getDeviationNumberOfTaskExecutionPeriods(request)));
-		result.setMinimumNumberOfTaskExecutionPeriods(this.stringTimeTransformation(this.getMinNumberOfTaskExecutionPeriods(request)));
-		result.setMaximumNumberOfTaskExecutionPeriods(this.stringTimeTransformation(this.getMaxNumberOfTaskExecutionPeriods(request)));
-		result.setAverageNumberOfTaskWorkloads(this.stringTimeTransformation(this.getAverageNumberOfTaskWorkloads(request)));
-		result.setDeviationNumberOfTaskWorkloads(this.stringTimeTransformation(this.getDeviationNumberOfTaskWorkloads(request)));
-		result.setMinimumNumberOfTaskWorkloads(this.stringTimeTransformation(this.getMinimumNumberOfTaskWorkloads(request)));
-		result.setMaximumNumberOfTaskWorkloads(this.stringTimeTransformation(this.getMaximumNumberOfTaskWorkloads(request)));
+		
+		result.setAverageNumberOfTaskExecutionPeriods(
+				HoursAndMinutes.fromDecimalTime(this.getAverageNumberOfTaskExecutionPeriods(request)).toString());
+		result.setDeviationNumberOfTaskExecutionPeriods(
+				HoursAndMinutes.fromDecimalTime(this.getDeviationNumberOfTaskExecutionPeriods(request)).toString());
+		result.setMinimumNumberOfTaskExecutionPeriods(
+				HoursAndMinutes.fromDecimalTime(this.getMinNumberOfTaskExecutionPeriods(request)).toString());
+		result.setMaximumNumberOfTaskExecutionPeriods(
+				HoursAndMinutes.fromDecimalTime(this.getMaxNumberOfTaskExecutionPeriods(request)).toString());
+		result.setAverageNumberOfTaskWorkloads(
+				HoursAndMinutes.fromDecimalTime(this.getAverageNumberOfTaskWorkloads(request)).toString());
+		result.setDeviationNumberOfTaskWorkloads(
+				HoursAndMinutes.fromDecimalTime(this.getDeviationNumberOfTaskWorkloads(request)).toString());
+		result.setMinimumNumberOfTaskWorkloads(
+				HoursAndMinutes.fromDecimalTime(this.getMinimumNumberOfTaskWorkloads(request)).toString());
+		result.setMaximumNumberOfTaskWorkloads(
+				HoursAndMinutes.fromDecimalTime(this.getMaximumNumberOfTaskWorkloads(request)).toString());
 
 		return result;
 	}
