@@ -23,7 +23,8 @@ public class ExtendedSecurityExpressionHandler extends DefaultWebSecurityExpress
 	// DefaultWebSecurityExpressionHandler interface --------------------------
 
 	@Override
-	protected SecurityExpressionRoot createSecurityExpressionRoot(final Authentication authentication, final FilterInvocation filterInvocation) {
+	protected SecurityExpressionRoot createSecurityExpressionRoot(final Authentication authentication,
+			final FilterInvocation filterInvocation) {
 		ExtendedSecurityExpressionRoot result;
 		AuthenticationTrustResolverImpl trustResolver;
 

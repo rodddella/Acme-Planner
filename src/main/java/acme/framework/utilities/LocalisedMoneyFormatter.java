@@ -79,9 +79,11 @@ public class LocalisedMoneyFormatter implements Formatter<Money> {
 		thousandSeparator = Character.toString(symbols.getGroupingSeparator());
 		decimalSeparator = Character.toString(symbols.getDecimalSeparator());
 		currencyRegex = "[\\p{L}\\p{Sc}]+";
-		numberRegex = String.format("[+-]?(\\d+|\\d{1,3}(\\%s\\d{3})*)(\\%s\\d{1,2})?", thousandSeparator, decimalSeparator);
+		numberRegex = String.format("[+-]?(\\d+|\\d{1,3}(\\%s\\d{3})*)(\\%s\\d{1,2})?", thousandSeparator,
+				decimalSeparator);
 
-		regex = String.format("^((?<C1>%1$s)\\s*(?<A1>%2$s))$|^((?<A2>%2$s)\\s*(?<C2>%1$s))$", currencyRegex, numberRegex);
+		regex = String.format("^((?<C1>%1$s)\\s*(?<A1>%2$s))$|^((?<A2>%2$s)\\s*(?<C2>%1$s))$", currencyRegex,
+				numberRegex);
 		pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
 		matcher = pattern.matcher(text);

@@ -15,12 +15,11 @@ package acme.framework.helpers;
 import org.springframework.core.env.Environment;
 
 public class EnvironmentHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected EnvironmentHelper() {
 	}
-
 
 	// Business methods -------------------------------------------------------
 

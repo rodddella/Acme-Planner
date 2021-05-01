@@ -31,14 +31,14 @@ public class ExtendedSecurityExpressionRoot extends SecurityExpressionRoot {
 
 	// Constructors -----------------------------------------------------------
 
-
 	public ExtendedSecurityExpressionRoot(final Authentication authentication) {
 		super(authentication);
 
 		assert authentication != null;
 	}
 
-	public ExtendedSecurityExpressionRoot(final Authentication authentication, final FilterInvocation filterInvocation) {
+	public ExtendedSecurityExpressionRoot(final Authentication authentication,
+			final FilterInvocation filterInvocation) {
 		super(authentication);
 
 		assert authentication != null;

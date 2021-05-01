@@ -38,7 +38,6 @@ public class AuthenticationService implements UserDetailsService {
 
 	// Business methods -------------------------------------------------------
 
-
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 		// assert username is nullable

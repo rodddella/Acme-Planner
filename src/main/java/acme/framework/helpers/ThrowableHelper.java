@@ -20,7 +20,7 @@ import javax.validation.ConstraintViolation;
 import acme.framework.entities.DomainEntity;
 
 public class ThrowableHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected ThrowableHelper() {
@@ -67,14 +67,14 @@ public class ThrowableHelper {
 
 		return result.toString();
 	}
-	
+
 	public static String toString(final String entityName, final Set<ConstraintViolation<DomainEntity>> violations) {
 		assert !StringHelper.isBlank(entityName);
 		assert !CollectionHelper.someNull(violations);
-		
+
 		StringBuilder result;
 		String comma, property, message;
-		
+
 		result = new StringBuilder();
 		result.append(String.format("Violated constraints on entity %s: ", entityName));
 		comma = "";
@@ -84,7 +84,7 @@ public class ThrowableHelper {
 			result.append(String.format("%s%s : %s%n", comma, property, message));
 			comma = ", ";
 		}
-		
+
 		return result.toString();
 	}
 

@@ -22,9 +22,8 @@ import lombok.extern.java.Log;
 @Log
 public class SqlCommentStatementInspector implements StatementInspector {
 
-	protected static final long		serialVersionUID	= 1L;
-	protected static final Pattern	SQL_COMMENT_PATTERN	= Pattern.compile("\\/\\*.*?\\*\\/\\s*");
-
+	protected static final long serialVersionUID = 1L;
+	protected static final Pattern SQL_COMMENT_PATTERN = Pattern.compile("\\/\\*.*?\\*\\/\\s*");
 
 	@Override
 	public String inspect(String sql) {

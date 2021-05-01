@@ -26,7 +26,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import lombok.Getter;
 
 public class FactoryHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected FactoryHelper() {
@@ -35,27 +35,26 @@ public class FactoryHelper {
 	// Internal methods -------------------------------------------------------
 
 	@Getter
-	protected static ConfigurableApplicationContext	context;
+	protected static ConfigurableApplicationContext context;
 
 	@Getter
-	protected static MessageSource					messageSource;
+	protected static MessageSource messageSource;
 
 	@Getter
-	protected static ConfigurableConversionService	conversionService;
+	protected static ConfigurableConversionService conversionService;
 
 	@Getter
-	protected static Validator						validator;
+	protected static Validator validator;
 
 	@Getter
-	protected static PasswordEncoder				passwordEncoder;
+	protected static PasswordEncoder passwordEncoder;
 
 	@Getter
-	protected static EntityManager					entityManager;
+	protected static EntityManager entityManager;
 
-	protected static AutowireCapableBeanFactory		autowiringFactory;
+	protected static AutowireCapableBeanFactory autowiringFactory;
 
 	// Constructors -----------------------------------------------------------
-
 
 	public static void initialise(final ConfigurableApplicationContext context) {
 		assert context != null;

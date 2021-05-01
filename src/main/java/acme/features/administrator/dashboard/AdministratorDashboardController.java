@@ -17,7 +17,6 @@ public class AdministratorDashboardController extends AbstractController<Adminis
 	@Autowired
 	protected AdministratorDashboardShowService showService;
 
-
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);

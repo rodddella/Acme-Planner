@@ -37,7 +37,6 @@ public class AuthenticatedConsumerCreateService implements AbstractCreateService
 
 	// AbstractCreateService<Authenticated, Consumer> ---------------------------
 
-
 	@Override
 	public boolean authorise(final Request<Consumer> request) {
 		assert request != null;

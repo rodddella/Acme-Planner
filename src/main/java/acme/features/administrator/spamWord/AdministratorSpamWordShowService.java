@@ -13,11 +13,11 @@ import acme.framework.services.AbstractShowService;
 public class AdministratorSpamWordShowService implements AbstractShowService<Administrator, SpamWord> {
 	@Autowired
 	AdministratorSpamWordRepository repository;
-	
+
 	@Override
 	public boolean authorise(Request<SpamWord> request) {
 		assert request != null;
-		
+
 		return true;
 	}
 
@@ -26,7 +26,7 @@ public class AdministratorSpamWordShowService implements AbstractShowService<Adm
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		request.unbind(entity, model, "text");
 	}
 

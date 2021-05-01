@@ -7,11 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Dashboard implements Serializable{
-	
-	protected static final long	serialVersionUID	= 1L;
-	
-	
+public class Dashboard implements Serializable {
+
+	protected static final long serialVersionUID = 1L;
+
 	Double totalNumberOfPublicTasks;
 	Double totalNumberOfPrivateTasks;
 	Double totalNumberOfFinishedTasks;

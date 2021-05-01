@@ -47,28 +47,27 @@ public class Request<E> {
 
 	// Internal state ---------------------------------------------------------
 
-	protected HttpMethod			method;
-	protected Command				command;
-	protected BasicCommand			baseCommand;
+	protected HttpMethod method;
+	protected Command command;
+	protected BasicCommand baseCommand;
 
-	protected Principal				principal;
-	protected Locale				locale;
-	protected Model					model;
+	protected Principal principal;
+	protected Locale locale;
+	protected Model model;
 
-	protected HttpServletRequest	servletRequest;
-	protected HttpServletResponse	servletResponse;
+	protected HttpServletRequest servletRequest;
+	protected HttpServletResponse servletResponse;
 
 	// Constructors -----------------------------------------------------------
 
-
 	public Request( //
-		final HttpMethod method, //
-		final Command command, //
-		final BasicCommand baseCommand, //
-		final Map<String, Object> model, //
-		final Locale locale, //
-		final HttpServletRequest servletRequest, //
-		final HttpServletResponse servletResponse) {
+			final HttpMethod method, //
+			final Command command, //
+			final BasicCommand baseCommand, //
+			final Map<String, Object> model, //
+			final Locale locale, //
+			final HttpServletRequest servletRequest, //
+			final HttpServletResponse servletResponse) {
 
 		assert method != null;
 		assert command != null;

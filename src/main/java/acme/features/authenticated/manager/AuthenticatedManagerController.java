@@ -15,10 +15,10 @@ import acme.framework.entities.Authenticated;
 @RequestMapping("/authenticated/manager/")
 public class AuthenticatedManagerController extends AbstractController<Authenticated, Manager> {
 	@Autowired
-	protected AuthenticatedManagerCreateService	createService;
+	protected AuthenticatedManagerCreateService createService;
 
 	@Autowired
-	protected AuthenticatedManagerUpdateService	updateService;
+	protected AuthenticatedManagerUpdateService updateService;
 
 	@PostConstruct
 	protected void initialise() {

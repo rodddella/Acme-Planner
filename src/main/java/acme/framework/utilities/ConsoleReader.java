@@ -21,11 +21,10 @@ public class ConsoleReader {
 
 	// Internal state ---------------------------------------------------------
 
-	protected final InputStreamReader	stream;
-	protected final BufferedReader		reader;
+	protected final InputStreamReader stream;
+	protected final BufferedReader reader;
 
 	// Constructors -----------------------------------------------------------
-
 
 	public ConsoleReader() {
 		this.stream = new InputStreamReader(System.in);

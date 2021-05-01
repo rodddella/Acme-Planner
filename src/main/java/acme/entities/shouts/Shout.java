@@ -35,26 +35,26 @@ public class Shout extends DomainEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long	serialVersionUID	= 1L;
+	protected static final long serialVersionUID = 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
 	@NotNull
-	protected Date				moment;
+	protected Date moment;
 
 	@NotBlank
 	@Length(min = 5, max = 25)
-	protected String			author;
+	protected String author;
 
 	@NotBlank
 	@Length(min = 0, max = 100)
-	protected String			text;
-	
+	protected String text;
+
 	@URL
 	@Length(min = 0, max = 255)
-	protected String			info;
+	protected String info;
 
 	// Derived attributes -----------------------------------------------------
 

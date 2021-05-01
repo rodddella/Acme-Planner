@@ -25,7 +25,6 @@ public class CustomPrintStyle extends ToStringStyle {
 
 	// Constructors -----------------------------------------------------------
 
-
 	public CustomPrintStyle() {
 		super();
 		this.setUseShortClassName(false);

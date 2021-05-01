@@ -17,7 +17,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.data.util.DirectFieldAccessFallbackBeanWrapper;
 
 public class ReflectionHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected ReflectionHelper() {

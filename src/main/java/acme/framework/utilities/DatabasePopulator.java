@@ -42,20 +42,19 @@ public class DatabasePopulator {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected DatabaseUtil	databaseUtil;
+	protected DatabaseUtil databaseUtil;
 
 	@Autowired
-	protected Validator		validator;
+	protected Validator validator;
 
 	// Business methods -------------------------------------------------------
-
 
 	public void populateInitial() {
 		Environment environment;
 		String initialFilename;
 
 		DatabasePopulator.log.info("Populating initial data");
-		
+
 		environment = FactoryHelper.getBean(Environment.class);
 		initialFilename = environment.getRequiredProperty("acme.initial-data", String.class);
 
@@ -68,7 +67,7 @@ public class DatabasePopulator {
 		String initialFilename, sampleFilename;
 
 		DatabasePopulator.log.info("Populating sample data");
-		
+
 		environment = FactoryHelper.getBean(Environment.class);
 		initialFilename = environment.getRequiredProperty("acme.initial-data", String.class);
 		sampleFilename = environment.getRequiredProperty("acme.sample-data", String.class);
@@ -80,7 +79,7 @@ public class DatabasePopulator {
 
 	public void recreateSchema() {
 		DatabasePopulator.log.info("Recreating schema");
-		
+
 		this.databaseUtil.recreateSchema();
 	}
 
@@ -91,7 +90,7 @@ public class DatabasePopulator {
 		List<Entry<String, DomainEntity>> entityList;
 
 		DatabasePopulator.log.info(String.format("Populating entities from %s", filename));
-		
+
 		try (AbstractXmlApplicationContext context = new FileSystemXmlApplicationContext(filename)) {
 			entityMap = context.getBeansOfType(DomainEntity.class);
 			entityList = new LinkedList<Entry<String, DomainEntity>>(entityMap.entrySet());
@@ -110,7 +109,7 @@ public class DatabasePopulator {
 		String message;
 
 		DatabasePopulator.log.info("Validating your entities.");
-		
+
 		for (final Entry<String, DomainEntity> entry : entityList) {
 			name = entry.getKey();
 			entity = entry.getValue();
@@ -138,7 +137,7 @@ public class DatabasePopulator {
 		String message;
 
 		DatabasePopulator.log.info("Sorting your entities topologically.");
-		
+
 		done = entityList.isEmpty();
 		attemptCounter = 0;
 		persistedCounter = 0;
@@ -149,7 +148,7 @@ public class DatabasePopulator {
 		}
 		if (!done) {
 			message = String.format("Could not sort the entities in %s topologically!", filename);
-			DatabasePopulator.log.info(message);			
+			DatabasePopulator.log.info(message);
 			throw new RuntimeException(message);
 		}
 
@@ -183,7 +182,8 @@ public class DatabasePopulator {
 			try {
 				this.databaseUtil.persist(entity);
 				if (result > threshold) {
-					DatabasePopulator.log.info(String.format("> Setting index %d for %s.", threshold + index + 1, name));
+					DatabasePopulator.log
+							.info(String.format("> Setting index %d for %s.", threshold + index + 1, name));
 					index++;
 				}
 				result++;
@@ -199,7 +199,7 @@ public class DatabasePopulator {
 		if (sucess)
 			this.databaseUtil.commitTransaction();
 		else
-			this.databaseUtil.rollbackTransaction();		
+			this.databaseUtil.rollbackTransaction();
 
 		return result;
 	}
@@ -218,39 +218,41 @@ public class DatabasePopulator {
 
 	// Scrap stuff ------------------------------------------------------------
 
-	//	protected void deleteEntityMap(final String mapFilename) {
-	//		assert !StringHelper.isBlank(mapFilename);
+	// protected void deleteEntityMap(final String mapFilename) {
+	// assert !StringHelper.isBlank(mapFilename);
 	//
-	//		File file;
+	// File file;
 	//
-	//		file = new File(mapFilename);
-	//		file.delete();
-	//	}
+	// file = new File(mapFilename);
+	// file.delete();
+	// }
 	//
-	//	protected void saveEntityMap(final String mapFilename, final String entityFilename, final List<Entry<String, DomainEntity>> entities) {
-	//		assert !StringHelper.isBlank(mapFilename);
-	//		assert !StringHelper.isBlank(entityFilename);
-	//		assert !CollectionHelper.someNull(entities);
+	// protected void saveEntityMap(final String mapFilename, final String
+	// entityFilename, final List<Entry<String, DomainEntity>> entities) {
+	// assert !StringHelper.isBlank(mapFilename);
+	// assert !StringHelper.isBlank(entityFilename);
+	// assert !CollectionHelper.someNull(entities);
 	//
-	//		String name;
-	//		DomainEntity entity;
+	// String name;
+	// DomainEntity entity;
 	//
-	//		try (PrintStream writer = new PrintStream(new FileOutputStream(mapFilename, true))) {
-	//			writer.println();
-	//			writer(String.format("# %s%n", entityFilename);
-	//			writer.println();
-	//			for (final Entry<String, DomainEntity> entry : entities) {
-	//				name = entry.getKey();
-	//				entity = entry.getValue();
+	// try (PrintStream writer = new PrintStream(new FileOutputStream(mapFilename,
+	// true))) {
+	// writer.println();
+	// writer(String.format("# %s%n", entityFilename);
+	// writer.println();
+	// for (final Entry<String, DomainEntity> entry : entities) {
+	// name = entry.getKey();
+	// entity = entry.getValue();
 	//
-	//				writer(String.format("%s=%s%n", name, entity.getId());
-	//				writer.println();
-	//				PrinterHelper.print(writer, "# ", entity);
-	//				writer.println();
-	//			}
-	//		} catch (final Throwable oops) {
-	//			throw new RuntimeException(oops);
-	//		}
-	//	}
+	// writer(String.format("%s=%s%n", name, entity.getId());
+	// writer.println();
+	// PrinterHelper.print(writer, "# ", entity);
+	// writer.println();
+	// }
+	// } catch (final Throwable oops) {
+	// throw new RuntimeException(oops);
+	// }
+	// }
 
 }

@@ -33,7 +33,6 @@ public class AnonymousUserAccountCreateService implements AbstractCreateService<
 	@Autowired
 	protected AnonymousUserAccountRepository repository;
 
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;

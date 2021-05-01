@@ -12,9 +12,9 @@ import acme.entities.tasks.Task;
 
 @Repository
 @Transactional(TxType.SUPPORTS)
-public interface TaskRepository extends AbstractRepository  {
+public interface TaskRepository extends AbstractRepository {
 
 	@Query("SELECT task FROM Task task where task.id = ?1")
 	Optional<Task> findOne(int id);
-	
+
 }

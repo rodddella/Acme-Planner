@@ -1,7 +1,6 @@
 package acme.features.manager.task;
 
 import java.util.Collection;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +12,11 @@ import acme.framework.components.Request;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class ManagerTaskListService implements AbstractListService<Manager, Task>  {
+public class ManagerTaskListService implements AbstractListService<Manager, Task> {
 
 	@Autowired
 	ManagerTaskRepository repository;
-	
+
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		return true;
@@ -28,22 +27,21 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
-		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod", "visibility");
+
+		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
+				"visibility");
 
 	}
 
 	@Override
 	public Collection<Task> findMany(final Request<Task> request) {
+		assert request != null;
 
-		final Integer managerId = request.getPrincipal().getAccountId();
-		final Optional<Manager> optManager = this.repository.findManagerById(managerId);
-		
-		assert optManager.isPresent();
-		
-		final Manager manager = optManager.get();
-		
+		final Integer managerId = request.getPrincipal().getActiveRoleId();
+		final Manager manager = this.repository.findManagerById(managerId);
+
+		assert manager != null;
+
 		return manager.getTasks();
 	}
-
 }

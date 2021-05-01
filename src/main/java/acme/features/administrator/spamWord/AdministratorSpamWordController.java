@@ -16,16 +16,16 @@ import acme.framework.entities.Administrator;
 public class AdministratorSpamWordController extends AbstractController<Administrator, SpamWord> {
 	@Autowired
 	private AdministratorSpamWordListService listService;
-	
+
 	@Autowired
 	private AdministratorSpamWordShowService showService;
-	
+
 	@Autowired
 	private AdministratorSpamWordCreateService createService;
-	
+
 	@Autowired
 	private AdministratorSpamWordDeleteService deleteService;
-	
+
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);

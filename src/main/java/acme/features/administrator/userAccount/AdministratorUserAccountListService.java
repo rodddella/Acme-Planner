@@ -35,7 +35,6 @@ public class AdministratorUserAccountListService implements AbstractListService<
 
 	// AbstractListService<Administrator, UserAccount> interface --------------
 
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;
@@ -78,7 +77,9 @@ public class AdministratorUserAccountListService implements AbstractListService<
 
 		result = this.repository.findAllUserAccounts();
 		for (final UserAccount userAccount : result) {
-			userAccount.getRoles().forEach(r -> { ; });
+			userAccount.getRoles().forEach(r -> {
+				;
+			});
 		}
 
 		return result;

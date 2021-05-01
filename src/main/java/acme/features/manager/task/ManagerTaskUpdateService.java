@@ -12,28 +12,33 @@ import acme.framework.services.AbstractUpdateService;
 
 @Service
 public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, Task> {
-
 	@Autowired
 	ManagerTaskRepository repository;
-	
+
 	@Override
 	public boolean authorise(final Request<Task> request) {
-		final Integer managerId = request.getPrincipal().getAccountId();
+		assert request != null;
+
+		final Integer managerId = request.getPrincipal().getActiveRoleId();
 		final Integer taskId = request.getModel().getInteger("id");
-		
+
 		assert managerId != null;
 		assert taskId != null;
+
+		final Task task = this.repository.findTaskById(taskId);
 		
-		final Task task = this.repository.findTaskByIdAndManager(taskId, managerId);
+		assert task != null;
 		
-		return task != null;
+		return task.getManager().getId() == managerId.intValue();
 	}
 
 	@Override
 	public void bind(final Request<Task> request, final Task entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
-		assert errors != null;		
+		assert errors != null;
+		
+		request.bind(entity, errors);
 	}
 
 	@Override
@@ -42,14 +47,16 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod", "visibility");
-		
+		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
+				"visibility");
 	}
 
 	@Override
 	public Task findOne(final Request<Task> request) {
+		assert request != null;
+
 		final Integer taskId = request.getModel().getInteger("id");
-		return (Task)this.repository.findById(taskId).get();
+		return this.repository.findTaskById(taskId);
 	}
 
 	@Override
@@ -58,16 +65,13 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
-		final Integer managerId = request.getPrincipal().getAccountId();
-		
-		assert managerId == entity.getManager().getId();
-
+		assert request.getPrincipal().getActiveRoleId() == entity.getManager().getId();
 	}
 
 	@Override
 	public void update(final Request<Task> request, final Task entity) {
+		assert request != null;
+		assert entity != null;
 		this.repository.save(entity);
-		
 	}
-
 }

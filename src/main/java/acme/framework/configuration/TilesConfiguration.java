@@ -39,9 +39,7 @@ public class TilesConfiguration {
 		TilesConfigurer result;
 		String[] definitions;
 
-		definitions = new String[] {
-			"/WEB-INF/views/**/tiles.xml"
-		};
+		definitions = new String[] { "/WEB-INF/views/**/tiles.xml" };
 
 		result = new TilesConfigurer();
 		result.setDefinitions(definitions);

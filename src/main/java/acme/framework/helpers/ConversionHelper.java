@@ -15,12 +15,11 @@ package acme.framework.helpers;
 import org.springframework.core.convert.ConversionService;
 
 public class ConversionHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected ConversionHelper() {
 	}
-
 
 	// Business methods -------------------------------------------------------
 
