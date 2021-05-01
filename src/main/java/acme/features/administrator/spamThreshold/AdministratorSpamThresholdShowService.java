@@ -33,7 +33,7 @@ public class AdministratorSpamThresholdShowService implements AbstractShowServic
 	@Override
 	public SpamThreshold findOne(Request<SpamThreshold> request) {
 		assert request != null;
-		
+
 		return repository.getSpamThresholds().get(0);
 	}
 }

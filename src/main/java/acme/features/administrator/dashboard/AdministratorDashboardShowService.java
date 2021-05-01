@@ -50,7 +50,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			final Long executionPeriodDiff = task.getEndPeriod().getTime() - task.getStartPeriod().getTime();
 			averageTimeExecutionPeriods += executionPeriodDiff;
 		}
-		
+
 		averageTimeExecutionPeriods = averageTimeExecutionPeriods / tasks.size();
 		return averageTimeExecutionPeriods.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
@@ -69,7 +69,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			final Double individualDeviation = Math.pow(executionPeriodDiff - averageTaskExecutionPeriods, 2);
 			deviationTimeExecutionPeriods += individualDeviation;
 		}
-		
+
 		deviationTimeExecutionPeriods = Math.sqrt(deviationTimeExecutionPeriods / tasks.size());
 		return deviationTimeExecutionPeriods * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
@@ -88,7 +88,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 				minTimeExecutionPeriod = executionPeriodDiff;
 			}
 		}
-		
+
 		return minTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
 	}
 

@@ -12,20 +12,21 @@ import acme.framework.services.AbstractDeleteService;
 
 @Service
 public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, Task> {
-
 	@Autowired
 	ManagerTaskRepository repository;
-	
+
 	@Override
 	public boolean authorise(final Request<Task> request) {
+		assert request != null;
+
 		final Integer managerId = request.getPrincipal().getAccountId();
 		final Integer taskId = request.getModel().getInteger("id");
-		
+
 		assert managerId != null;
 		assert taskId != null;
-		
+
 		final Task task = this.repository.findTaskByIdAndManager(taskId, managerId);
-		
+
 		return task != null;
 	}
 
@@ -34,7 +35,7 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+
 		request.bind(entity, errors);
 	}
 
@@ -43,14 +44,17 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
-		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod", "visibility");
+
+		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
+				"visibility");
 	}
 
 	@Override
 	public Task findOne(final Request<Task> request) {
+		assert request != null;
+
 		final Integer taskId = request.getModel().getInteger("id");
-		return (Task)this.repository.findById(taskId).get();
+		return (Task) this.repository.findById(taskId).get();
 	}
 
 	@Override
@@ -58,11 +62,13 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
 	}
 
 	@Override
 	public void delete(final Request<Task> request, final Task entity) {
+		assert request != null;
+		assert entity != null;
+
 		this.repository.delete(entity);
 	}
 

@@ -30,16 +30,15 @@ public class AdministratorUserAccountController extends AbstractController<Admin
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AdministratorUserAccountListService	listService;
+	protected AdministratorUserAccountListService listService;
 
 	@Autowired
-	protected AdministratorUserAccountShowService	showService;
+	protected AdministratorUserAccountShowService showService;
 
 	@Autowired
-	protected AdministratorUserAccountUpdateService	updateService;
+	protected AdministratorUserAccountUpdateService updateService;
 
 	// Constructors -----------------------------------------------------------
-
 
 	@PostConstruct
 	protected void initialise() {

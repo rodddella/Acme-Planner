@@ -15,14 +15,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Manager extends UserRole {
-	protected static final long	serialVersionUID	= 1L;
-	
-	@NotBlank
-	protected String			company;
+	protected static final long serialVersionUID = 1L;
 
 	@NotBlank
-	protected String			sector;
-	
+	protected String company;
+
+	@NotBlank
+	protected String sector;
+
 	@OneToMany(mappedBy = "manager")
 	Set<Task> tasks;
 }

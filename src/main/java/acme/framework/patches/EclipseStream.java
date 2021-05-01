@@ -27,12 +27,10 @@ public class EclipseStream extends OutputStream {
 
 	// Internal state ---------------------------------------------------------
 
-
-	protected final OutputStream	target;
-	protected static OutputStream	lastStream;
+	protected final OutputStream target;
+	protected static OutputStream lastStream;
 
 	// OutputStream interface -------------------------------------------------
-
 
 	@Override
 	public void close() throws IOException {
@@ -69,7 +67,7 @@ public class EclipseStream extends OutputStream {
 	}
 
 	// Ancillary methods ------------------------------------------------------
-	
+
 	protected void swap() throws IOException {
 		if (EclipseStream.lastStream != this && EclipseStream.lastStream != null) {
 			EclipseStream.lastStream.flush();

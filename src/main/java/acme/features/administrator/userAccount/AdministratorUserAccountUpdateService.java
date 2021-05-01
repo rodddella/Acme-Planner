@@ -36,7 +36,6 @@ public class AdministratorUserAccountUpdateService implements AbstractUpdateServ
 
 	// AbstractUpdateService<Administrator, UserAccount> interface -------------
 
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;

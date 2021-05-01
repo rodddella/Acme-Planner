@@ -19,7 +19,7 @@ import java.util.Properties;
 import org.apache.commons.text.StringEscapeUtils;
 
 public class PropertiesHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected PropertiesHelper() {

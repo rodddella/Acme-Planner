@@ -25,11 +25,10 @@ public class Model {
 
 	// Internal state ---------------------------------------------------------
 
-	protected List<Map<String, Object>>	list;
-	protected Map<String, Object>		current;
+	protected List<Map<String, Object>> list;
+	protected Map<String, Object> current;
 
 	// Constructors -----------------------------------------------------------
-
 
 	public Model() {
 		this.list = new ArrayList<Map<String, Object>>();

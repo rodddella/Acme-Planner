@@ -30,28 +30,28 @@ public abstract class WaitConditions {
 	public static ExpectedCondition<Boolean> safeStalenessOf(final WebElement element, final By locator) {
 		assert element instanceof RemoteWebElement;
 		assert locator != null;
-		
+
 		ExpectedCondition<Boolean> result;
-		
+
 		result = new ExpectedCondition<Boolean>() {
 			@Override
 			public Boolean apply(final WebDriver driver) {
 				boolean result;
 				WebElement target;
-				
+
 				target = driver.findElement(locator);
 				assert target instanceof RemoteWebElement;
-				result = !((RemoteWebElement)element).getId().equals(((RemoteWebElement)target).getId());
-				
+				result = !((RemoteWebElement) element).getId().equals(((RemoteWebElement) target).getId());
+
 				return result;
 			}
 
 			@Override
 			public String toString() {
-				return String.format("staleness of element \"%s\"", ((RemoteWebElement)element).getId());
+				return String.format("staleness of element \"%s\"", ((RemoteWebElement) element).getId());
 			}
 		};
-		
+
 		return result;
 	}
 

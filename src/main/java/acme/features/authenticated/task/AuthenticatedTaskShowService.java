@@ -17,7 +17,6 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 	@Autowired
 	protected AuthenticatedTaskRepository repository;
 
-
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
@@ -30,7 +29,8 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod", "visibility");
+		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
+				"visibility");
 
 	}
 
@@ -49,6 +49,7 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 	}
 
 	private Boolean isAccesible(final Task task) {
-			return task.getEndPeriod().getTime() < (System.currentTimeMillis()) && task.getVisibility() == Visibility.PUBLIC;
+		return task.getEndPeriod().getTime() < (System.currentTimeMillis())
+				&& task.getVisibility() == Visibility.PUBLIC;
 	}
 }

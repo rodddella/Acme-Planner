@@ -33,7 +33,6 @@ public class DatabaseInquirer {
 
 	// Business methods -------------------------------------------------------
 
-
 	public boolean run() {
 		boolean result;
 		ConsoleReader reader;

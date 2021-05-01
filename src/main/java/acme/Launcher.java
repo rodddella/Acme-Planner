@@ -107,12 +107,8 @@ public class Launcher extends SpringBootServletInitializer {
 		result.put("profile", "development");
 		result.put("action", "run");
 
-		validProfiles = new String[] {
-			"development", "production"
-		};
-		validActions = new String[] {
-			"run", "populate-initial", "populate-sample", "inquire-database"
-		};
+		validProfiles = new String[] { "development", "production" };
+		validActions = new String[] { "run", "populate-initial", "populate-sample", "inquire-database" };
 
 		options = new Options();
 		options.addOption("p", "profile", true, "sets the profile");
@@ -199,7 +195,8 @@ public class Launcher extends SpringBootServletInitializer {
 		ProfileHelper.setProfiles(baseProfile, actionProfile);
 	}
 
-	protected static void doExtraWork(final Map<String, String> arguments, final ConfigurableApplicationContext context) {
+	protected static void doExtraWork(final Map<String, String> arguments,
+			final ConfigurableApplicationContext context) {
 		assert arguments != null;
 		assert context != null;
 
@@ -237,11 +234,14 @@ public class Launcher extends SpringBootServletInitializer {
 
 	protected static void exit(final ApplicationContext context) {
 		// context is nullable
-		
+
 		int status;
-		
-		try { Thread.sleep(1000); } catch (final Throwable oops) { }
-		status = (context == null ? 1 : SpringApplication.exit(context));		
+
+		try {
+			Thread.sleep(1000);
+		} catch (final Throwable oops) {
+		}
+		status = (context == null ? 1 : SpringApplication.exit(context));
 		System.exit(status);
 	}
 

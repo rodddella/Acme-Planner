@@ -37,7 +37,6 @@ public class AuthenticatedUserAccountUpdateService implements AbstractUpdateServ
 
 	// AbstractUpdateService<Authenticated, UserAccount> interface ------------
 
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;
@@ -87,7 +86,9 @@ public class AuthenticatedUserAccountUpdateService implements AbstractUpdateServ
 
 		principal = request.getPrincipal();
 		result = this.repository.findOneUserAccountById(principal.getAccountId());
-		result.getRoles().forEach(r -> {;});
+		result.getRoles().forEach(r -> {
+			;
+		});
 
 		return result;
 	}

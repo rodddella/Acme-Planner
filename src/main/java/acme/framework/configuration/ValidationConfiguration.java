@@ -39,7 +39,8 @@ public class ValidationConfiguration implements WebMvcConfigurer {
 		ExtendedMessageSource messageSource;
 
 		messageSource = MessageHelper.buildMessageSource();
-		// HINT: Unless 'UseCodeAsDefaultMessage' is set to false, validation messages won't get interpolated :/
+		// HINT: Unless 'UseCodeAsDefaultMessage' is set to false, validation messages
+		// won't get interpolated :/
 		messageSource.setUseCodeAsDefaultMessage(false);
 
 		result = new LocalValidatorFactoryBean();

@@ -25,7 +25,8 @@ public final class RememberMeLogoutHandler implements LogoutHandler {
 	// LogoutHandler interface ------------------------------------------------
 
 	@Override
-	public void logout(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) {
+	public void logout(final HttpServletRequest request, final HttpServletResponse response,
+			final Authentication authentication) {
 		assert request != null;
 		assert response != null;
 		assert authentication != null;

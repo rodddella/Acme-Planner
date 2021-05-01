@@ -14,7 +14,6 @@ public class TaskValidator implements Validator {
 
 	static final long HOUR_TO_MILLIS = 60 * 60 * 1000;
 
-
 	@Override
 	public boolean supports(final Class<?> clazz) {
 		return Task.class.isAssignableFrom(clazz);

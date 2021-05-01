@@ -44,7 +44,8 @@ public class LocalisedDoubleFormatter implements Formatter<Double> {
 		symbols = new DecimalFormatSymbols(locale);
 		thousandSeparator = Character.toString(symbols.getGroupingSeparator());
 		decimalSeparator = Character.toString(symbols.getDecimalSeparator());
-		regex = String.format("^(?<N>[+-]?(\\d+|\\d{1,3}(\\%s\\d{3})*)(\\%s\\d+)?)$", thousandSeparator, decimalSeparator);
+		regex = String.format("^(?<N>[+-]?(\\d+|\\d{1,3}(\\%s\\d{3})*)(\\%s\\d+)?)$", thousandSeparator,
+				decimalSeparator);
 		pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
 		matcher = pattern.matcher(text);

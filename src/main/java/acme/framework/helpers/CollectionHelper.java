@@ -15,7 +15,7 @@ package acme.framework.helpers;
 import java.util.Iterator;
 
 public class CollectionHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected CollectionHelper() {
@@ -24,7 +24,7 @@ public class CollectionHelper {
 	// Business methods -------------------------------------------------------
 
 	public static boolean someNull(final Object[] array) {
-		// array is nullable 
+		// array is nullable
 
 		boolean result;
 

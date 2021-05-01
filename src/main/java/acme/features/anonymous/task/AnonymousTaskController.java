@@ -13,13 +13,13 @@ import acme.framework.entities.Anonymous;
 
 @Controller
 @RequestMapping("/anonymous/task/")
-public class AnonymousTaskController extends AbstractController<Anonymous, Task>{
+public class AnonymousTaskController extends AbstractController<Anonymous, Task> {
 	@Autowired
 	AnonymousTaskListService listService;
-	
+
 	@Autowired
 	AnonymousTaskShowService showService;
-	
+
 	@PostConstruct
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);

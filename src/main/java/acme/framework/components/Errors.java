@@ -31,7 +31,6 @@ public class Errors implements Iterable<Entry<String, List<String>>> {
 
 	// Constructors -----------------------------------------------------------
 
-
 	public Errors() {
 		this.map = new HashMap<String, List<String>>();
 	}
@@ -49,7 +48,8 @@ public class Errors implements Iterable<Entry<String, List<String>>> {
 
 	// Business methods -------------------------------------------------------
 
-	public void state(final Request<?> request, final boolean condition, final String attributeName, final String code, final Object... arguments) {
+	public void state(final Request<?> request, final boolean condition, final String attributeName, final String code,
+			final Object... arguments) {
 		assert request != null;
 		assert !StringHelper.isBlank(attributeName);
 		assert !StringHelper.isBlank(code);

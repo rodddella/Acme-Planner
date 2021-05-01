@@ -22,16 +22,16 @@ import acme.framework.components.Errors;
 import acme.framework.components.Request;
 
 public class ErrorsHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected ErrorsHelper() {
 	}
 
-
 	// Business methods -------------------------------------------------------
 
-	public static void transferErrors(final Request<?> request, final BindingResult bindingResult, final Errors errors) {
+	public static void transferErrors(final Request<?> request, final BindingResult bindingResult,
+			final Errors errors) {
 		assert request != null;
 		assert bindingResult != null;
 		assert errors != null;

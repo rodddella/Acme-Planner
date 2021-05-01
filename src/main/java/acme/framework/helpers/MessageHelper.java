@@ -20,7 +20,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import acme.framework.patches.ExtendedMessageSource;
 
 public class MessageHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected MessageHelper() {
@@ -28,7 +28,8 @@ public class MessageHelper {
 
 	// Business methods -------------------------------------------------------
 
-	public static String getMessage(final String code, final Object[] arguments, final String defaultMessage, final Locale locale) {
+	public static String getMessage(final String code, final Object[] arguments, final String defaultMessage,
+			final Locale locale) {
 		assert !StringHelper.isBlank(code);
 		// assert arguments is nullable
 		assert !StringHelper.isBlank(defaultMessage);
@@ -78,11 +79,15 @@ public class MessageHelper {
 		return result;
 	}
 
-	// HINT: note that we need two different message sources: the global one, which is appropriate for 
-	// HINT+ almost everything, and the validation one, which is appropriate for Validators only.  The 
-	// HINT+ only difference is that the global one can ignore codes that are not found in the i18n 
-	// HINT+ bundles, whereas the validation one cannot.  It makes sense to move this method somewhere 
-	// HINT+ to the `framework.configuration' package. 
+	// HINT: note that we need two different message sources: the global one, which
+	// is appropriate for
+	// HINT+ almost everything, and the validation one, which is appropriate for
+	// Validators only. The
+	// HINT+ only difference is that the global one can ignore codes that are not
+	// found in the i18n
+	// HINT+ bundles, whereas the validation one cannot. It makes sense to move this
+	// method somewhere
+	// HINT+ to the `framework.configuration' package.
 
 	public static ExtendedMessageSource buildMessageSource() {
 		ExtendedMessageSource result;
@@ -92,9 +97,9 @@ public class MessageHelper {
 		result.setFallbackToSystemLocale(true);
 		result.setCacheMillis(-1);
 		result.setBasenames( //
-			"/WEB-INF/messages/*.messages", //
-			"/WEB-INF/tags/*.messages", //
-			"/WEB-INF/views/**/*.messages");
+				"/WEB-INF/messages/*.messages", //
+				"/WEB-INF/tags/*.messages", //
+				"/WEB-INF/views/**/*.messages");
 
 		return result;
 	}

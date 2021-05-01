@@ -16,10 +16,10 @@ import acme.framework.entities.Administrator;
 public class AdministratorSpamThresholdController extends AbstractController<Administrator, SpamThreshold> {
 	@Autowired
 	private AdministratorSpamThresholdShowService showService;
-	
+
 	@Autowired
 	private AdministratorSpamThresholdUpdateService updateService;
-	
+
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);

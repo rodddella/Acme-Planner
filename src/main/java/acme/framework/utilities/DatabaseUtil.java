@@ -61,19 +61,18 @@ public class DatabaseUtil {
 	// Internal state ---------------------------------------------------------
 
 	@PersistenceContext
-	protected EntityManager			entityManager;
+	protected EntityManager entityManager;
 
 	@Autowired
-	protected PlatformTransactionManager		transactionManager;
+	protected PlatformTransactionManager transactionManager;
 
 	@Autowired
-	protected Environment			environment;
+	protected Environment environment;
 
-	protected TransactionStatus		transactionStatus;
-	protected TransactionDefinition	transactionDefinition;
+	protected TransactionStatus transactionStatus;
+	protected TransactionDefinition transactionDefinition;
 
 	// Transaction management --------------------------------------------------
-
 
 	public void setReadUncommittedIsolationLevel() {
 		this.executeCommand("set transaction isolation level read uncommitted;");
@@ -86,7 +85,7 @@ public class DatabaseUtil {
 	public void startTransaction() {
 		assert !this.isTransactionActive();
 
-		this.transactionDefinition = new DefaultTransactionDefinition();		
+		this.transactionDefinition = new DefaultTransactionDefinition();
 		this.transactionStatus = this.transactionManager.getTransaction(this.transactionDefinition);
 		this.setReadUncommittedIsolationLevel();
 		this.clearPersistenceContext();
@@ -131,7 +130,7 @@ public class DatabaseUtil {
 	public void recreateSchema() {
 		Metadata metadata;
 		String[] dropScript, createScript;
-		
+
 		metadata = this.generateMetadata();
 		dropScript = this.generateScript(metadata, Action.DROP);
 		this.executeScript(dropScript);
@@ -240,13 +239,18 @@ public class DatabaseUtil {
 		Collection<EmbeddableType<?>> embeddables;
 
 		settings = new HashMap<String, String>();
-		settings.put("connection.driver_class", this.environment.getRequiredProperty("spring.datasource.driver-class-name"));
+		settings.put("connection.driver_class",
+				this.environment.getRequiredProperty("spring.datasource.driver-class-name"));
 		settings.put("dialect", this.environment.getRequiredProperty("spring.jpa.hibernate.dialect"));
 		settings.put("hibernate.connection.url", this.environment.getRequiredProperty("spring.datasource.url"));
-		settings.put("hibernate.connection.username", this.environment.getRequiredProperty("spring.datasource.username"));
-		settings.put("hibernate.connection.password", this.environment.getRequiredProperty("spring.datasource.password"));
-		settings.put("hibernate.physical_naming_strategy", this.environment.getRequiredProperty("spring.jpa.hibernate.naming.physical-strategy"));
-		settings.put("hibernate.implicit_naming_strategy", this.environment.getRequiredProperty("spring.jpa.hibernate.naming.implicit-strategy"));
+		settings.put("hibernate.connection.username",
+				this.environment.getRequiredProperty("spring.datasource.username"));
+		settings.put("hibernate.connection.password",
+				this.environment.getRequiredProperty("spring.datasource.password"));
+		settings.put("hibernate.physical_naming_strategy",
+				this.environment.getRequiredProperty("spring.jpa.hibernate.naming.physical-strategy"));
+		settings.put("hibernate.implicit_naming_strategy",
+				this.environment.getRequiredProperty("spring.jpa.hibernate.naming.implicit-strategy"));
 		settings.put("show_sql", this.environment.getRequiredProperty("spring.jpa.hibernate.show-sql"));
 		settings.put("format_sql", this.environment.getRequiredProperty("spring.jpa.hibernate.format-sql"));
 		settings.put("hibernate.globally_quoted_identifiers", "true");
@@ -280,7 +284,8 @@ public class DatabaseUtil {
 		ScriptTargetOutput target;
 
 		text = null;
-		try (OutputStream outputStream = new ByteArrayOutputStream(); Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)) {
+		try (OutputStream outputStream = new ByteArrayOutputStream();
+				Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)) {
 			target = new ScriptTargetOutputToWriter(writer);
 
 			exporter = new SchemaExport();
@@ -299,7 +304,8 @@ public class DatabaseUtil {
 
 		result = text.split(";\\s*[\r\n]+");
 		if (action.equals(Action.DROP)) {
-			// HINT: the exporter generates ALTER statements without checking if the tables exists!
+			// HINT: the exporter generates ALTER statements without checking if the tables
+			// exists!
 			// HINT+ Thus, we need to remove those statements explicitly.
 			List<String> patch;
 
@@ -316,48 +322,48 @@ public class DatabaseUtil {
 
 	// Scrap stuff ------------------------------------------------------------
 
-	//	public void executeScript(final File file) {
-	//		assert file != null && file.isFile() && file.canRead();
+	// public void executeScript(final File file) {
+	// assert file != null && file.isFile() && file.canRead();
 	//
-	//		String[] commands;
+	// String[] commands;
 	//
-	//		commands = this.readScript(file);
-	//		this.executeScript(commands);
-	//	}
+	// commands = this.readScript(file);
+	// this.executeScript(commands);
+	// }
 
-	//	protected String[] readScript(final File file) {
-	//		assert file != null && file.isFile() && file.canRead();
+	// protected String[] readScript(final File file) {
+	// assert file != null && file.isFile() && file.canRead();
 	//
-	//		String script;
-	//		String[] result;
+	// String script;
+	// String[] result;
 	//
-	//		try {
-	//			script = FileUtils.readFileToString(file, "utf-8");
-	//			script = script.replaceAll(";\\s*[\r\n]+", ">\\|\\|<");
-	//			script = script.replaceAll("[\r\n]+", " ");
-	//			result = script.split(">\\|\\|<");
-	//		} catch (Throwable oops) {
-	//			throw new RuntimeException(oops);
-	//		}
+	// try {
+	// script = FileUtils.readFileToString(file, "utf-8");
+	// script = script.replaceAll(";\\s*[\r\n]+", ">\\|\\|<");
+	// script = script.replaceAll("[\r\n]+", " ");
+	// result = script.split(">\\|\\|<");
+	// } catch (Throwable oops) {
+	// throw new RuntimeException(oops);
+	// }
 	//
-	//		return result;
-	//	}
+	// return result;
+	// }
 
-	//	public void executeScript(final List<String> commands) {
-	//		assert !CollectionHelper.someNull(commands);
+	// public void executeScript(final List<String> commands) {
+	// assert !CollectionHelper.someNull(commands);
 	//
-	//		try {
-	//			this.startTransaction();
-	//			for (final String command : commands) {
-	//				this.executeCommand(command);
-	//			}
-	//			this.commitTransaction();
-	//		} catch (Throwable oops) {
-	//			if (this.isTransactionActive()) {
-	//				this.rollbackTransaction();
-	//			}
-	//			throw new RuntimeException(oops);
-	//		}
-	//	}
+	// try {
+	// this.startTransaction();
+	// for (final String command : commands) {
+	// this.executeCommand(command);
+	// }
+	// this.commitTransaction();
+	// } catch (Throwable oops) {
+	// if (this.isTransactionActive()) {
+	// this.rollbackTransaction();
+	// }
+	// throw new RuntimeException(oops);
+	// }
+	// }
 
 }

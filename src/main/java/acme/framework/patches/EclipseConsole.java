@@ -19,18 +19,21 @@ public abstract class EclipseConsole {
 	// Internal state ---------------------------------------------------------
 
 	protected static boolean isFixed = false;
-	
+
 	// Constructors -----------------------------------------------------------
-	
-	protected EclipseConsole() {		
+
+	protected EclipseConsole() {
 	}
 
 	// Business methods -------------------------------------------------------
 
 	public static void fix() {
-		// HINT: introduces a 200ms delay into the 'System.err' or 'System.out' OutputStreams
-		// HINT+ every time the output switches from one to the other. This is enough to prevent
-		// HINT+ the Eclipse console from showing the output of the two streams out of order.
+		// HINT: introduces a 200ms delay into the 'System.err' or 'System.out'
+		// OutputStreams
+		// HINT+ every time the output switches from one to the other. This is enough to
+		// prevent
+		// HINT+ the Eclipse console from showing the output of the two streams out of
+		// order.
 
 		EclipseStream out, err;
 

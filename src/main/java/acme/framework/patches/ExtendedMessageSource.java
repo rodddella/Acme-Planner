@@ -64,44 +64,48 @@ import org.springframework.util.StringUtils;
 import acme.framework.helpers.StringHelper;
 
 /**
- * Spring-specific {@link org.springframework.context.MessageSource} implementation
- * that accesses resource bundles using specified basenames, participating in the
- * Spring {@link org.springframework.context.ApplicationContext}'s resource loading.
+ * Spring-specific {@link org.springframework.context.MessageSource}
+ * implementation that accesses resource bundles using specified basenames,
+ * participating in the Spring
+ * {@link org.springframework.context.ApplicationContext}'s resource loading.
  *
  * <p>
- * In contrast to the JDK-based {@link ResourceBundleMessageSource}, this class uses
- * {@link java.util.Properties} instances as its custom data structure for messages,
- * loading them via a {@link org.springframework.util.PropertiesPersister} strategy
- * from Spring {@link Resource} handles. This strategy is not only capable of
- * reloading files based on timestamp changes, but also of loading properties files
- * with a specific character encoding. It will detect XML property files as well.
+ * In contrast to the JDK-based {@link ResourceBundleMessageSource}, this class
+ * uses {@link java.util.Properties} instances as its custom data structure for
+ * messages, loading them via a
+ * {@link org.springframework.util.PropertiesPersister} strategy from Spring
+ * {@link Resource} handles. This strategy is not only capable of reloading
+ * files based on timestamp changes, but also of loading properties files with a
+ * specific character encoding. It will detect XML property files as well.
  *
  * <p>
- * Note that the basenames set as {@link #setBasenames "basenames"} property
- * are treated in a slightly different fashion than the "basenames" property of
- * {@link ResourceBundleMessageSource}. It follows the basic ResourceBundle rule of not
- * specifying file extension or language codes, but can refer to any Spring resource
- * location (instead of being restricted to classpath resources). With a "classpath:"
- * prefix, resources can still be loaded from the classpath, but "cacheSeconds" values
- * other than "-1" (caching forever) might not work reliably in this case.
+ * Note that the basenames set as {@link #setBasenames "basenames"} property are
+ * treated in a slightly different fashion than the "basenames" property of
+ * {@link ResourceBundleMessageSource}. It follows the basic ResourceBundle rule
+ * of not specifying file extension or language codes, but can refer to any
+ * Spring resource location (instead of being restricted to classpath
+ * resources). With a "classpath:" prefix, resources can still be loaded from
+ * the classpath, but "cacheSeconds" values other than "-1" (caching forever)
+ * might not work reliably in this case.
  *
  * <p>
- * For a typical web application, message files could be placed in {@code WEB-INF}:
- * e.g. a "WEB-INF/messages" basename would find a "WEB-INF/messages.properties",
- * "WEB-INF/messages_en.properties" etc arrangement as well as "WEB-INF/messages.xml",
- * "WEB-INF/messages_en.xml" etc. Note that message definitions in a <i>previous</i>
- * resource bundle will override ones in a later bundle, due to sequential lookup.
+ * For a typical web application, message files could be placed in
+ * {@code WEB-INF}: e.g. a "WEB-INF/messages" basename would find a
+ * "WEB-INF/messages.properties", "WEB-INF/messages_en.properties" etc
+ * arrangement as well as "WEB-INF/messages.xml", "WEB-INF/messages_en.xml" etc.
+ * Note that message definitions in a <i>previous</i> resource bundle will
+ * override ones in a later bundle, due to sequential lookup.
  *
  * <p>
  * This MessageSource can easily be used outside of an
  * {@link org.springframework.context.ApplicationContext}: it will use a
- * {@link org.springframework.core.io.DefaultResourceLoader} as default,
- * simply getting overridden with the ApplicationContext's resource loader
- * if running in a context. It does not have any other specific dependencies.
+ * {@link org.springframework.core.io.DefaultResourceLoader} as default, simply
+ * getting overridden with the ApplicationContext's resource loader if running
+ * in a context. It does not have any other specific dependencies.
  *
  * <p>
- * Thanks to Thomas Achleitner for providing the initial implementation of
- * this message source!
+ * Thanks to Thomas Achleitner for providing the initial implementation of this
+ * message source!
  *
  * @author Juergen Hoeller
  * @see #setCacheSeconds
@@ -117,41 +121,39 @@ import acme.framework.helpers.StringHelper;
  */
 public class ExtendedMessageSource extends AbstractResourceBasedMessageSource implements ResourceLoaderAware {
 
-	protected static final String										PROPERTIES_SUFFIX		= ".messages";
+	protected static final String PROPERTIES_SUFFIX = ".messages";
 
 	// RC-
-	// protected static final String										XML_SUFFIX				= ".xml";
+	// protected static final String XML_SUFFIX = ".xml";
 	// RC-
 
 	@Nullable
-	protected Properties												fileEncodings;
+	protected Properties fileEncodings;
 
-	protected boolean													concurrentRefresh		= true;
+	protected boolean concurrentRefresh = true;
 
-	protected PropertiesPersister										propertiesPersister		= new DefaultPropertiesPersister();
+	protected PropertiesPersister propertiesPersister = new DefaultPropertiesPersister();
 
-	protected ResourceLoader											resourceLoader			= new DefaultResourceLoader();
+	protected ResourceLoader resourceLoader = new DefaultResourceLoader();
 
 	// Cache to hold filename lists per Locale
-	protected final ConcurrentMap<String, Map<Locale, List<String>>>	cachedFilenames			= new ConcurrentHashMap<>();
+	protected final ConcurrentMap<String, Map<Locale, List<String>>> cachedFilenames = new ConcurrentHashMap<>();
 
 	// Cache to hold already loaded properties per filename
-	protected final ConcurrentMap<String, PropertiesHolder>				cachedProperties		= new ConcurrentHashMap<>();
+	protected final ConcurrentMap<String, PropertiesHolder> cachedProperties = new ConcurrentHashMap<>();
 
 	// Cache to hold already loaded properties per filename
-	protected final ConcurrentMap<Locale, PropertiesHolder>				cachedMergedProperties	= new ConcurrentHashMap<>();
-
+	protected final ConcurrentMap<Locale, PropertiesHolder> cachedMergedProperties = new ConcurrentHashMap<>();
 
 	/**
 	 * Set per-file charsets to use for parsing properties files.
 	 * <p>
 	 * Only applies to classic properties files, not to XML files.
 	 *
-	 * @param fileEncodings
-	 *            a Properties with filenames as keys and charset
-	 *            names as values. Filenames have to match the basename syntax,
-	 *            with optional locale-specific components: e.g. "WEB-INF/messages"
-	 *            or "WEB-INF/messages_en".
+	 * @param fileEncodings a Properties with filenames as keys and charset names as
+	 *                      values. Filenames have to match the basename syntax,
+	 *                      with optional locale-specific components: e.g.
+	 *                      "WEB-INF/messages" or "WEB-INF/messages_en".
 	 * @see #setBasenames
 	 * @see org.springframework.util.PropertiesPersister#load
 	 */
@@ -162,12 +164,12 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	/**
 	 * Specify whether to allow for concurrent refresh behavior, i.e. one thread
 	 * locked in a refresh attempt for a specific cached properties file whereas
-	 * other threads keep returning the old properties for the time being, until
-	 * the refresh attempt has completed.
+	 * other threads keep returning the old properties for the time being, until the
+	 * refresh attempt has completed.
 	 * <p>
 	 * Default is "true": this behavior is new as of Spring Framework 4.1,
-	 * minimizing contention between threads. If you prefer the old behavior,
-	 * i.e. to fully block on refresh, switch this flag to "false".
+	 * minimizing contention between threads. If you prefer the old behavior, i.e.
+	 * to fully block on refresh, switch this flag to "false".
 	 *
 	 * @since 4.1
 	 * @see #setCacheSeconds
@@ -192,8 +194,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	 * <p>
 	 * The default is a DefaultResourceLoader. Will get overridden by the
 	 * ApplicationContext if running in a context, as it implements the
-	 * ResourceLoaderAware interface. Can be manually overridden when
-	 * running outside of an ApplicationContext.
+	 * ResourceLoaderAware interface. Can be manually overridden when running
+	 * outside of an ApplicationContext.
 	 *
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 * @see org.springframework.context.ResourceLoaderAware
@@ -205,7 +207,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 
 	/**
 	 * Resolves the given message code as key in the retrieved bundle files,
-	 * returning the value found in the bundle as-is (without MessageFormat parsing).
+	 * returning the value found in the bundle as-is (without MessageFormat
+	 * parsing).
 	 */
 	@Override
 	protected String resolveCodeWithoutArguments(final String code, final Locale locale) {
@@ -231,8 +234,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	}
 
 	/**
-	 * Resolves the given message code as key in the retrieved bundle files,
-	 * using a cached MessageFormat instance per message code.
+	 * Resolves the given message code as key in the retrieved bundle files, using a
+	 * cached MessageFormat instance per message code.
 	 */
 	@Override
 	@Nullable
@@ -259,13 +262,12 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	}
 
 	/**
-	 * Get a PropertiesHolder that contains the actually visible properties
-	 * for a Locale, after merging all specified resource bundles.
-	 * Either fetches the holder from the cache or freshly loads it.
+	 * Get a PropertiesHolder that contains the actually visible properties for a
+	 * Locale, after merging all specified resource bundles. Either fetches the
+	 * holder from the cache or freshly loads it.
 	 * <p>
-	 * Only used when caching resource bundle contents forever, i.e.
-	 * with cacheSeconds < 0. Therefore, merged properties are always
-	 * cached forever.
+	 * Only used when caching resource bundle contents forever, i.e. with
+	 * cacheSeconds < 0. Therefore, merged properties are always cached forever.
 	 */
 	protected PropertiesHolder getMergedProperties(final Locale locale) {
 		PropertiesHolder mergedHolder = this.cachedMergedProperties.get(locale);
@@ -297,49 +299,50 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	}
 
 	/**
-	 * Calculate all filenames for the given bundle basename and Locale.
-	 * Will calculate filenames for the given Locale, the system Locale
-	 * (if applicable), and the default file.
+	 * Calculate all filenames for the given bundle basename and Locale. Will
+	 * calculate filenames for the given Locale, the system Locale (if applicable),
+	 * and the default file.
 	 *
-	 * @param basename
-	 *            the basename of the bundle
-	 * @param locale
-	 *            the locale
+	 * @param basename the basename of the bundle
+	 * @param locale   the locale
 	 * @return the List of filenames to check
 	 * @see #setFallbackToSystemLocale
 	 * @see #calculateFilenamesForLocale
 	 */
 	// RC-
-	//	protected List<String> calculateAllFilenames(final String basename, final Locale locale) {
-	//		Map<Locale, List<String>> localeMap = this.cachedFilenames.get(basename);
-	//		if (localeMap != null) {
-	//			List<String> filenames = localeMap.get(locale);
-	//			if (filenames != null) {
-	//				return filenames;
-	//			}
-	//		}
-	//		List<String> filenames = new ArrayList<>(7);
-	//		filenames.addAll(this.calculateFilenamesForLocale(basename, locale));
-	//		if (this.isFallbackToSystemLocale() && !locale.equals(Locale.getDefault())) {
-	//			List<String> fallbackFilenames = this.calculateFilenamesForLocale(basename, Locale.getDefault());
-	//			for (String fallbackFilename : fallbackFilenames) {
-	//				if (!filenames.contains(fallbackFilename)) {
-	//					// Entry for fallback locale that isn't already in filenames list.
-	//					filenames.add(fallbackFilename);
-	//				}
-	//			}
-	//		}
-	//		filenames.add(basename);
-	//		if (localeMap == null) {
-	//			localeMap = new ConcurrentHashMap<>();
-	//			Map<Locale, List<String>> existing = this.cachedFilenames.putIfAbsent(basename, localeMap);
-	//			if (existing != null) {
-	//				localeMap = existing;
-	//			}
-	//		}
-	//		localeMap.put(locale, filenames);
-	//		return filenames;
-	//	}
+	// protected List<String> calculateAllFilenames(final String basename, final
+	// Locale locale) {
+	// Map<Locale, List<String>> localeMap = this.cachedFilenames.get(basename);
+	// if (localeMap != null) {
+	// List<String> filenames = localeMap.get(locale);
+	// if (filenames != null) {
+	// return filenames;
+	// }
+	// }
+	// List<String> filenames = new ArrayList<>(7);
+	// filenames.addAll(this.calculateFilenamesForLocale(basename, locale));
+	// if (this.isFallbackToSystemLocale() && !locale.equals(Locale.getDefault())) {
+	// List<String> fallbackFilenames = this.calculateFilenamesForLocale(basename,
+	// Locale.getDefault());
+	// for (String fallbackFilename : fallbackFilenames) {
+	// if (!filenames.contains(fallbackFilename)) {
+	// // Entry for fallback locale that isn't already in filenames list.
+	// filenames.add(fallbackFilename);
+	// }
+	// }
+	// }
+	// filenames.add(basename);
+	// if (localeMap == null) {
+	// localeMap = new ConcurrentHashMap<>();
+	// Map<Locale, List<String>> existing =
+	// this.cachedFilenames.putIfAbsent(basename, localeMap);
+	// if (existing != null) {
+	// localeMap = existing;
+	// }
+	// }
+	// localeMap.put(locale, filenames);
+	// return filenames;
+	// }
 	// RC-
 
 	// RC+
@@ -433,55 +436,56 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	// RC+
 
 	// RC-
-	//	/**
-	//	 * Calculate the filenames for the given bundle basename and Locale,
-	//	 * appending language code, country code, and variant code.
-	//	 * E.g.: basename "messages", Locale "de_AT_oo" -> "messages_de_AT_OO",
-	//	 * "messages_de_AT", "messages_de".
-	//	 * <p>
-	//	 * Follows the rules defined by {@link java.util.Locale#toString()}.
-	//	 *
-	//	 * @param basename
-	//	 *            the basename of the bundle
-	//	 * @param locale
-	//	 *            the locale
-	//	 * @return the List of filenames to check
-	//	 */
+	// /**
+	// * Calculate the filenames for the given bundle basename and Locale,
+	// * appending language code, country code, and variant code.
+	// * E.g.: basename "messages", Locale "de_AT_oo" -> "messages_de_AT_OO",
+	// * "messages_de_AT", "messages_de".
+	// * <p>
+	// * Follows the rules defined by {@link java.util.Locale#toString()}.
+	// *
+	// * @param basename
+	// * the basename of the bundle
+	// * @param locale
+	// * the locale
+	// * @return the List of filenames to check
+	// */
 
-	//	protected List<String> calculateFilenamesForLocale(final String basename, final Locale locale) {
-	//		List<String> result = new ArrayList<>(3);
-	//		String language = locale.getLanguage();
-	//		String country = locale.getCountry();
-	//		String variant = locale.getVariant();
-	//		StringBuilder temp = new StringBuilder(basename);
+	// protected List<String> calculateFilenamesForLocale(final String basename,
+	// final Locale locale) {
+	// List<String> result = new ArrayList<>(3);
+	// String language = locale.getLanguage();
+	// String country = locale.getCountry();
+	// String variant = locale.getVariant();
+	// StringBuilder temp = new StringBuilder(basename);
 	//
-	//		temp.append('_');
-	//		if (language.length() > 0) {
-	//			temp.append(language);
-	//			result.add(0, temp.toString());
-	//		}
+	// temp.append('_');
+	// if (language.length() > 0) {
+	// temp.append(language);
+	// result.add(0, temp.toString());
+	// }
 	//
-	//		temp.append('_');
-	//		if (country.length() > 0) {
-	//			temp.append(country);
-	//			result.add(0, temp.toString());
-	//		}
+	// temp.append('_');
+	// if (country.length() > 0) {
+	// temp.append(country);
+	// result.add(0, temp.toString());
+	// }
 	//
-	//		if (variant.length() > 0 && (language.length() > 0 || country.length() > 0)) {
-	//			temp.append('_').append(variant);
-	//			result.add(0, temp.toString());
-	//		}
+	// if (variant.length() > 0 && (language.length() > 0 || country.length() > 0))
+	// {
+	// temp.append('_').append(variant);
+	// result.add(0, temp.toString());
+	// }
 	//
-	//		return result;
-	//	}
+	// return result;
+	// }
 	// RC-
 
 	/**
-	 * Get a PropertiesHolder for the given filename, either from the
-	 * cache or freshly loaded.
+	 * Get a PropertiesHolder for the given filename, either from the cache or
+	 * freshly loaded.
 	 *
-	 * @param filename
-	 *            the bundle filename (basename + Locale)
+	 * @param filename the bundle filename (basename + Locale)
 	 * @return the current PropertiesHolder for the bundle
 	 */
 	protected PropertiesHolder getProperties(final String filename) {
@@ -524,10 +528,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 		}
 	}
 
-
 	// RC+
 	protected PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
 
 	protected PropertiesHolder refreshProperties(final String filename, final PropertiesHolder oldHolder) {
 		assert !StringHelper.isBlank(filename);
@@ -544,14 +546,15 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 		properties = new Properties();
 		lastModified = -1;
 		try {
-			//basename = String.format("classpath:%s", filename +  ExtendedMessageSource.PROPERTIES_SUFFIX);
+			// basename = String.format("classpath:%s", filename +
+			// ExtendedMessageSource.PROPERTIES_SUFFIX);
 			basename = filename + ExtendedMessageSource.PROPERTIES_SUFFIX;
-			//this.logger.info("user.dir = " + System.getProperty("user.dir"));
-			//this.logger.info("basename = " + basename);
+			// this.logger.info("user.dir = " + System.getProperty("user.dir"));
+			// this.logger.info("basename = " + basename);
 			resources = this.resolver.getResources(basename);
 			for (final Resource resource : resources) {
 				path = resource.getURI().toString().replace(ExtendedMessageSource.PROPERTIES_SUFFIX, "");
-				//this.logger.info("resource = " + path);
+				// this.logger.info("resource = " + path);
 				newHolder = this.originalRefreshProperties(path, oldHolder);
 				properties.putAll(newHolder.getProperties());
 				if (lastModified < resource.lastModified()) {
@@ -570,23 +573,22 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	// RC+
 
 	/**
-	 * Refresh the PropertiesHolder for the given bundle filename.
-	 * The holder can be {@code null} if not cached before, or a timed-out cache entry
-	 * (potentially getting re-validated against the current last-modified timestamp).
+	 * Refresh the PropertiesHolder for the given bundle filename. The holder can be
+	 * {@code null} if not cached before, or a timed-out cache entry (potentially
+	 * getting re-validated against the current last-modified timestamp).
 	 *
-	 * @param filename
-	 *            the bundle filename (basename + Locale)
-	 * @param propHolder
-	 *            the current PropertiesHolder for the bundle
+	 * @param filename   the bundle filename (basename + Locale)
+	 * @param propHolder the current PropertiesHolder for the bundle
 	 */
 	protected PropertiesHolder originalRefreshProperties(final String filename, @Nullable PropertiesHolder propHolder) {
 		final long refreshTimestamp = this.getCacheMillis() < 0 ? -1 : System.currentTimeMillis();
 		final Resource resource = this.resourceLoader.getResource(filename + ExtendedMessageSource.PROPERTIES_SUFFIX);
 
 		// RC-
-		//		if (!resource.exists()) {
-		//			resource = this.resourceLoader.getResource(filename + ExtendedMessageSource.XML_SUFFIX);
-		//		}
+		// if (!resource.exists()) {
+		// resource = this.resourceLoader.getResource(filename +
+		// ExtendedMessageSource.XML_SUFFIX);
+		// }
 		// RC-
 
 		if (resource.exists()) {
@@ -597,7 +599,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 					fileTimestamp = resource.lastModified();
 					if (propHolder != null && propHolder.getFileTimestamp() == fileTimestamp) {
 						if (this.logger.isDebugEnabled()) {
-							this.logger.debug("Re-caching properties for filename [" + filename + "] - file hasn't been modified");
+							this.logger.debug("Re-caching properties for filename [" + filename
+									+ "] - file hasn't been modified");
 						}
 						propHolder.setRefreshTimestamp(refreshTimestamp);
 						return propHolder;
@@ -605,7 +608,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 				} catch (final IOException ex) {
 					// Probably a class path resource: cache it forever.
 					if (this.logger.isDebugEnabled()) {
-						this.logger.debug(resource + " could not be resolved in the file system - assuming that it hasn't changed", ex);
+						this.logger.debug(resource
+								+ " could not be resolved in the file system - assuming that it hasn't changed", ex);
 					}
 					fileTimestamp = -1;
 				}
@@ -620,8 +624,7 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 				// Empty holder representing "not valid".
 				propHolder = new PropertiesHolder();
 			}
-		}
-		else {
+		} else {
 			// Resource does not exist.
 			if (this.logger.isDebugEnabled()) {
 				this.logger.debug("No properties file found for [" + filename + "] - neither plain properties nor XML");
@@ -638,24 +641,22 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	/**
 	 * Load the properties from the given resource.
 	 *
-	 * @param resource
-	 *            the resource to load from
-	 * @param filename
-	 *            the original bundle filename (basename + Locale)
+	 * @param resource the resource to load from
+	 * @param filename the original bundle filename (basename + Locale)
 	 * @return the populated Properties instance
-	 * @throws IOException
-	 *             if properties loading failed
+	 * @throws IOException if properties loading failed
 	 */
 	protected Properties loadProperties(final Resource resource, final String filename) throws IOException {
 		final Properties props = this.newProperties();
 		try (InputStream is = resource.getInputStream()) {
 			// RC-
 			// String resourceFilename = resource.getFilename();
-			// if (resourceFilename != null && resourceFilename.endsWith(ExtendedMessageSource.XML_SUFFIX)) {
-			//     if (this.logger.isDebugEnabled()) {
-			//         this.logger.debug("Loading properties [" + resource.getFilename() + "]");
-			//     }
-			//     this.propertiesPersister.loadFromXml(props, is);
+			// if (resourceFilename != null &&
+			// resourceFilename.endsWith(ExtendedMessageSource.XML_SUFFIX)) {
+			// if (this.logger.isDebugEnabled()) {
+			// this.logger.debug("Loading properties [" + resource.getFilename() + "]");
+			// }
+			// this.propertiesPersister.loadFromXml(props, is);
 			// } else
 			// RC-
 			// RC+
@@ -669,7 +670,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 			}
 			if (encoding != null) {
 				if (this.logger.isDebugEnabled()) {
-					this.logger.debug("Loading properties [" + resource.getFilename() + "] with encoding '" + encoding + "'");
+					this.logger.debug(
+							"Loading properties [" + resource.getFilename() + "] with encoding '" + encoding + "'");
 				}
 				this.propertiesPersister.load(props, new InputStreamReader(is, encoding));
 			} else {
@@ -685,12 +687,13 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	}
 
 	/**
-	 * Template method for creating a plain new {@link Properties} instance.
-	 * The default implementation simply calls {@link Properties#Properties()}.
+	 * Template method for creating a plain new {@link Properties} instance. The
+	 * default implementation simply calls {@link Properties#Properties()}.
 	 * <p>
 	 * Allows for returning a custom {@link Properties} extension in subclasses.
-	 * Overriding methods should just instantiate a custom {@link Properties} subclass,
-	 * with no further initialization or population to be performed at that point.
+	 * Overriding methods should just instantiate a custom {@link Properties}
+	 * subclass, with no further initialization or population to be performed at
+	 * that point.
 	 *
 	 * @return a plain Properties instance
 	 * @since 4.2
@@ -700,8 +703,8 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	}
 
 	/**
-	 * Clear the resource bundle cache.
-	 * Subsequent resolve calls will lead to reloading of the properties files.
+	 * Clear the resource bundle cache. Subsequent resolve calls will lead to
+	 * reloading of the properties files.
 	 */
 	public void clearCache() {
 		this.logger.debug("Clearing entire resource bundle cache");
@@ -717,8 +720,10 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 	public void clearCacheIncludingAncestors() {
 		this.clearCache();
 		// RC-
-		// if (this.getParentMessageSource() instanceof ReloadableResourceBundleMessageSource) {
-		// 	((ReloadableResourceBundleMessageSource) this.getParentMessageSource()).clearCacheIncludingAncestors();
+		// if (this.getParentMessageSource() instanceof
+		// ReloadableResourceBundleMessageSource) {
+		// ((ReloadableResourceBundleMessageSource)
+		// this.getParentMessageSource()).clearCacheIncludingAncestors();
 		// }
 		// RC-
 		// RC+
@@ -728,9 +733,11 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 		parent = this.getParentMessageSource();
 		if (parent instanceof ReloadableResourceBundleMessageSource) {
 			reloadableParent = (ReloadableResourceBundleMessageSource) (this.getParentMessageSource());
-			// INFO: SonarLint makes a mistake here.  reloadableParent is not nullable here because
-			// INFO+ parent instanceof ReloadableResourceBundleMessageSource returns false if parent is null.
-			assert reloadableParent != null; 
+			// INFO: SonarLint makes a mistake here. reloadableParent is not nullable here
+			// because
+			// INFO+ parent instanceof ReloadableResourceBundleMessageSource returns false
+			// if parent is null.
+			assert reloadableParent != null;
 			reloadableParent.clearCacheIncludingAncestors();
 		}
 
@@ -741,27 +748,24 @@ public class ExtendedMessageSource extends AbstractResourceBasedMessageSource im
 		return this.getClass().getName() + ": basenames=" + this.getBasenameSet();
 	}
 
-
 	/**
-	 * PropertiesHolder for caching.
-	 * Stores the last-modified timestamp of the source file for efficient
-	 * change detection, and the timestamp of the last refresh attempt
-	 * (updated every time the cache entry gets re-validated).
+	 * PropertiesHolder for caching. Stores the last-modified timestamp of the
+	 * source file for efficient change detection, and the timestamp of the last
+	 * refresh attempt (updated every time the cache entry gets re-validated).
 	 */
 	protected class PropertiesHolder {
 
 		@Nullable
-		protected final Properties											properties;
+		protected final Properties properties;
 
-		protected final long												fileTimestamp;
+		protected final long fileTimestamp;
 
-		protected volatile long												refreshTimestamp		= -2;
+		protected volatile long refreshTimestamp = -2;
 
-		protected final ReentrantLock										refreshLock				= new ReentrantLock();
+		protected final ReentrantLock refreshLock = new ReentrantLock();
 
 		/** Cache to hold already generated MessageFormats per message code. */
-		protected final ConcurrentMap<String, Map<Locale, MessageFormat>>	cachedMessageFormats	= new ConcurrentHashMap<>();
-
+		protected final ConcurrentMap<String, Map<Locale, MessageFormat>> cachedMessageFormats = new ConcurrentHashMap<>();
 
 		public PropertiesHolder() {
 			this.properties = null;

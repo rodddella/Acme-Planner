@@ -35,8 +35,8 @@ public class UniversalConverter implements GenericConverter {
 
 	// Internal state ---------------------------------------------------------
 
-	protected static String	STRONG_KEY	= "$tr0ng-K3y!";
-	protected static String	SALT		= "aabbccdd";
+	protected static String STRONG_KEY = "$tr0ng-K3y!";
+	protected static String SALT = "aabbccdd";
 
 	// GenericConverter interface ---------------------------------------------
 

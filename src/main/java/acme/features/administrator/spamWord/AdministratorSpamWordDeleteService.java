@@ -14,11 +14,11 @@ import acme.framework.services.AbstractDeleteService;
 public class AdministratorSpamWordDeleteService implements AbstractDeleteService<Administrator, SpamWord> {
 	@Autowired
 	AdministratorSpamWordRepository repository;
-	
+
 	@Override
 	public boolean authorise(Request<SpamWord> request) {
 		assert request != null;
-		
+
 		return true;
 	}
 
@@ -27,7 +27,7 @@ public class AdministratorSpamWordDeleteService implements AbstractDeleteService
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+
 		request.bind(entity, errors);
 	}
 
@@ -36,14 +36,14 @@ public class AdministratorSpamWordDeleteService implements AbstractDeleteService
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		request.unbind(entity, model, "text");
 	}
 
 	@Override
 	public SpamWord findOne(Request<SpamWord> request) {
 		assert request != null;
-		
+
 		return repository.getSpamWordById(request.getModel().getInteger("id"));
 	}
 
@@ -58,7 +58,7 @@ public class AdministratorSpamWordDeleteService implements AbstractDeleteService
 	public void delete(Request<SpamWord> request, SpamWord entity) {
 		assert request != null;
 		assert entity != null;
-		
+
 		repository.delete(entity);
 	}
 }

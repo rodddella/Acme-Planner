@@ -12,12 +12,13 @@ import acme.framework.services.AbstractCreateService;
 
 @Service
 public class ManagerTaskCreateService implements AbstractCreateService<Manager, Task> {
-
 	@Autowired
 	ManagerTaskRepository repository;
-	
+
 	@Override
 	public boolean authorise(final Request<Task> request) {
+		assert request != null;
+
 		return true;
 	}
 
@@ -26,7 +27,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+
 		request.bind(entity, errors);
 	}
 
@@ -35,8 +36,9 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
-		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod", "visibility", "manager");
+
+		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
+				"visibility", "manager");
 	}
 
 	@Override
@@ -44,23 +46,25 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+
 	}
 
-
 	@Override
-	public void create(final Request<Task> request, final Task entity) {		
-		
-		final Integer managerId = request.getPrincipal().getAccountId();
-		final Manager manager = this.repository.findManagerById(managerId).get();
+	public void create(final Request<Task> request, final Task entity) {
+		assert request != null;
+		assert entity != null;
+
+		final Integer managerId = request.getPrincipal().getActiveRoleId();
+		final Manager manager = this.repository.findManagerById(managerId);
 		entity.setManager(manager);
 		this.repository.save(entity);
-		
+
 	}
 
 	@Override
-	public Task instantiate(final Request<Task> request) {		
-		return  new Task();
-	}
+	public Task instantiate(final Request<Task> request) {
+		assert request != null;
 
+		return new Task();
+	}
 }

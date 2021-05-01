@@ -13,13 +13,13 @@ import acme.framework.entities.Authenticated;
 
 @Controller
 @RequestMapping("/authenticated/task/")
-public class AuthenticatedTaskController extends AbstractController<Authenticated, Task>{
+public class AuthenticatedTaskController extends AbstractController<Authenticated, Task> {
 	@Autowired
 	AuthenticatedTaskListService listService;
-	
+
 	@Autowired
 	AuthenticatedTaskShowService showService;
-	
+
 	@PostConstruct
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);

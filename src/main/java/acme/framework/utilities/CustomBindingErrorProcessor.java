@@ -35,12 +35,8 @@ public class CustomBindingErrorProcessor extends DefaultBindingErrorProcessor {
 		objectName = bindingResult.getObjectName();
 		attributeName = oops.getPropertyName();
 		value = oops.getValue();
-		codes = new String[] {
-			"default.error.conversion"
-		};
-		arguments = new Object[] {
-			attributeName, value
-		};
+		codes = new String[] { "default.error.conversion" };
+		arguments = new Object[] { attributeName, value };
 
 		assert objectName != null;
 		assert attributeName != null;

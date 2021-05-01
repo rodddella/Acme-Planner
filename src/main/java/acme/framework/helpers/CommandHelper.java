@@ -17,10 +17,10 @@ import acme.framework.components.BasicCommand;
 import acme.framework.components.Command;
 
 public class CommandHelper {
-	
+
 	// Constructors -----------------------------------------------------------
-	
-	protected CommandHelper() {		
+
+	protected CommandHelper() {
 	}
 
 	// Business methods -------------------------------------------------------

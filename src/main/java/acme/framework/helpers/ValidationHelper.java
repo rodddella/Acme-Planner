@@ -19,12 +19,11 @@ import acme.framework.components.Errors;
 import acme.framework.components.Request;
 
 public class ValidationHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected ValidationHelper() {
 	}
-
 
 	// Business methods -------------------------------------------------------
 

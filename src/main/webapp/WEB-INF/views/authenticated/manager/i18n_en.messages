@@ -17,17 +17,3 @@ authenticated.manager.manager.form.label.sector = Sector
 authenticated.manager.manager.form.button.create = Register
 authenticated.manager.manager.form.button.update = Update
 authenticated.manager.manager.form.button.return = Return
-
-authenticated.manager.task.form.button.show = Show Task
-authenticated.manager.task.form.button.create = Create task
-authenticated.manager.task.form.button.update = Update task
-authenticated.manager.task.form.button.delete = Delete task
-
-authenticated.manager.task.form.label.title = Title:
-authenticated.manager.task.form.label.periodStart = Start of period:
-authenticated.manager.task.form.label.periodEnd = End of period:
-authenticated.manager.task.form.label.workload = Workload :
-authenticated.manager.task.form.label.link = Link (Optional):
-authenticated.manager.task.form.label.description = Description:
-authenticated.manager.task.form.label.state = Public
-

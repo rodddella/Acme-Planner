@@ -14,11 +14,11 @@ import acme.framework.services.AbstractCreateService;
 public class AdministratorSpamWordCreateService implements AbstractCreateService<Administrator, SpamWord> {
 	@Autowired
 	AdministratorSpamWordRepository repository;
-	
+
 	@Override
 	public boolean authorise(Request<SpamWord> request) {
 		assert request != null;
-		
+
 		return true;
 	}
 
@@ -27,7 +27,7 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+
 		request.bind(entity, errors);
 	}
 
@@ -36,17 +36,17 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		request.unbind(entity, model, "text");
 	}
 
 	@Override
 	public SpamWord instantiate(Request<SpamWord> request) {
 		assert request != null;
-		
+
 		SpamWord word = new SpamWord();
 		word.setText("");
-		
+
 		return word;
 	}
 
@@ -55,9 +55,10 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+
 		if (!errors.hasErrors()) {
-			errors.state(request, repository.getSpamWordsByText(entity.getText()).isEmpty(), "text", "acme.validation.already-exists");
+			errors.state(request, repository.getSpamWordsByText(entity.getText()).isEmpty(), "text",
+					"acme.validation.already-exists");
 		}
 	}
 
@@ -65,7 +66,7 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 	public void create(Request<SpamWord> request, SpamWord entity) {
 		assert request != null;
 		assert entity != null;
-		
+
 		repository.save(entity);
 	}
 }

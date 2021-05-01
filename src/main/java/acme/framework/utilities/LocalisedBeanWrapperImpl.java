@@ -57,7 +57,8 @@ public class LocalisedBeanWrapperImpl extends BeanWrapperImpl {
 	// Overridden methods -----------------------------------------------------
 
 	@Override
-	protected Object convertForProperty(final String propertyName, final Object oldValue, final Object newValue, final TypeDescriptor type) throws TypeMismatchException {
+	protected Object convertForProperty(final String propertyName, final Object oldValue, final Object newValue,
+			final TypeDescriptor type) throws TypeMismatchException {
 		assert !StringHelper.isBlank(propertyName);
 		// assert oldValue is nullable
 		// assert newValue is nullable
@@ -74,7 +75,8 @@ public class LocalisedBeanWrapperImpl extends BeanWrapperImpl {
 		} catch (final Throwable oops) {
 			PropertyChangeEvent event;
 
-			event = new PropertyChangeEvent(this.getRootInstance(), this.getNestedPath() + propertyName, oldValue, newValue);
+			event = new PropertyChangeEvent(this.getRootInstance(), this.getNestedPath() + propertyName, oldValue,
+					newValue);
 			throw new ConversionNotSupportedException(event, type.getType(), oops);
 		}
 
