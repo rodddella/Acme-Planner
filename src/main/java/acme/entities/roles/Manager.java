@@ -3,6 +3,7 @@ package acme.entities.roles;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -23,6 +24,6 @@ public class Manager extends UserRole {
 	@NotBlank
 	protected String sector;
 
-	@OneToMany(mappedBy = "manager")
+	@OneToMany(mappedBy = "manager", fetch = FetchType.EAGER)
 	Set<Task> tasks;
 }

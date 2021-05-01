@@ -14,3 +14,9 @@ manager.task.form.label.start_period = Start
 manager.task.form.label.end_period = End
 manager.task.form.label.visibility = Visibility
 manager.task.form.button.return = Return
+
+
+manager.task.form.button.update = Update Task
+manager.task.form.button.create = Create Task
+manager.task.form.button.delete = Delete Task
+

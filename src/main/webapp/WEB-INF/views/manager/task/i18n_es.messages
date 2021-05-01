@@ -23,3 +23,7 @@ manager.task.form.label.start_period = Comienzo
 manager.task.form.label.end_period = Fin
 manager.task.form.label.visibility = Visibilidad
 manager.task.form.button.return = Volver
+
+manager.task.form.button.update = Actualizar Tarea
+manager.task.form.button.create = Crear Tarea
+manager.task.form.button.delete = Borrar Tarea
