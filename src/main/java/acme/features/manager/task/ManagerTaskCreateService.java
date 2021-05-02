@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import acme.entities.roles.Manager;
 import acme.entities.tasks.Task;
 import acme.entities.validators.TaskValidator;
+import acme.forms.HoursAndMinutes;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -51,7 +52,9 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
-		validator.validate(entity, errors);
+		if (!errors.hasErrors()) {
+			validator.validate(entity, errors);
+		}
 	}
 
 	@Override
@@ -62,6 +65,10 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		final Integer managerId = request.getPrincipal().getActiveRoleId();
 		final Manager manager = this.repository.findManagerById(managerId);
 		entity.setManager(manager);
+		
+		try {
+			entity.setWorkload(HoursAndMinutes.fromFormattedTime(entity.getWorkload()).getDecimalTime());
+		} catch (Exception e) {}
 		
 		this.repository.save(entity);
 	}

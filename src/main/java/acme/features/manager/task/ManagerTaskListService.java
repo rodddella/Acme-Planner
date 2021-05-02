@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.roles.Manager;
 import acme.entities.tasks.Task;
+import acme.forms.HoursAndMinutes;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.services.AbstractListService;
@@ -28,9 +29,12 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 		assert entity != null;
 		assert model != null;
 
+		try {
+			entity.setWorkload(HoursAndMinutes.fromDecimalTime(entity.getWorkload()).getFormattedTime());
+		} catch (Exception e) {}
+		
 		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
 				"visibility");
-
 	}
 
 	@Override
