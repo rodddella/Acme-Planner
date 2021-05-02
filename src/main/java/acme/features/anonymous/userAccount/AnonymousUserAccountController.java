@@ -34,7 +34,6 @@ public class AnonymousUserAccountController extends AbstractController<Anonymous
 
 	// Constructors -----------------------------------------------------------
 
-
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);

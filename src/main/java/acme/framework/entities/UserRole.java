@@ -35,7 +35,6 @@ public abstract class UserRole extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-
 	public GrantedAuthority getAuthority() {
 		GrantedAuthority result;
 		String authority;
@@ -63,7 +62,6 @@ public abstract class UserRole extends DomainEntity {
 	}
 
 	// Relationships ----------------------------------------------------------
-
 
 	@NotNull
 	@Valid

@@ -37,7 +37,6 @@ public class AuthenticatedProviderCreateService implements AbstractCreateService
 
 	// AbstractCreateService<Authenticated, Provider> interface ---------------
 
-
 	@Override
 	public boolean authorise(final Request<Provider> request) {
 		assert request != null;

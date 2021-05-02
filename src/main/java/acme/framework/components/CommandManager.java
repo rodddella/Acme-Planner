@@ -26,11 +26,10 @@ public class CommandManager<R extends UserRole, E> {
 
 	// Internal state ---------------------------------------------------------
 
-	protected Map<Command, AbstractService<R, E>>	serviceMap;
-	protected Map<Command, BasicCommand>			typeMap;
+	protected Map<Command, AbstractService<R, E>> serviceMap;
+	protected Map<Command, BasicCommand> typeMap;
 
 	// Constructors -----------------------------------------------------------
-
 
 	public CommandManager() {
 		this.serviceMap = new HashMap<Command, AbstractService<R, E>>();
@@ -58,7 +57,8 @@ public class CommandManager<R extends UserRole, E> {
 		this.typeMap.put(basicCommand, basicCommand);
 	}
 
-	public void addCustomCommand(final CustomCommand customCommand, final BasicCommand basicCommand, final AbstractService<R, E> service) {
+	public void addCustomCommand(final CustomCommand customCommand, final BasicCommand basicCommand,
+			final AbstractService<R, E> service) {
 		assert customCommand != null;
 		assert !this.isRegistered(customCommand);
 		assert basicCommand != null;

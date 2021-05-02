@@ -73,4 +73,9 @@
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
 	
+	<!-- Spam filter configuration -->
+	
+	<bean name="spamFilterThreshold" class="acme.entities.spamfilter.SpamThreshold">
+		<property name="value" value="10.0"></property>
+	</bean>
 </beans>

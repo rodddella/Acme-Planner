@@ -44,7 +44,8 @@ public class CustomToStringBuilder extends ReflectionToStringBuilder {
 		assert buffer != null;
 	}
 
-	public CustomToStringBuilder(final Object object, final ToStringStyle style, final StringBuffer buffer, final Class<?> reflectUpToClass, final boolean outputTransients) {
+	public CustomToStringBuilder(final Object object, final ToStringStyle style, final StringBuffer buffer,
+			final Class<?> reflectUpToClass, final boolean outputTransients) {
 		super(object, style, buffer);
 
 		assert object != null;
@@ -58,9 +59,7 @@ public class CustomToStringBuilder extends ReflectionToStringBuilder {
 
 	// Internal state ---------------------------------------------------------
 
-
 	protected static CustomPrintStyle customQueryStyle = new CustomPrintStyle();
-
 
 	public static String toString(final Object object) {
 		// assert object is nullable
@@ -135,7 +134,9 @@ public class CustomToStringBuilder extends ReflectionToStringBuilder {
 		// assert obbject is nullable
 		boolean result;
 
-		result = object instanceof String || object instanceof Number || object instanceof Character || object instanceof Boolean || object instanceof java.util.Date || object instanceof java.sql.Date || object instanceof Timestamp;
+		result = object instanceof String || object instanceof Number || object instanceof Character
+				|| object instanceof Boolean || object instanceof java.util.Date || object instanceof java.sql.Date
+				|| object instanceof Timestamp;
 
 		return result;
 	}

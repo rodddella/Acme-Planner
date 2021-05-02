@@ -34,7 +34,6 @@ public class AuthenticatedUserAccountController extends AbstractController<Authe
 
 	// Constructors -----------------------------------------------------------
 
-
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);

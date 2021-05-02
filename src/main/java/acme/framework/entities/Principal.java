@@ -28,14 +28,13 @@ public class Principal implements UserDetails {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long	serialVersionUID	= 1L;
+	protected static final long serialVersionUID = 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	// UserDetails interface --------------------------------------------------
 
-	protected String			username;
-
+	protected String username;
 
 	@Override
 	public String getUsername() {
@@ -48,9 +47,7 @@ public class Principal implements UserDetails {
 		this.username = username;
 	}
 
-
 	protected String password;
-
 
 	@Override
 	public String getPassword() {
@@ -63,9 +60,7 @@ public class Principal implements UserDetails {
 		this.password = password;
 	}
 
-
 	protected boolean enabled;
-
 
 	@Override
 	public boolean isEnabled() {
@@ -91,9 +86,7 @@ public class Principal implements UserDetails {
 		return true;
 	}
 
-
 	protected Collection<GrantedAuthority> authorities;
-
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
@@ -116,10 +109,8 @@ public class Principal implements UserDetails {
 
 	// Role management --------------------------------------------------------
 
-
-	protected Class<? extends UserRole>					activeRole;
-	protected Map<Class<? extends UserRole>, Integer>	roleMap;
-
+	protected Class<? extends UserRole> activeRole;
+	protected Map<Class<? extends UserRole>, Integer> roleMap;
 
 	public boolean hasRole(final Class<? extends UserRole> clazz) {
 		assert clazz != null;
@@ -169,9 +160,7 @@ public class Principal implements UserDetails {
 		return result;
 	}
 
-
 	protected int accountId;
-
 
 	public int getAccountId() {
 		return this.accountId;

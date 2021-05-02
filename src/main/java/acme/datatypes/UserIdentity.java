@@ -31,22 +31,21 @@ public class UserIdentity extends DomainDatatype {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long	serialVersionUID	= 1L;
+	protected static final long serialVersionUID = 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	protected String			name;
+	protected String name;
 
 	@NotBlank
-	protected String			surname;
+	protected String surname;
 
 	@NotBlank
 	@Email
-	protected String			email;
+	protected String email;
 
 	// Derived attributes -----------------------------------------------------
-
 
 	@Transient
 	public String getFullName() {

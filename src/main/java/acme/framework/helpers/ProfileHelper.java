@@ -15,7 +15,7 @@ package acme.framework.helpers;
 import java.util.Locale;
 
 public class ProfileHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected ProfileHelper() {

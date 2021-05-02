@@ -34,19 +34,18 @@ public abstract class DomainEntity implements Serializable {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long	serialVersionUID	= 1L;
+	protected static final long serialVersionUID = 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	protected int				id;
+	protected int id;
 
 	@Version
-	protected int				version;
+	protected int version;
 
 	// Derived atttributes ----------------------------------------------------
-
 
 	@Transient
 	public boolean isTransient() {

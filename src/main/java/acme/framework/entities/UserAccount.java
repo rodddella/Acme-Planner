@@ -39,19 +39,18 @@ public class UserAccount extends DomainEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long	serialVersionUID	= 1L;
+	protected static final long serialVersionUID = 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
 	@Length(min = 5, max = 60)
 	@Column(unique = true)
-	protected String			username;
+	protected String username;
 
 	@NotBlank
 	@Length(min = 5, max = 60)
-	protected String			password;
-
+	protected String password;
 
 	public String getPassword() {
 		return this.password;
@@ -65,14 +64,12 @@ public class UserAccount extends DomainEntity {
 		}
 	}
 
-
-	protected boolean		enabled;
+	protected boolean enabled;
 
 	@Valid
-	protected UserIdentity	identity;
+	protected UserIdentity identity;
 
 	// Derived attributes -----------------------------------------------------
-
 
 	@Transient
 	public boolean isAnonymous() {
@@ -85,11 +82,9 @@ public class UserAccount extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
-
 	@NotEmpty
 	@OneToMany(mappedBy = "userAccount")
 	protected Collection<@Valid UserRole> roles;
-
 
 	@Transient
 	public boolean hasRole(final UserRole role) {

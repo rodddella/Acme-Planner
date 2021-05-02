@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import acme.framework.datatypes.Money;
 
 public class JspHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected JspHelper() {
@@ -43,7 +43,8 @@ public class JspHelper {
 		port = String.valueOf(request.getServerPort());
 		uri = (String) request.getAttribute("javax.servlet.forward.request_uri");
 		query = (String) request.getAttribute("javax.servlet.forward.query_string");
-		result = String.format("%s://%s:%s%s%s", scheme, server, port, uri, StringHelper.isBlank(query) ? "" : "?" + query);
+		result = String.format("%s://%s:%s%s%s", scheme, server, port, uri,
+				StringHelper.isBlank(query) ? "" : "?" + query);
 
 		return result;
 	}

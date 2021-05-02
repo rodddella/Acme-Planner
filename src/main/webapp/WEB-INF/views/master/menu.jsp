@@ -34,6 +34,9 @@
 			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/dashboard/show"/>
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.spam-threshold" action="/administrator/spam-threshold/show" />
+			<acme:menu-suboption code="master.menu.administrator.spam-words" action="/administrator/spam-word/list" />
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-initial" action="/master/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/master/populate-sample"/>			
 			<acme:menu-separator/>
@@ -50,6 +53,8 @@
 		
 		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">
 			<acme:menu-suboption code="master.menu.manager.favourite-link" action="http://www.example.com/"/>
+			<acme:menu-suboption code="master.menu.manager.task-create" action="/manager/task/create"/>
+			<acme:menu-suboption code="master.menu.manager.task-list" action="/manager/task/list"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

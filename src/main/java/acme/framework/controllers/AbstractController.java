@@ -64,22 +64,21 @@ public abstract class AbstractController<R extends UserRole, E> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AbstractController<R, E>		self;
+	protected AbstractController<R, E> self;
 
-	protected Class<R>						roleClazz;
-	protected Class<E>						entityClazz;
+	protected Class<R> roleClazz;
+	protected Class<E> entityClazz;
 
-	protected String						listViewName;
-	protected String						formViewName;
+	protected String listViewName;
+	protected String formViewName;
 
-	protected CommandManager<R, E>			commandManager;
+	protected CommandManager<R, E> commandManager;
 
 	// Transaction management ------------------------------------------------.
 
 	@Autowired
-	protected PlatformTransactionManager	transactionManager;
-	protected TransactionStatus				transactionStatus;
-
+	protected PlatformTransactionManager transactionManager;
+	protected TransactionStatus transactionStatus;
 
 	protected void startTransaction() {
 		TransactionDefinition transactionDefinition;
@@ -120,7 +119,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 		this.commandManager.addBasicCommand(basicCommand, service);
 	}
 
-	public void addCustomCommand(final CustomCommand customCommand, final BasicCommand baseCommand, final AbstractService<R, E> service) {
+	public void addCustomCommand(final CustomCommand customCommand, final BasicCommand baseCommand,
+			final AbstractService<R, E> service) {
 		assert customCommand != null;
 		assert !this.commandManager.isRegistered(customCommand);
 		assert service != null;
@@ -159,15 +159,13 @@ public abstract class AbstractController<R extends UserRole, E> {
 
 	// Handler ----------------------------------------------------------------
 
-	@RequestMapping(value = "{endpoint}", method = {
-		RequestMethod.GET, RequestMethod.POST
-	})
+	@RequestMapping(value = "{endpoint}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView handleRequest( //
-		@PathVariable("endpoint") final String endpoint, //
-		@RequestParam final Map<String, Object> model, //
-		final HttpServletRequest servletRequest, //
-		final HttpServletResponse servletResponse, //
-		final Locale locale) {
+			@PathVariable("endpoint") final String endpoint, //
+			@RequestParam final Map<String, Object> model, //
+			final HttpServletRequest servletRequest, //
+			final HttpServletResponse servletResponse, //
+			final Locale locale) {
 
 		ModelAndView result;
 		String servletMethod;
@@ -206,9 +204,9 @@ public abstract class AbstractController<R extends UserRole, E> {
 			// HINT: let's create the request object.
 
 			request = new Request<E>( //
-				method, command, baseCommand, //
-				model, locale, //
-				servletRequest, servletResponse);
+					method, command, baseCommand, //
+					model, locale, //
+					servletRequest, servletResponse);
 
 			// HINT: let's make sure that the principal has the appropriate role.
 
@@ -221,8 +219,10 @@ public abstract class AbstractController<R extends UserRole, E> {
 			Assert.state(service.authorise(request), locale, "default.error.not-authorised");
 
 			// HINT: let's dispatch the request building on the HTTP method used.
-			// HINT: realise that the dispatcher method is invoked through the 'self' reference to this
-			// HINT+ controller because they must be executed within the current transaction.
+			// HINT: realise that the dispatcher method is invoked through the 'self'
+			// reference to this
+			// HINT+ controller because they must be executed within the current
+			// transaction.
 
 			switch (request.getMethod()) {
 			case GET:
@@ -237,8 +237,10 @@ public abstract class AbstractController<R extends UserRole, E> {
 			}
 			assert response != null;
 
-			// HINT: let's commit or rollback the transaction depending on whether there are errors or not in the response.
-			// HINT+ note that the 'onSuccess' and the 'onFailure' methods must be executed in fresh transactions.
+			// HINT: let's commit or rollback the transaction depending on whether there are
+			// errors or not in the response.
+			// HINT+ note that the 'onSuccess' and the 'onFailure' methods must be executed
+			// in fresh transactions.
 
 			if (!response.hasErrors()) {
 				this.commitTransaction();
@@ -252,14 +254,17 @@ public abstract class AbstractController<R extends UserRole, E> {
 				this.commitTransaction();
 			}
 
-			// HINT: let's build the requested view and let's add some predefined attributes to the model.
+			// HINT: let's build the requested view and let's add some predefined attributes
+			// to the model.
 
 			result = this.buildRequestedView(request, response);
 			result.addObject("command", endpoint);
 			result.addObject("principal", request.getPrincipal());
 		} catch (final Throwable oops) {
-			// HINT: if a throwable is caught, then the current transaction must be rollbacked, if any,
-			// HINT: the service must execute the 'onFailure' method, and the panic view must be returned.
+			// HINT: if a throwable is caught, then the current transaction must be
+			// rollbacked, if any,
+			// HINT: the service must execute the 'onFailure' method, and the panic view
+			// must be returned.
 
 			if (this.isTransactionActive()) {
 				this.rollbackTransaction();
@@ -272,7 +277,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 			result = this.buildPanicView(request, response, oops);
 		}
 
-		// HINT: must always return a 'ModelAndView' object, be it the user-defined one or a panic one.
+		// HINT: must always return a 'ModelAndView' object, be it the user-defined one
+		// or a panic one.
 
 		assert result != null;
 
@@ -300,7 +306,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 		switch (request.getBaseCommand()) {
 		case LIST:
 			// HINT: a LIST requests using the 'GET' method is served as follows:
-			// HINT+ a) find the many objects to be shown; b) unbind the list into a fresh model.
+			// HINT+ a) find the many objects to be shown; b) unbind the list into a fresh
+			// model.
 			// HINT+ Note that no errors are expected, but exceptions might be thrown.
 			list = service.findMany(request);
 			view = this.listViewName;
@@ -311,9 +318,12 @@ public abstract class AbstractController<R extends UserRole, E> {
 		case SHOW:
 		case UPDATE:
 		case DELETE:
-			// HINT: a SHOW, UPDATE, or DELETE requests using the 'GET' method are served as follows:
-			// HINT+ a) find the object to be shown, updated, or deleted using the data in the request;
-			// HINT+ b) unbind that object into a fresh model.  Note that no errors are expected, but
+			// HINT: a SHOW, UPDATE, or DELETE requests using the 'GET' method are served as
+			// follows:
+			// HINT+ a) find the object to be shown, updated, or deleted using the data in
+			// the request;
+			// HINT+ b) unbind that object into a fresh model. Note that no errors are
+			// expected, but
 			// HINT+ exceptions might be thrown.
 			entity = service.findOne(request);
 			view = this.formViewName;
@@ -324,8 +334,10 @@ public abstract class AbstractController<R extends UserRole, E> {
 		case PERFORM:
 		case CREATE:
 			// HINT: a PERFORM/CREATE request using the 'GET' method are served as follows:
-			// HINT+ a) instantiate the object to create using the data in the request; b) unbind that
-			// HINT+ object to a fresh model.  Note that no errors are expected, but exceptions might be thrown.
+			// HINT+ a) instantiate the object to create using the data in the request; b)
+			// unbind that
+			// HINT+ object to a fresh model. Note that no errors are expected, but
+			// exceptions might be thrown.
 			entity = service.instantiate(request);
 			view = this.formViewName;
 			model = new Model();
@@ -337,7 +349,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 			break;
 		}
 
-		// HINT: unless an exception is thrown, the previous statements must produce a view name, a model, and an errors object.
+		// HINT: unless an exception is thrown, the previous statements must produce a
+		// view name, a model, and an errors object.
 
 		assert !StringHelper.isBlank(view);
 		assert model != null;
@@ -359,19 +372,22 @@ public abstract class AbstractController<R extends UserRole, E> {
 		Model model;
 		Errors errors;
 
-		// HINT: the first step to handle a POST request fetches the entity to be handled.
+		// HINT: the first step to handle a POST request fetches the entity to be
+		// handled.
 
 		entity = null;
 		switch (request.getBaseCommand()) {
 		case PERFORM:
 		case CREATE:
-			// HINT: a PERFORM or CREATE request involves instantiating the appropriate entity from the
+			// HINT: a PERFORM or CREATE request involves instantiating the appropriate
+			// entity from the
 			// HINT+ request.
 			entity = service.instantiate(request);
 			break;
 		case UPDATE:
 		case DELETE:
-			// HINT: an UPDATE or a DELETE request involves finding the entity to be updated or deleted.
+			// HINT: an UPDATE or a DELETE request involves finding the entity to be updated
+			// or deleted.
 			entity = service.findOne(request);
 			break;
 		default:
@@ -380,16 +396,21 @@ public abstract class AbstractController<R extends UserRole, E> {
 		}
 		assert entity != null;
 
-		// HINT: the second step cares of performing the command on the entity fetched by the previous step.
+		// HINT: the second step cares of performing the command on the entity fetched
+		// by the previous step.
 
 		model = new Model();
 		errors = new Errors();
 		switch (request.getBaseCommand()) {
 		case PERFORM:
-			// HINT: dealing with a PERFORM request involves the following steps: a) binding the request onto
-			// HINT+ the entity instantiated by the previous step; b) performing constraint validation on it;
-			// HINT+ c) performing user-defined validation; d) invoking the service to perform the query if
-			// HINT+ if there are not any errors; and e) unbinding the result to the output model if there
+			// HINT: dealing with a PERFORM request involves the following steps: a) binding
+			// the request onto
+			// HINT+ the entity instantiated by the previous step; b) performing constraint
+			// validation on it;
+			// HINT+ c) performing user-defined validation; d) invoking the service to
+			// perform the query if
+			// HINT+ if there are not any errors; and e) unbinding the result to the output
+			// model if there
 			// HINT+ are not any errors.
 			service.bind(request, entity, errors);
 			ValidationHelper.validate(request, entity, errors);
@@ -402,9 +423,12 @@ public abstract class AbstractController<R extends UserRole, E> {
 			}
 			break;
 		case CREATE:
-			// HINT: dealing with a CREATE request involves the following steps: a) binding the request onto
-			// HINT+ the entity instantiated by the previous step; b) performing constraint validation on it;
-			// HINT+ c) performing user-defined validation; d) if there are not any errors, then invoking the
+			// HINT: dealing with a CREATE request involves the following steps: a) binding
+			// the request onto
+			// HINT+ the entity instantiated by the previous step; b) performing constraint
+			// validation on it;
+			// HINT+ c) performing user-defined validation; d) if there are not any errors,
+			// then invoking the
 			// HINT+ service to create the entity.
 			service.bind(request, entity, errors);
 			ValidationHelper.validate(request, entity, errors);
@@ -414,9 +438,12 @@ public abstract class AbstractController<R extends UserRole, E> {
 			}
 			break;
 		case UPDATE:
-			// HINT: dealing with an UPDATE request involves the following steps: a) binding the request onto
-			// HINT+ the entity fetched by the previous step; b) performing constraint validation on it;
-			// HINT+ c) performing user-defined validation; d) if there are not any errors, then invoking the
+			// HINT: dealing with an UPDATE request involves the following steps: a) binding
+			// the request onto
+			// HINT+ the entity fetched by the previous step; b) performing constraint
+			// validation on it;
+			// HINT+ c) performing user-defined validation; d) if there are not any errors,
+			// then invoking the
 			// HINT+ service to update the entity.
 			service.bind(request, entity, errors);
 			ValidationHelper.validate(request, entity, errors);
@@ -426,7 +453,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 			}
 			break;
 		case DELETE:
-			// HINT: dealing with a DELETE request involves validating that the entity can be deleted
+			// HINT: dealing with a DELETE request involves validating that the entity can
+			// be deleted
 			// HINT+ and then invoking the service to delete the entity.
 			service.validate(request, entity, errors);
 			if (!errors.hasErrors()) {
@@ -442,7 +470,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 		assert errors != null;
 
 		if (request.getBaseCommand().equals(BasicCommand.PERFORM)) {
-			// HINT: if we're dealing with a PERFORM request, then we return the same view and
+			// HINT: if we're dealing with a PERFORM request, then we return the same view
+			// and
 			// HINT+ reset the model if there are any errors.
 			view = this.formViewName;
 			if (errors.hasErrors()) {
@@ -450,18 +479,22 @@ public abstract class AbstractController<R extends UserRole, E> {
 			}
 		} else {
 			if (!errors.hasErrors() && !request.getBaseCommand().equals(BasicCommand.PERFORM)) {
-				// HINT: if there aren't any errors, then we must redirect to the referrer view, which cares of
+				// HINT: if there aren't any errors, then we must redirect to the referrer view,
+				// which cares of
 				// HINT+ returning to the appropriate listing or /master/welcome.
 				view = "redirect:/master/referrer";
 			} else {
-				// HINT: if there are some errors, then we must redirect to the same view.  The model
-				// HINT+ is the same, so that the user may make changes and submit the form again.
+				// HINT: if there are some errors, then we must redirect to the same view. The
+				// model
+				// HINT+ is the same, so that the user may make changes and submit the form
+				// again.
 				view = this.formViewName;
 				model.append(request.getModel());
 			}
 		}
 
-		// HINT: unless an exception is thrown, the previous statements must produce a view name, a model,
+		// HINT: unless an exception is thrown, the previous statements must produce a
+		// view name, a model,
 		// HINT+ and an errors object.
 
 		assert !StringHelper.isBlank(view);
@@ -475,7 +508,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 
 	// Internal methods -------------------------------------------------------
 
-	protected void unbind(final Request<E> request, final Collection<E> list, final Model model, final ServiceWrapper<R, E> service) {
+	protected void unbind(final Request<E> request, final Collection<E> list, final Model model,
+			final ServiceWrapper<R, E> service) {
 		assert request != null;
 		assert !CollectionHelper.someNull(list);
 		assert service != null;
@@ -521,7 +555,8 @@ public abstract class AbstractController<R extends UserRole, E> {
 			}
 		}
 
-		// INFO: errors are not bound if the model is a list, which avoids editing lists.
+		// INFO: errors are not bound if the model is a list, which avoids editing
+		// lists.
 		if (response.hasErrors()) {
 			for (final Entry<String, List<String>> entry : response.getErrors()) {
 				name = String.format("%s$error", entry.getKey());

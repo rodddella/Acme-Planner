@@ -24,7 +24,6 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 
 	// AbstractListService<Administrator, Shout> interface ---------------
 
-
 	@Override
 	public boolean authorise(final Request<Shout> request) {
 		assert request != null;

@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class PrinterHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected PrinterHelper() {
@@ -226,8 +226,10 @@ public class PrinterHelper {
 	}
 
 	public static void printPrimitiveArray(final StringBuilder buffer, final Object value, final boolean summary) {
-		// WARN: note that cannot cast a primitive array like bool[] to Object[].  Thus, we need to get
-		// WARN+ the object as Object, and then do some magic to access its components without attempting to
+		// WARN: note that cannot cast a primitive array like bool[] to Object[]. Thus,
+		// we need to get
+		// WARN+ the object as Object, and then do some magic to access its components
+		// without attempting to
 		// WARN+ cast value to anything that resembles an array.
 		assert buffer != null;
 		assert value != null;
@@ -294,11 +296,11 @@ public class PrinterHelper {
 
 		boolean result;
 
-		result = object == null || // 
-			object instanceof String || object instanceof Number || //
-			object instanceof Character || object instanceof Boolean || //
-			object instanceof java.util.Date || object instanceof java.sql.Date || //
-			object instanceof Timestamp;
+		result = object == null || //
+				object instanceof String || object instanceof Number || //
+				object instanceof Character || object instanceof Boolean || //
+				object instanceof java.util.Date || object instanceof java.sql.Date || //
+				object instanceof Timestamp;
 
 		return result;
 	}
@@ -309,8 +311,8 @@ public class PrinterHelper {
 		boolean result;
 
 		result = object != null && //
-			object.getClass().getName().charAt(0) == '[' && //
-			!object.getClass().getComponentType().isPrimitive();
+				object.getClass().getName().charAt(0) == '[' && //
+				!object.getClass().getComponentType().isPrimitive();
 
 		return result;
 	}
@@ -321,8 +323,8 @@ public class PrinterHelper {
 		boolean result;
 
 		result = object != null && //
-			object.getClass().getName().charAt(0) == '[' && //
-			object.getClass().getComponentType().isPrimitive();
+				object.getClass().getName().charAt(0) == '[' && //
+				object.getClass().getComponentType().isPrimitive();
 
 		return result;
 	}
@@ -352,7 +354,8 @@ public class PrinterHelper {
 
 		boolean result;
 
-		result = PrinterHelper.isPrimitive(object) || PrinterHelper.isObjectArray(object) || PrinterHelper.isEnum(object);
+		result = PrinterHelper.isPrimitive(object) || PrinterHelper.isObjectArray(object)
+				|| PrinterHelper.isEnum(object);
 
 		return result;
 	}

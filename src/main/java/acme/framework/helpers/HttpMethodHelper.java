@@ -15,7 +15,7 @@ package acme.framework.helpers;
 import acme.framework.components.HttpMethod;
 
 public class HttpMethodHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected HttpMethodHelper() {

@@ -22,12 +22,11 @@ public class Response<E> {
 
 	// Internal state ---------------------------------------------------------
 
-	protected String	view;
-	protected Model		model;
-	protected Errors	errors;
+	protected String view;
+	protected Model model;
+	protected Errors errors;
 
 	// Constructors -----------------------------------------------------------
-
 
 	public Response(final String view, final Model model, final Errors errors) {
 		assert !StringHelper.isBlank(view);

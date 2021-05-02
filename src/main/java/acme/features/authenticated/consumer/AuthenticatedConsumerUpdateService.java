@@ -36,7 +36,6 @@ public class AuthenticatedConsumerUpdateService implements AbstractUpdateService
 
 	// AbstractUpdateService<Authenticated, Consumer> interface -----------------
 
-
 	@Override
 	public boolean authorise(final Request<Consumer> request) {
 		assert request != null;

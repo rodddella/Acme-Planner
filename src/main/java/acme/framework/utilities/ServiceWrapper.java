@@ -50,7 +50,6 @@ public class ServiceWrapper<R extends UserRole, E> {
 
 	// Constructors -----------------------------------------------------------
 
-
 	public ServiceWrapper(final AbstractService<R, E> service) {
 		assert service != null;
 

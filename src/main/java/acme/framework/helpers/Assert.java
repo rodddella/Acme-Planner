@@ -33,7 +33,8 @@ public class Assert {
 		Assert.state(expression, locale, code, arguments);
 	}
 
-	public static void state(final boolean expression, final Locale locale, final String code, final String... arguments) {
+	public static void state(final boolean expression, final Locale locale, final String code,
+			final String... arguments) {
 		assert locale != null;
 		assert !StringHelper.isBlank(code);
 		assert !StringHelper.someBlank(arguments);

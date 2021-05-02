@@ -39,11 +39,9 @@ public class LocalisedDataBinder extends WebDataBinder {
 
 	// Internal state ---------------------------------------------------------
 
-
 	protected MessageCodesResolver messageCodesResolver;
 
 	// Overrriden methods -----------------------------------------------------
-
 
 	@Override
 	public void setMessageCodesResolver(final MessageCodesResolver messageCodesResolver) {
@@ -59,10 +57,10 @@ public class LocalisedDataBinder extends WebDataBinder {
 		BeanPropertyBindingResult result;
 
 		result = new LocalisedBeanPropertyBindingResult( //
-			this.getTarget(), //
-			this.getObjectName(), // 
-			this.isAutoGrowNestedPaths(), //
-			this.getAutoGrowCollectionLimit());
+				this.getTarget(), //
+				this.getObjectName(), //
+				this.isAutoGrowNestedPaths(), //
+				this.getAutoGrowCollectionLimit());
 
 		if (super.getConversionService() != null) {
 			result.initConversion(super.getConversionService());

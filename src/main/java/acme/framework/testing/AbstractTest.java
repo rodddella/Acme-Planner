@@ -42,33 +42,32 @@ public abstract class AbstractTest {
 	// Properties -------------------------------------------------------------
 
 	@Getter
-	protected String	protocol;
-	
-	@Getter
-	protected String	host;
-	
-	@Getter
-	protected String	port;
-	
-	@Getter
-	protected String	contextPath;
-	
-	@Getter
-	protected String	contextHome;
-	
-	@Getter
-	protected String	contextQuery;
+	protected String protocol;
 
 	@Getter
-	protected String	baseUrl;
-	
+	protected String host;
+
 	@Getter
-	protected String	homeUrl;
-	
-	public void setBaseCamp(
-		final String protocol, final String host, final String port, 
-		final String contextPath, final String contextHome, final String contextQuery) {
-		
+	protected String port;
+
+	@Getter
+	protected String contextPath;
+
+	@Getter
+	protected String contextHome;
+
+	@Getter
+	protected String contextQuery;
+
+	@Getter
+	protected String baseUrl;
+
+	@Getter
+	protected String homeUrl;
+
+	public void setBaseCamp(final String protocol, final String host, final String port, final String contextPath,
+			final String contextHome, final String contextQuery) {
+
 		assert protocol != null;
 		assert host != null;
 		assert port != null;
@@ -79,15 +78,16 @@ public abstract class AbstractTest {
 		this.baseUrl = String.format("%s://%s:%s%s", protocol, host, port, contextPath);
 		this.homeUrl = String.format("%s?%s%s", this.baseUrl, contextHome, contextQuery);
 	}
-	
-	@Getter @Setter
+
+	@Getter
+	@Setter
 	protected boolean autoPausing;
-	
+
 	// Internal state ---------------------------------------------------------
 
-	protected FirefoxOptions	options;
-	protected WebDriver			driver;
-	protected Random			random;
+	protected FirefoxOptions options;
+	protected WebDriver driver;
+	protected Random random;
 
 	// Constructor ------------------------------------------------------------
 
@@ -107,7 +107,7 @@ public abstract class AbstractTest {
 		this.driver = new FirefoxDriver(this.options);
 		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-		this.random = new Random();		
+		this.random = new Random();
 	}
 
 	@BeforeEach
@@ -158,18 +158,18 @@ public abstract class AbstractTest {
 
 		return result;
 	}
-	
+
 	public boolean exists(final By by) {
 		boolean result;
-		
+
 		try {
 			this.driver.findElement(by);
 			result = true;
 		} catch (final Throwable oops) {
 			result = false;
 		}
-		
-		return result;		
+
+		return result;
 	}
 
 	public void navigateHome() {

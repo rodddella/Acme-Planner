@@ -36,18 +36,20 @@ public class PrincipalHelper {
 
 	// Internal state ---------------------------------------------------------
 
-	// HINT: note that this helper is a component because it requires the authentication service.
-	// HINT+ it's not difficult to include such service as a named bean in the 'FactoryHelper' class.
+	// HINT: note that this helper is a component because it requires the
+	// authentication service.
+	// HINT+ it's not difficult to include such service as a named bean in the
+	// 'FactoryHelper' class.
 
-	protected static AuthenticationService	authenticationService;
+	protected static AuthenticationService authenticationService;
 
-	protected static String					STRONG_KEY	= "$tr0ng-K3y!";
-	protected static String					ANONYMOUS	= "anonymous";
-	
+	protected static String STRONG_KEY = "$tr0ng-K3y!";
+	protected static String ANONYMOUS = "anonymous";
+
 	// Constructors -----------------------------------------------------------
-	
+
 	@Autowired
-	protected PrincipalHelper(final AuthenticationService	authenticationService) {
+	protected PrincipalHelper(final AuthenticationService authenticationService) {
 		PrincipalHelper.authenticationService = authenticationService;
 	}
 
@@ -63,13 +65,13 @@ public class PrincipalHelper {
 		context = SecurityContextHolder.getContext();
 		authentication = context.getAuthentication();
 		assert authentication instanceof RememberMeAuthenticationToken || //
-			authentication instanceof UsernamePasswordAuthenticationToken || //
-			authentication instanceof TestingAuthenticationToken || //
-			authentication instanceof AnonymousAuthenticationToken;
+				authentication instanceof UsernamePasswordAuthenticationToken || //
+				authentication instanceof TestingAuthenticationToken || //
+				authentication instanceof AnonymousAuthenticationToken;
 
 		if (authentication instanceof RememberMeAuthenticationToken || //
-			authentication instanceof UsernamePasswordAuthenticationToken || //
-			authentication instanceof TestingAuthenticationToken) {
+				authentication instanceof UsernamePasswordAuthenticationToken || //
+				authentication instanceof TestingAuthenticationToken) {
 			result = (Principal) authentication.getPrincipal();
 		} else {
 			result = (Principal) PrincipalHelper.authenticationService.loadUserByUsername(PrincipalHelper.ANONYMOUS);
@@ -92,13 +94,16 @@ public class PrincipalHelper {
 
 		context = SecurityContextHolder.getContext();
 		currentAuthentication = context.getAuthentication();
-		assert currentAuthentication instanceof RememberMeAuthenticationToken || currentAuthentication instanceof UsernamePasswordAuthenticationToken;
+		assert currentAuthentication instanceof RememberMeAuthenticationToken
+				|| currentAuthentication instanceof UsernamePasswordAuthenticationToken;
 		currentPrincipal = (Principal) currentAuthentication.getPrincipal();
-		newPrincipal = (Principal) PrincipalHelper.authenticationService.loadUserByUsername(currentPrincipal.getUsername());
+		newPrincipal = (Principal) PrincipalHelper.authenticationService
+				.loadUserByUsername(currentPrincipal.getUsername());
 		newAuthorities = newPrincipal.getAuthorities();
 
 		if (currentAuthentication instanceof RememberMeAuthenticationToken) {
-			newAuthentication = new RememberMeAuthenticationToken(PrincipalHelper.STRONG_KEY, newPrincipal, newAuthorities);
+			newAuthentication = new RememberMeAuthenticationToken(PrincipalHelper.STRONG_KEY, newPrincipal,
+					newAuthorities);
 		} else {
 			assert currentAuthentication instanceof UsernamePasswordAuthenticationToken;
 			newAuthentication = new UsernamePasswordAuthenticationToken(newPrincipal, null, newAuthorities);

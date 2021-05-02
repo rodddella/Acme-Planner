@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class PasswordHelper {
-	
+
 	// Constructors -----------------------------------------------------------
 
 	protected PasswordHelper() {
@@ -32,7 +32,6 @@ public class PasswordHelper {
 	}
 
 	// Business methods -------------------------------------------------------
-
 
 	public static String encode(final String password) {
 		assert !StringHelper.isBlank(password);

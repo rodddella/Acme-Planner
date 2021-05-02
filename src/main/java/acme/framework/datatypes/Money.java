@@ -27,19 +27,18 @@ public class Money extends DomainDatatype {
 
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long	serialVersionUID	= 1L;
+	protected static final long serialVersionUID = 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Digits(integer = 10, fraction = 2)
 	@Min(0)
-	protected Double			amount;
+	protected Double amount;
 
 	@NotBlank
-	protected String			currency;
+	protected String currency;
 
 	// Object interface -------------------------------------------------------
-
 
 	@Override
 	public String toString() {

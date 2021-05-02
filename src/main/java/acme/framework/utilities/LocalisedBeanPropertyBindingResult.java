@@ -23,7 +23,6 @@ public class LocalisedBeanPropertyBindingResult extends BeanPropertyBindingResul
 
 	// Constructors -----------------------------------------------------------
 
-
 	public LocalisedBeanPropertyBindingResult(final Object target, final String objectName) {
 		super(target, objectName);
 
@@ -31,7 +30,8 @@ public class LocalisedBeanPropertyBindingResult extends BeanPropertyBindingResul
 		assert objectName != null;
 	}
 
-	public LocalisedBeanPropertyBindingResult(final Object target, final String objectName, final boolean autoGrowNestedPaths, final int autoGrowCollectionLimit) {
+	public LocalisedBeanPropertyBindingResult(final Object target, final String objectName,
+			final boolean autoGrowNestedPaths, final int autoGrowCollectionLimit) {
 		super(target, objectName, autoGrowNestedPaths, autoGrowCollectionLimit);
 
 		assert target != null;

@@ -36,7 +36,6 @@ public class AdministratorUserAccountShowService implements AbstractShowService<
 
 	// AbstractShowService<Administrator, UserAccount> interface --------------
 
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;
@@ -86,7 +85,9 @@ public class AdministratorUserAccountShowService implements AbstractShowService<
 
 		id = request.getModel().getInteger("id");
 		result = this.repository.findOneUserAccountById(id);
-		result.getRoles().forEach(r -> {;});
+		result.getRoles().forEach(r -> {
+			;
+		});
 
 		return result;
 	}

@@ -24,12 +24,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import acme.framework.entities.Administrator;
+import acme.framework.helpers.Assert;
 import acme.framework.helpers.FactoryHelper;
 import acme.framework.helpers.PrincipalHelper;
 import acme.framework.utilities.DatabasePopulator;
@@ -42,7 +42,6 @@ public class MasterController implements ApplicationContextAware {
 	protected ConfigurableApplicationContext context;
 
 	// ApplicationContextAware interface --------------------------------------
-
 
 	@Override
 	public void setApplicationContext(final ApplicationContext context) throws BeansException {
@@ -162,9 +161,9 @@ public class MasterController implements ApplicationContextAware {
 		Assert.state(PrincipalHelper.get().hasRole(Administrator.class), "default.error.not-authorised");
 
 		ModelAndView result;
-		
+
 		result = this.doPopulate(false);
-		
+
 		return result;
 	}
 
@@ -173,39 +172,39 @@ public class MasterController implements ApplicationContextAware {
 		Assert.state(PrincipalHelper.get().hasRole(Administrator.class), "default.error.not-authorised");
 
 		ModelAndView result;
-		
+
 		result = this.doPopulate(true);
-		
+
 		return result;
 	}
 
 	// Ancillary methods ------------------------------------------------------
-	
+
 	protected ModelAndView doPopulate(final boolean full) {
 		Assert.state(PrincipalHelper.get().hasRole(Administrator.class), "default.error.not-authorised");
 
 		ModelAndView result;
 		DatabasePopulator databasePopulator;
-		
-		try {			
+
+		try {
 			databasePopulator = FactoryHelper.getBean(DatabasePopulator.class);
 			if (!full)
 				databasePopulator.populateInitial();
-			else 
+			else
 				databasePopulator.populateSample();
 			PrincipalHelper.handleUpdate();
 			result = new ModelAndView();
 			result.setViewName("master/welcome");
-			result.addObject("globalSuccessMessage", "default.global.message.success");			
-		} catch (final Throwable oops) {	
+			result.addObject("globalSuccessMessage", "default.global.message.success");
+		} catch (final Throwable oops) {
 			result = new ModelAndView();
 			result.setViewName("master/panic");
 			result.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-			result.addObject("globalErrorMessage", "default.global.message.error");			
-			result.addObject("oops", oops);			
+			result.addObject("globalErrorMessage", "default.global.message.error");
+			result.addObject("oops", oops);
 		}
 
-		return result;		
+		return result;
 	}
 
 }

@@ -36,43 +36,42 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticationService	authenticationBridgeService;
+	protected AuthenticationService authenticationBridgeService;
 
-	protected static String			STRONG_KEY	= "$tr0ng-K3y!";
+	protected static String STRONG_KEY = "$tr0ng-K3y!";
 
 	// WebSecurityConfigurerAdapter interface ---------------------------------
-
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 		http.authorizeRequests() //
-			.anyRequest() //
-			.permitAll();
+				.anyRequest() //
+				.permitAll();
 
 		http.formLogin() //
-			.permitAll() //
-			.loginPage("/master/sign-in") //
-			.usernameParameter("username") //
-			.passwordParameter("password") //
-			.loginProcessingUrl("/master/sign-in") //
-			.failureUrl("/master/sign-in?error") //
-			.defaultSuccessUrl("/");
+				.permitAll() //
+				.loginPage("/master/sign-in") //
+				.usernameParameter("username") //
+				.passwordParameter("password") //
+				.loginProcessingUrl("/master/sign-in") //
+				.failureUrl("/master/sign-in?error") //
+				.defaultSuccessUrl("/");
 
 		http.logout() //
-			.permitAll() //			
-			.logoutRequestMatcher(new AntPathRequestMatcher("/master/sign-out")) //
-			.logoutSuccessUrl("/master/welcome") //
-			.invalidateHttpSession(true) //
-			.clearAuthentication(true) //
-			.deleteCookies("JSESSIONID", "remember") //
-			.addLogoutHandler(new RememberMeLogoutHandler());
+				.permitAll() //
+				.logoutRequestMatcher(new AntPathRequestMatcher("/master/sign-out")) //
+				.logoutSuccessUrl("/master/welcome") //
+				.invalidateHttpSession(true) //
+				.clearAuthentication(true) //
+				.deleteCookies("JSESSIONID", "remember") //
+				.addLogoutHandler(new RememberMeLogoutHandler());
 
 		http.rememberMe() //
-			.key(AuthenticationConfiguration.STRONG_KEY) //
-			.rememberMeParameter("remember") //
-			.rememberMeCookieName("remember") //
-			.tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(31)) //
-			.userDetailsService(this.authenticationBridgeService);
+				.key(AuthenticationConfiguration.STRONG_KEY) //
+				.rememberMeParameter("remember") //
+				.rememberMeCookieName("remember") //
+				.tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(31)) //
+				.userDetailsService(this.authenticationBridgeService);
 	}
 
 	// Beans ------------------------------------------------------------------

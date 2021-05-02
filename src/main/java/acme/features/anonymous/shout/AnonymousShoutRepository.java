@@ -17,8 +17,8 @@ public interface AnonymousShoutRepository extends AbstractRepository {
 
 	@Query("select s from Shout s")
 	Collection<Shout> findMany();
-	
+
 	@Query("select s from Shout s where s.moment >= :date order by s.moment desc")
-	List<Shout> findShoutsNotOlderThanDateAndSortedByDate(@Param("date")Date date);
+	List<Shout> findShoutsNotOlderThanDateAndSortedByDate(@Param("date") Date date);
 
 }
