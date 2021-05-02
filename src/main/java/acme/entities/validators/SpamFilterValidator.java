@@ -1,40 +1,45 @@
 package acme.entities.validators;
 
-import java.util.Set;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.stereotype.Component;
-import org.springframework.validation.Errors;
 
 import acme.entities.spamfilter.SpamThreshold;
 import acme.entities.spamfilter.SpamWord;
+import acme.framework.components.Errors;
+import acme.framework.components.Request;
 
-@Component
 public class SpamFilterValidator {
 	SpamThreshold threshold;
-	Set<SpamWord> words;
+	List<SpamWord> words;
 
-	public SpamFilterValidator(final SpamThreshold threshold, final Set<SpamWord> words) {
+	public SpamFilterValidator(final SpamThreshold threshold, final List<SpamWord> words) {
 		this.threshold = threshold;
 		this.words = words;
 	}
 
-	public void validate(String text, final Errors errors) {
-		final String upperText = text.toLowerCase();
+	public void validate(final Request<?> request, final String attribute, final String text, final Errors errors) {
+		final String lowerText = text.toLowerCase();
 
 		final Double spamCount = this.words.stream().map(censor -> {
-			final Matcher m = Pattern.compile(censor.getText()).matcher(upperText);
+			final Matcher m = Pattern.compile(censor.getText().replace(" ", " *")).matcher(lowerText);
 			double count = 0;
 			while (m.find())
 				count++;
 			return count;
 		}).reduce(0.0, (x, y) -> x + y);
+		
+		Double wordCount = 0.0;
+		final Matcher m = Pattern.compile("[^ \n\t\r]+").matcher(lowerText);
+		while (m.find())
+			wordCount++;
 
-		final Double threshold = (spamCount / text.split(" ").length) * 100;
+		Double threshold = 0.0;
+		if (!wordCount.equals(0.0)) { 
+			threshold = (spamCount / wordCount) * 100;
+		} 
 
-		if (this.threshold.getValue() < threshold) {
-			errors.reject("acme.validation.spam");
-		}
+		errors.state(request, this.threshold.getValue() > threshold, attribute, "acme.validation.spam");
 	}
 }

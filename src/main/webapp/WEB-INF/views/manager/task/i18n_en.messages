@@ -16,7 +16,7 @@ manager.task.form.label.visibility = Visibility
 manager.task.form.button.return = Return
 
 
-manager.task.form.button.update = Update Task
-manager.task.form.button.create = Create Task
-manager.task.form.button.delete = Delete Task
+manager.task.form.button.update = Update task
+manager.task.form.button.create = Create task
+manager.task.form.button.delete = Delete task
 
