@@ -43,3 +43,6 @@ acme.validation.range = Must be between {0} and {1}
 acme.validation.script = Script expression "{0}" must return true
 acme.validation.spam = The message contains too many words detected as spam
 acme.validation.already-exists = Already exists
+acme.validation.start-after-end = Start period cannot be after end period
+acme.validation.invalid-time-format = Invalid time format. Use hh.mm
+acme.validation.too-big-workload = Workload cannot be greater than the task period.
