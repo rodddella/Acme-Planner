@@ -15,7 +15,7 @@ import acme.framework.services.AbstractShowService;
 
 @Service
 public class AdministratorDashboardShowService implements AbstractShowService<Administrator, Dashboard> {
-	static final Double MILISECONDS_TO_MINUTES = 1.0 / (60* 60 * 1000);
+	static final Double MILISECONDS_TO_HOURS = 1.0 / (60 * 60 * 1000);
 
 	@Autowired
 	protected AdministratorDashboardRepository repository;
@@ -139,7 +139,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			}
 
 			averageTimeExecutionPeriods = averageTimeExecutionPeriods / tasks.size();
-			return averageTimeExecutionPeriods.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+			return averageTimeExecutionPeriods.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_HOURS;
 		}
 	}
 
@@ -152,7 +152,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			return 0.0;
 		} else {
 			final Double averageTaskExecutionPeriods = this.getAverageNumberOfTaskExecutionPeriods(request)
-					/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+					/ AdministratorDashboardShowService.MILISECONDS_TO_HOURS;
 			Double deviationTimeExecutionPeriods = 0.0;
 
 			for (final Task task : tasks) {
@@ -162,7 +162,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			}
 
 			deviationTimeExecutionPeriods = Math.sqrt(deviationTimeExecutionPeriods / tasks.size());
-			return deviationTimeExecutionPeriods * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+			return deviationTimeExecutionPeriods * AdministratorDashboardShowService.MILISECONDS_TO_HOURS;
 		}
 	}
 
@@ -175,7 +175,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			return 0.0;
 		} else {
 			final Double maxTimeExecutionPeriod = this.getMaxNumberOfTaskExecutionPeriods(request)
-					/ AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+					/ AdministratorDashboardShowService.MILISECONDS_TO_HOURS;
 			Long minTimeExecutionPeriod = maxTimeExecutionPeriod.longValue();
 
 			for (final Task task : tasks) {
@@ -184,7 +184,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 					minTimeExecutionPeriod = executionPeriodDiff;
 				}
 			}
-			return minTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+			return minTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_HOURS;
 		}
 	}
 
@@ -202,7 +202,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 					maxTimeExecutionPeriod = executionPeriodDiff;
 				}
 			}
-			return maxTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_MINUTES;
+			return maxTimeExecutionPeriod.doubleValue() * AdministratorDashboardShowService.MILISECONDS_TO_HOURS;
 		}
 	}
 

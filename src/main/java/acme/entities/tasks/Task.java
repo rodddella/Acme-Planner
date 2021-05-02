@@ -2,7 +2,6 @@ package acme.entities.tasks;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -51,8 +50,9 @@ public class Task extends DomainEntity {
 	protected Date endPeriod;
 
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	Visibility visibility;
 
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	Manager manager;
 }

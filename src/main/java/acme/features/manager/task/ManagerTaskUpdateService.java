@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.roles.Manager;
 import acme.entities.tasks.Task;
+import acme.entities.validators.TaskValidator;
+import acme.forms.HoursAndMinutes;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -14,7 +16,10 @@ import acme.framework.services.AbstractUpdateService;
 public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, Task> {
 	@Autowired
 	ManagerTaskRepository repository;
-
+	
+	@Autowired
+	TaskValidator validator;
+	
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
@@ -65,6 +70,14 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
+		if (!errors.hasErrors()) {
+			validator.validate(entity, errors);
+		}
+		
+		try {
+			entity.setWorkload(HoursAndMinutes.fromFormattedTime(entity.getWorkload()).getDecimalTime());
+		} catch (Exception e) {}
+		
 		assert request.getPrincipal().getActiveRoleId() == entity.getManager().getId();
 	}
 
@@ -72,6 +85,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 	public void update(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
+		
 		this.repository.save(entity);
 	}
 }
