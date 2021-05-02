@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.roles.Manager;
 import acme.entities.tasks.Task;
+import acme.entities.validators.SpamFilterService;
 import acme.entities.validators.TaskValidator;
 import acme.forms.HoursAndMinutes;
 import acme.framework.components.Errors;
@@ -19,6 +20,9 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 	
 	@Autowired
 	TaskValidator validator;
+	
+	@Autowired
+	SpamFilterService spamService;
 
 	@Override
 	public boolean authorise(final Request<Task> request) {
@@ -53,7 +57,8 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert errors != null;
 
 		if (!errors.hasErrors()) {
-			validator.validate(entity, errors);
+			validator.validate(request, entity, errors);
+			spamService.validate(request, "description", entity.getDescription(), errors);
 		}
 	}
 

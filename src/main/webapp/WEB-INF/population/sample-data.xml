@@ -158,7 +158,7 @@
 		class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="managerUserAccount2" />
 	</bean>
-	
+
 	<!-- Shouts -->
 
 	<!-- Shouts: older than one month -->
@@ -543,5 +543,46 @@
 		<property name="endPeriod" value="2021/06/13 03:30" />
 		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole1" />
+	</bean>
+
+	<!-- Spam words -->
+	<bean id="spamWord001" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="sex" />
+	</bean>
+
+	<bean id="spamWord002" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="hard core" />
+	</bean>
+
+	<bean id="spamWord003" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="viagra" />
+	</bean>
+
+	<bean id="spamWord004" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="cialis" />
+	</bean>
+
+	<bean id="spamWord005" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="nigeria" />
+	</bean>
+
+	<bean id="spamWord006" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="you've won" />
+	</bean>
+
+	<bean id="spamWord007" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="million dollar" />
+	</bean>
+
+	<bean id="spamWord008" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="sexo" />
+	</bean>
+
+	<bean id="spamWord009" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="has ganado" />
+	</bean>
+
+	<bean id="spamWord010" class="acme.entities.spamfilter.SpamWord">
+		<property name="text" value="millon de dolares" />
 	</bean>
 </beans>

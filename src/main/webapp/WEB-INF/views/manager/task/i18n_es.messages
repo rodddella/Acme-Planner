@@ -9,7 +9,7 @@
 # they accept any liabilities with respect to them.
 
 manager.task.list.label.title = Título
-manager.task.list.label.workload = Carga de Trabajo
+manager.task.list.label.workload = Carga de trabajo
 manager.task.list.label.link = Enlace
 manager.task.list.label.start_period = Comienzo
 manager.task.list.label.end_period = Fin
@@ -24,6 +24,6 @@ manager.task.form.label.end_period = Fin
 manager.task.form.label.visibility = Visibilidad
 manager.task.form.button.return = Volver
 
-manager.task.form.button.update = Actualizar Tarea
-manager.task.form.button.create = Crear Tarea
-manager.task.form.button.delete = Borrar Tarea
+manager.task.form.button.update = Actualizar tarea
+manager.task.form.button.create = Crear tarea
+manager.task.form.button.delete = Borrar tarea
