@@ -55,9 +55,11 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		validator.validate(request, entity, errors);
 
 		if (!errors.hasErrors()) {
-			validator.validate(request, entity, errors);
+			spamService.validate(request, "title", entity.getTitle(), errors);
 			spamService.validate(request, "description", entity.getDescription(), errors);
 		}
 	}
