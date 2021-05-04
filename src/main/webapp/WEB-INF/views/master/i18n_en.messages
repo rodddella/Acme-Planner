@@ -63,8 +63,8 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.manager = Manager
 master.menu.manager.favourite-link = Favourite link
-master.menu.manager.task-list = Task List
-master.menu.manager.task-create = Create Task
+master.menu.manager.task-list = Task list
+master.menu.manager.task-create = Create task
 
 
 # master.menu.user-account ####################################################

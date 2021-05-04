@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 import acme.entities.tasks.Task;
 import acme.framework.entities.UserRole;
 import lombok.Getter;
@@ -19,9 +21,11 @@ public class Manager extends UserRole {
 	protected static final long serialVersionUID = 1L;
 
 	@NotBlank
+	@Length(min = 0, max = 255)
 	protected String company;
 
 	@NotBlank
+	@Length(min = 0, max = 255)
 	protected String sector;
 
 	@OneToMany(mappedBy = "manager", fetch = FetchType.EAGER)
