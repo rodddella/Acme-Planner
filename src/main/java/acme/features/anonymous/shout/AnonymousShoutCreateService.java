@@ -76,8 +76,9 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert errors != null;
 
 		if (!errors.hasErrors()) {
-			spamService.validate(request, "author", entity.getAuthor(), errors);
-			spamService.validate(request, "text", entity.getText(), errors);
+			this.spamService.validate(request, "author", entity.getAuthor(), errors);
+			this.spamService.validate(request, "text", entity.getText(), errors);
+			this.spamService.validate(request, "info", entity.getInfo(), errors);
 		}
 	}
 
