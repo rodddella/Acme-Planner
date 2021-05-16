@@ -1,0 +1,4 @@
+recordIndex,title,description,workload,link,startPeriod,endPeriod,visibility
+10,Task 1: Initialize project,Create a new repository in Git and upload the StarterProject,1.00,http://example.org,2021/09/13 10:30,2021/09/13 11:30,PUBLIC
+11,Task 2: Populate project,Populate database with initial data,0.30,http://github.com,2021/09/14 10:30,2021/09/14 11:30,PUBLIC
+12,t3,desc,1.00,http://github.com,2021/09/15 10:30,2021/09/15 11:30,PRIVATE
