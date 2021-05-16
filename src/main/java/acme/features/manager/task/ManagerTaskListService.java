@@ -31,7 +31,7 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 
 		try {
 			entity.setWorkload(HoursAndMinutes.fromDecimalTime(entity.getWorkload()).getFormattedTime());
-		} catch (Exception e) {}
+		} catch (final Exception e) {}
 		
 		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
 				"visibility");
@@ -46,6 +46,6 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 
 		assert manager != null;
 
-		return manager.getTasks();
+		return this.repository.findManagerTasks(managerId);
 	}
 }
