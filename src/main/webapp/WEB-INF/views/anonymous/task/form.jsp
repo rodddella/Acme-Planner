@@ -19,6 +19,7 @@
 	<acme:form-textbox code="anonymous.task.form.label.title" path="title"/>
 	<acme:form-textarea code="anonymous.task.form.label.description" path="description"/>
 	<acme:form-double code="anonymous.task.form.label.workload" path="workload"/>
+	<acme:list-column code="anonymous.task.form.label.link" path="link" />
 	<acme:form-textbox code="anonymous.task.form.label.start_period" path="startPeriod"/>
 	<acme:form-textbox code="anonymous.task.form.label.end_period" path="endPeriod"/>
 	<acme:form-select code="anonymous.task.form.label.visibility" path="visibility">
