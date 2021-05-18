@@ -46,7 +46,9 @@ public class SignUpTest extends AcmePlannerTest {
 	3.Sign up with password attribute less than 6 characters
 	4.Sign up with empty name
 	5.Sign up with empty surname
-	6.Sign up with email with invalid url
+	6.Sign up with email with invalid syntax
+	7.Sign up with empty email
+	8.Sign up with all attributes empty
 	*/
 	@ParameterizedTest
 	@CsvFileSource(resources = "/sign-up/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
