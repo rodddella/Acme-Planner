@@ -46,6 +46,8 @@ public class AnonymousShoutCreateTest extends AcmePlannerTest {
 	2.Shout with author attribute with more than 25 characters
 	3.Shout with blank text attribute
 	4.Shout with info attribute with invalid url
+	5.Shout with text attribute more than 100 characters
+	6.Shout with all attributes empty
 	*/
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
