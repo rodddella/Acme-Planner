@@ -8,9 +8,9 @@ import acme.testing.AcmePlannerTest;
 
 public class AutheticatedTaskListTest extends AcmePlannerTest {
 	/*
-	 * Positive anonymous principal list tasks
+	 * Positive authenticated principal list tasks
 	 * 
-	 * The first five tasks of the list will be checked for correct values
+	 * The seven tasks of the list will be checked for correct values
 	 */
 
 	@ParameterizedTest
