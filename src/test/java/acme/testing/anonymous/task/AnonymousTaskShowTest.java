@@ -17,7 +17,7 @@ public class AnonymousTaskShowTest extends AcmePlannerTest {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void detailsPositive(final int recordIndex, final String title, final String description,
+	public void showPositive(final int recordIndex, final String title, final String description,
 			final String workload, final String link, final String start, final String end, final String visibility) {
 
 		super.clickOnMenu("Anonymous", "Task list");
