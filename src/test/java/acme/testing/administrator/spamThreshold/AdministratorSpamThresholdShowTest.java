@@ -13,7 +13,6 @@ public class AdministratorSpamThresholdShowTest extends AcmePlannerTest {
 	 * This test will check that spam threshold value is correctly shown in the
 	 * corresponding view for the administrator principal
 	 */
-
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamThreshold/show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -22,5 +21,7 @@ public class AdministratorSpamThresholdShowTest extends AcmePlannerTest {
 		super.clickOnMenu("Administrator", "Spam threshold");
 
 		super.checkInputBoxHasValue("value", value);
+		
+		super.signOut();
 	}
 }
