@@ -24,4 +24,19 @@ public class AdministratorSpamThresholdShowTest extends AcmePlannerTest {
 		
 		super.signOut();
 	}
+	
+	/*
+	 * Negative administrator spam threshold show (customization parameters)
+	 * 
+	 * This test will check that spam threshold value is not shown to
+	 * anybody that is not an administrator principal
+	 */
+	@ParameterizedTest
+	@CsvFileSource(resources = "/administrator/spamThreshold/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void showNegative(final String value) {
+		super.navigate("/administrator/spamThreshold/show", "");
+
+		super.checkPanicExists();
+	}
 }
