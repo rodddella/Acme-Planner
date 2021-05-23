@@ -34,7 +34,7 @@
 		path="endPeriod" />
 	<acme:form-double code="manager.task.form.label.workload"
 		path="workload" />
-	<acme:form-textarea code="manager.task.form.label.description"
+	<acme:form-textbox code="manager.task.form.label.description"
 		path="description" />
 	<acme:form-url code="manager.task.form.label.link" path="link" />
 	<acme:form-select code="manager.task.form.label.visibility"
