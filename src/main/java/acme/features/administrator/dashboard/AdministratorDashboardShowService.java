@@ -78,7 +78,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			}
 
 			deviationWorkloads = averageWorkloads / tasks.size();
-			return deviationWorkloads;
+			return Math.sqrt(deviationWorkloads);
 		}
 	}
 

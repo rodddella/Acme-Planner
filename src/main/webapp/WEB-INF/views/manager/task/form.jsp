@@ -34,7 +34,7 @@
 		path="endPeriod" />
 	<acme:form-double code="manager.task.form.label.workload"
 		path="workload" />
-	<acme:form-textarea code="manager.task.form.label.description"
+	<acme:form-textbox code="manager.task.form.label.description"
 		path="description" />
 	<acme:form-url code="manager.task.form.label.link" path="link" />
 	<acme:form-select code="manager.task.form.label.visibility"
@@ -46,10 +46,10 @@
 	</acme:form-select>
 
 	<acme:form-submit test="${command == 'create'}"
-		code="manager.task.form.button.create" action="/manager/task/create" />
+		code="manager.task.form.button.create" action="/managers/task/create" />
 	<acme:form-submit test="${command != 'create'}"
-		code="manager.task.form.button.update" action="/manager/task/update" />
+		code="manager.task.form.button.update" action="/managers/task/update" />
 	<acme:form-submit test="${command != 'create'}"
-		code="manager.task.form.button.delete" action="/manager/task/delete" />
+		code="manager.task.form.button.delete" action="/managers/task/delete" />
 	<acme:form-return code="manager.task.form.button.return" />
 </acme:form>

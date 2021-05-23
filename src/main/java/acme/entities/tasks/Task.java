@@ -10,10 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import acme.entities.roles.Manager;
 import acme.enums.Visibility;
@@ -37,8 +39,11 @@ public class Task extends DomainEntity {
 	String description;
 
 	@NotNull
+	@Min(0)
 	Double workload;
 
+	@URL
+	@Length(min = 0, max = 255)
 	String link;
 
 	@Temporal(TemporalType.TIMESTAMP)

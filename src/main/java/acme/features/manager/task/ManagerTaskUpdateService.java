@@ -74,9 +74,13 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
+		validator.validate(request, entity, errors);
+		
 		if (!errors.hasErrors()) {
-			validator.validate(request, entity, errors);
+			spamService.validate(request, "title", entity.getTitle(), errors);
 			spamService.validate(request, "description", entity.getDescription(), errors);
+			spamService.validate(request, "link", entity.getLink(), errors);
+
 		}
 		
 		assert request.getPrincipal().getActiveRoleId() == entity.getManager().getId();
