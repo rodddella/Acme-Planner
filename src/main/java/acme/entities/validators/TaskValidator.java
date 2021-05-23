@@ -13,7 +13,7 @@ import acme.framework.components.Request;
 
 @Component
 public class TaskValidator {
-	static final long HOUR_TO_MILLIS = 60 * 60 * 1000;
+	static final long HOUR_TO_MILLIS = 60 * 60 * 1000L;
 
 	public void validate(final Request<Task> request, final Task target, final Errors errors) {
 		final Date startPeriod = target.getStartPeriod();
@@ -23,13 +23,13 @@ public class TaskValidator {
 		if (target.getWorkload() != null) {
 			try {
 				workLoad = HoursAndMinutes.fromFormattedTime(target.getWorkload()).getDecimalTime();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				errors.state(request, false, "workload", "acme.validation.invalid-time-format");
 			}
 		}
 		
 		if (startPeriod != null && endPeriod != null) {
-			Date now = Date.from(Instant.now());
+			final Date now = Date.from(Instant.now());
 			errors.state(request, startPeriod.after(now), "startPeriod", "javax.validation.constraints.Future.message");
 			errors.state(request, endPeriod.after(now), "endPeriod", "javax.validation.constraints.Future.message");
 			

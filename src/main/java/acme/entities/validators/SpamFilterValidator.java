@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import acme.entities.spamfilter.SpamThreshold;
 import acme.entities.spamfilter.SpamWord;
 import acme.framework.components.Errors;
@@ -35,11 +34,11 @@ public class SpamFilterValidator {
 		while (m.find())
 			wordCount++;
 
-		Double threshold = 0.0;
+		Double myThreshold = 0.0;
 		if (!wordCount.equals(0.0)) { 
-			threshold = (spamCount / wordCount) * 100;
+			myThreshold = (spamCount / wordCount) * 100;
 		} 
 
-		errors.state(request, this.threshold.getValue() > threshold, attribute, "acme.validation.spam");
+		errors.state(request, this.threshold.getValue() > myThreshold, attribute, "acme.validation.spam");
 	}
 }
