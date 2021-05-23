@@ -35,7 +35,7 @@ public class AdministratorSpamThresholdShowTest extends AcmePlannerTest {
 	@CsvFileSource(resources = "/administrator/spamThreshold/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void showNegative(final String value) {
-		super.navigate("/administrator/spamThreshold/show", "");
+		super.navigate("/administrator/spam-threshold/show", "");
 
 		super.checkPanicExists();
 	}

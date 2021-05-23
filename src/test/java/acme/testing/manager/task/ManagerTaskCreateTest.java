@@ -54,7 +54,7 @@ public class ManagerTaskCreateTest extends AcmePlannerTest {
 	}
 
 	/*
-	 * Negative manager create task test We check that empty validation works, in
+	 * Negative manager create task test. We check that empty validation works, in
 	 * addition to date and time constraints: start > end start = end end - start <
 	 * workload
 	 */

@@ -9,13 +9,13 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedTaskShowTest extends AcmePlannerTest {
 
 	/*
-	 * Positive show-task-details test
+	 * Positive show-task-details test for authenticated principal
 	 * 
 	 * The details of the seven tasks will be shown and checked if their values
 	 * are correct
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/authenticated/task/show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void showPositive(final int recordIndex, final String title, final String description,
 			final String workload, final String link, final String start, final String end, final String visibility) {
@@ -30,5 +30,20 @@ public class AuthenticatedTaskShowTest extends AcmePlannerTest {
 		super.checkInputBoxHasValue("startPeriod", start);
 		super.checkInputBoxHasValue("endPeriod", end);
 		super.checkInputBoxHasValue("visibility", visibility);
+	}
+	
+	/*
+	 * Negative show-task-details test for authenticated principal
+	 * 
+	 * This tests ensures that an anonymous principal can't display the details
+	 * of a task that is private or finished
+	 */
+	@ParameterizedTest
+	@CsvFileSource(resources = "/authenticated/task/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void showNegative(final int id) {
+		super.navigate("/authenticated/task/show", String.format("id=%d", id));
+		
+		super.checkPanicExists();
 	}
 }

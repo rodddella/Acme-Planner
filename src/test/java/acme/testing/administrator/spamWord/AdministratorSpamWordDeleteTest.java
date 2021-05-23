@@ -19,9 +19,9 @@ public class AdministratorSpamWordDeleteTest extends AcmePlannerTest {
 	public void deletePositive(final int id) {
 		super.signIn("administrator", "administrator");
 		
-		super.navigate("/administrator/spamWord/delete", String.format("id=%d", id));
+		super.navigate("/administrator/spam-word/delete", String.format("id=%d", id));
 		
-		super.navigate("/administrator/spamWord/show", String.format("id=%d", id));
+		super.navigate("/administrator/spam-word/show", String.format("id=%d", id));
 		super.checkPanicExists();
 		
 		super.signOut();
@@ -39,7 +39,7 @@ public class AdministratorSpamWordDeleteTest extends AcmePlannerTest {
 	public void deleteNegative(final int id) {
 		super.signIn("manager1", "manager1");
 		
-		super.navigate("/administrator/spamWord/delete", String.format("id=%d", id));
+		super.navigate("/administrator/spam-word/delete", String.format("id=%d", id));
 		super.checkPanicExists();
 		
 		super.signOut();

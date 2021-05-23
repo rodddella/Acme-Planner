@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.AcmePlannerTest;
 
-public class AutheticatedTaskListTest extends AcmePlannerTest {
+public class AuthenticatedTaskListTest extends AcmePlannerTest {
 	/*
 	 * Positive authenticated principal list tasks
 	 * 
@@ -14,7 +14,7 @@ public class AutheticatedTaskListTest extends AcmePlannerTest {
 	 */
 
 	@ParameterizedTest
-	@CsvFileSource(resources = "/authenticated/task/list-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void listPositive(final int recordIndex, final String title, final String description, final String workload,
 			final String link, final String start, final String end, final String visibility) {		

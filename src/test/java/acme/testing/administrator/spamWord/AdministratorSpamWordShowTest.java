@@ -35,7 +35,7 @@ public class AdministratorSpamWordShowTest extends AcmePlannerTest {
 	@CsvFileSource(resources = "/administrator/spamWord/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void showNegative(final int id) {
-		super.navigate("/administrator/spamWord/show", String.format("id=%d", id));
+		super.navigate("/administrator/spam-word/show", String.format("id=%d", id));
 		
 		super.checkPanicExists();
 	}
