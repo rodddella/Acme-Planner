@@ -36,7 +36,6 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 
 	@Override
 	public Task findOne(final Request<Task> request) {
-		// TODO Auto-generated method stub
 		assert request != null;
 		Task result;
 		int id;
