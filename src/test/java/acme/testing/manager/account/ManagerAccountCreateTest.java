@@ -7,7 +7,10 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class ManagerAccountCreateTest extends AcmePlannerTest{
-
+	/*
+	 * Positive case of creating a manager account
+	 * The attributes tested are valid the account is created
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/account/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -29,6 +32,11 @@ public class ManagerAccountCreateTest extends AcmePlannerTest{
 		super.signOut();
 	}
 	
+	/*
+	 * Negative case of creating a manager account
+	 * Checked that the attributes sector and company cannot be blank 
+	 * Checked that the attributes String sector and String company cannot have a length > 255 
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/account/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
