@@ -2,7 +2,7 @@
 bg=blue</help_text><element><id>UMLClass</id><coordinates><x>810</x><y>380</y><w>240</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
 UserRole
 --
-bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>730</x><y>390</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>240</x><y>280</y><w>220</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Datatype&gt;&gt;
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>240</x><y>280</y><w>220</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Datatype&gt;&gt;
 UserIdentity
 --
 + name: String {NotBlank}
@@ -14,7 +14,7 @@ bg=orange
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>240</x><y>190</y><w>240</w><h>60</h></coordinates><panel_attributes>The full name catenates the 
 surname, a comma, and the name.
 bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>240</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=..
-</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>730</x><y>430</y><w>130</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>110;10;110;50;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1130</x><y>390</y><w>100</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
+</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1130</x><y>390</y><w>100</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
 Administrator
 --
 
@@ -31,19 +31,7 @@ CustomCommand
 --
 
 
-bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>350</y><w>250</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
-Provider
---
-+ company: String {NotBlank, Length(0,255)}
-+ sector: String {NotBlank, Length(0,255)}
-
-bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>460</y><w>250</w><h>80</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
-Consumer
---
-+ company: String {NotBlank, Length(0,255)}
-+ sector: String {NotBlank, Length(0,255)}
-
-bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>280</y><w>220</w><h>80</h></coordinates><panel_attributes>&lt;&lt;Datatype&gt;&gt;
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>280</y><w>220</w><h>80</h></coordinates><panel_attributes>&lt;&lt;Datatype&gt;&gt;
 Money
 --
 + amount: double {Digits(10, 2)}
@@ -83,7 +71,7 @@ Shout
 --
 + moment: Date {NotNull, Temporal(TIMESTAMP), Past}
 + author: String {NotBlank, Length(5, 25)}
-+ text: String {NotBlank, Length(0, 100)}
++ text: String {NotBlank, Length(1, 100)}
 + info: String {URL, Length(0, 255)}
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>930</x><y>620</y><w>340</w><h>240</h></coordinates><panel_attributes>&lt;&lt;Form&gt;&gt;
 Dashboard
@@ -103,17 +91,17 @@ Dashboard
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>570</y><w>360</w><h>160</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
 --
-+ title: String{NotEmpty, Length(0,80)}
-+ description: String {NotEmpty, Length(0,500), Column(512)}
-+ workload: Double {NotNull,Min(0)}
++ title: String{NotEmpty, Length(1,80)}
++ description: String {NotEmpty, Length(1,500), Column(512)}
++ workload: Double {NotNull,Min(0),Digits(4,2)}
 + link: String {URL, Length(0,255)}
 + startPeriod: Date {NotNull, Temporal(TIMESTAMP)}
 + endPeriod: Date {NotNull, Temporal(TIMESTAMP)}
 + visibility: Visibility {NotNull}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>500</y><w>260</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
 Manager
 --
-+ company: String {NotBlank, Length(0,255)}
-+ sector: String {NotBlank, Length(0,255)}
++ company: String {NotBlank, Length(1,255)}
++ sector: String {NotBlank, Length(1,255)}
 
 bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>430</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>640</y><w>220</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
 Visibility
@@ -134,9 +122,8 @@ bg=blue</panel_attributes><additional_attributes></additional_attributes></eleme
 </panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>486</x><y>810</y><w>150</w><h>60</h></coordinates><panel_attributes>The workload must be
 less than or equal to the
 period of execution.
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>656</x><y>810</y><w>200</w><h>60</h></coordinates><panel_attributes>The workload has an accuracy
-of two decimal places and these
-can be up to a maximum of 60
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>656</x><y>810</y><w>200</w><h>60</h></coordinates><panel_attributes>The workload decimals can be up
+to a maximum of 59
 bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>236</x><y>720</y><w>130</w><h>110</h></coordinates><panel_attributes>lt=..
 </panel_attributes><additional_attributes>10;90;10;40;110;40;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>720</y><w>150</w><h>110</h></coordinates><panel_attributes>lt=..
 </panel_attributes><additional_attributes>130;90;130;40;10;40;10;10</additional_attributes></element></diagram>
