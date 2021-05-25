@@ -22,7 +22,7 @@ public class HoursAndMinutes {
     public static HoursAndMinutes fromFormattedTime(final Double formattedTime) throws Exception {
         Integer hours = (int) Math.floor(formattedTime);
         Integer minutes = (int) Math.round((formattedTime - Math.floor(formattedTime)) * 100);
-        if (minutes >= 60 || BigDecimal.valueOf(formattedTime).scale() > 2) {
+        if (minutes >= 60 || hours > 9999 || BigDecimal.valueOf(formattedTime).scale() > 2) {
             throw new Exception("Input range is invalid");
         }
         return new HoursAndMinutes(hours, minutes);
