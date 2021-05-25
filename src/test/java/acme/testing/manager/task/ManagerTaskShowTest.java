@@ -9,12 +9,17 @@ import acme.testing.AcmePlannerTest;
 
 public class ManagerTaskShowTest extends AcmePlannerTest {
 
+	/*
+	 * Positive Manager Task Show test
+	 * 
+	 * The details of the task will be shown and check if their values are correct
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void showPositive(final int recordIndex, final String title, final String description, final String workload,
+	public void showPositive(final int recordIndex,final String user, final String password, final String title, final String description, final String workload,
 			final String link, final String startPeriod, final String endPeriod, final String visibility) {
-		super.signIn("manager2", "manager2");
+		super.signIn(user, password);
 		super.clickOnMenu("Manager", "Task list");
 		super.clickOnListingRecord(recordIndex);
 
@@ -26,14 +31,19 @@ public class ManagerTaskShowTest extends AcmePlannerTest {
 		super.checkInputBoxHasValue("link", link);
 		super.checkInputBoxHasValue("visibility", visibility);
 
-		super.checkNotErrorsExist();
 
 	}
 
+	/*
+	 * Negative Manager Task Show test
+	 * 
+	 * Unauthorized and invalid tasks will be shown, panic is expected to happen.
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void createNegative(final int id) {
+	public void createNegative(final int id, final String user, final String password) {
+		super.signIn(user, password);
 		super.navigate("/managers/task/show", String.format("id=%d", id));
 
 		super.checkPanicExists();

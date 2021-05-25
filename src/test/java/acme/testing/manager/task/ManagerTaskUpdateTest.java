@@ -10,7 +10,7 @@ import acme.testing.AcmePlannerTest;
 public class ManagerTaskUpdateTest extends AcmePlannerTest {
 
 	/*
-	 * Positive manager task create test, we test various valid attributes and we
+	 * Positive manager task update test, we test various valid attributes and we
 	 * check the task is successfully created
 	 */
 	@ParameterizedTest
@@ -55,14 +55,14 @@ public class ManagerTaskUpdateTest extends AcmePlannerTest {
 	}
 
 	/*
-	 * Negative manager create task test. We check that empty validation works, in
+	 * Negative manager update task test. We check that empty validation works, in
 	 * addition to date and time constraints: start > end start = end end - start <
 	 * workload
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/update-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void createNegative(final int recordIndex, final String title, final String description,
+	public void updateNegative(final int recordIndex, final String title, final String description,
 			final String workload, final String link, final String startPeriod, final String endPeriod,
 			final String visibility) {
 		super.signIn("manager2", "manager2");

@@ -52,12 +52,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 
 	@Override
 	public void unbind(final Request<Task> request, final Task entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
-		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
-				"visibility");
+		// NOT USED
 	}
 
 	@Override
@@ -74,12 +69,12 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
-		validator.validate(request, entity, errors);
+		this.validator.validate(request, entity, errors);
 		
 		if (!errors.hasErrors()) {
-			spamService.validate(request, "title", entity.getTitle(), errors);
-			spamService.validate(request, "description", entity.getDescription(), errors);
-			spamService.validate(request, "link", entity.getLink(), errors);
+			this.spamService.validate(request, "title", entity.getTitle(), errors);
+			this.spamService.validate(request, "description", entity.getDescription(), errors);
+			this.spamService.validate(request, "link", entity.getLink(), errors);
 
 		}
 		
@@ -93,7 +88,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		
 		try {
 			entity.setWorkload(HoursAndMinutes.fromFormattedTime(entity.getWorkload()).getDecimalTime());
-		} catch (Exception e) {}
+		} catch (final Exception e) {}
 		
 		this.repository.save(entity);
 	}

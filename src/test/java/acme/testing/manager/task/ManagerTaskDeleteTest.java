@@ -19,26 +19,29 @@ public class ManagerTaskDeleteTest extends AcmePlannerTest {
 	public void deletePositive(final int id) {
 		super.signIn("manager2", "manager2");
 
-		super.navigate("/managers/task/delete", String.format("id=%d", id));
-
 		super.navigate("/managers/task/show", String.format("id=%d", id));
-		super.checkPanicExists();
+		
+		super.clickOnSubmitButton("Delete task");
+		
+		super.navigate("/managers/task/show", String.format("id=%d", id));
 
+		super.checkPanicExists();
+		
 		super.signOut();
 	}
 
 	/*
 	 * Negative manager task delete (customization parameters)
 	 * 
-	 * This test will check the manager can only delete valid tasks
+	 * This test will check the manager can only delete their own valid tasks
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/delete-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void deleteNegative(final int id) {
-		super.signIn("manager2", "manager2");
+	public void deleteNegative(final int id, final String user, final String password) {
+		super.signIn(user, password);
 
-		super.navigate("/managers/task/delete", String.format("id=%d", id));
+		super.navigate("/managers/task/show", String.format("id=%d", id));
 		super.checkPanicExists();
 
 		super.signOut();
