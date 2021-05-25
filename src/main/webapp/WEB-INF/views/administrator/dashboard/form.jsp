@@ -28,7 +28,7 @@
 			<acme:message code="administrator.dashboard.form.label.total-number-public-tasks"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="totalNumberOfPublicTasks" />
+			<acme:form-textbox readonly="true" code="" path="totalNumberOfPublicTasks" />
 		</td>
 	</tr>
 	<tr>
@@ -36,7 +36,7 @@
 			<acme:message code="administrator.dashboard.form.label.total-number-private-tasks"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="totalNumberOfPrivateTasks" />
+			<acme:form-textbox readonly="true" code="" path="totalNumberOfPrivateTasks" />
 		</td>
 	</tr>
 	<tr>
@@ -44,7 +44,7 @@
 			<acme:message code="administrator.dashboard.form.label.total-number-finished-tasks"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="totalNumberOfFinishedTasks" />
+			<acme:form-textbox readonly="true" code="" path="totalNumberOfFinishedTasks" />
 		</td>
 	</tr>
 	<tr>
@@ -52,7 +52,7 @@
 			<acme:message code="administrator.dashboard.form.label.total-number-non-finished-tasks"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="totalNumberOfNonFinishedTasks" />
+			<acme:form-textbox readonly="true" code="" path="totalNumberOfNonFinishedTasks" />
 		</td>
 	</tr>
 </table>
@@ -69,7 +69,7 @@
 			<acme:message code="administrator.dashboard.form.label.average-number-task-execution-period"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="averageNumberOfTaskExecutionPeriods" />
+			<acme:form-textbox readonly="true" code="" path="averageNumberOfTaskExecutionPeriods" />
 		</td>
 	</tr>
 	<tr>
@@ -77,7 +77,7 @@
 			<acme:message code="administrator.dashboard.form.label.deviation-number-task-execution-period"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="deviationNumberOfTaskExecutionPeriods" />
+			<acme:form-textbox readonly="true" code="" path="deviationNumberOfTaskExecutionPeriods" />
 		</td>
 	</tr>
 	
@@ -86,7 +86,7 @@
 			<acme:message code="administrator.dashboard.form.label.minimum-number-task-execution-period"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="minimumNumberOfTaskExecutionPeriods" />
+			<acme:form-textbox readonly="true" code="" path="minimumNumberOfTaskExecutionPeriods" />
 		</td>
 	</tr>
 	<tr>
@@ -94,7 +94,7 @@
 			<acme:message code="administrator.dashboard.form.label.maximum-number-task-execution-period"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="maximumNumberOfTaskExecutionPeriods" />
+			<acme:form-textbox readonly="true" code="" path="maximumNumberOfTaskExecutionPeriods" />
 		</td>
 	</tr>
 </table>
@@ -110,7 +110,7 @@
 			<acme:message code="administrator.dashboard.form.label.average-number-task-workloads"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="averageNumberOfTaskWorkloads" />
+			<acme:form-textbox readonly="true" code="" path="averageNumberOfTaskWorkloads" />
 		</td>
 	</tr>
 	<tr>
@@ -118,7 +118,7 @@
 			<acme:message code="administrator.dashboard.form.label.deviation-number-task-workloads"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="deviationNumberOfTaskWorkloads" />
+			<acme:form-textbox readonly="true" code="" path="deviationNumberOfTaskWorkloads" />
 		</td>
 	</tr>
 	
@@ -127,7 +127,7 @@
 			<acme:message code="administrator.dashboard.form.label.minimum-number-task-workloads"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="minimumNumberOfTaskWorkloads" />
+			<acme:form-textbox readonly="true" code="" path="minimumNumberOfTaskWorkloads" />
 		</td>
 	</tr>
 	<tr>
@@ -135,7 +135,7 @@
 			<acme:message code="administrator.dashboard.form.label.maximum-number-task-workloads"/>
 		</th>
 		<td>
-			<acme:form-textbox code="" path="maximumNumberOfTaskWorkloads" />
+			<acme:form-textbox readonly="true" code="" path="maximumNumberOfTaskWorkloads" />
 		</td>
 	</tr>
 </table>
