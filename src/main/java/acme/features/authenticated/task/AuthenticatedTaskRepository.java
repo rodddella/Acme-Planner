@@ -19,6 +19,6 @@ public interface AuthenticatedTaskRepository extends AbstractRepository {
 	@Query("SELECT task FROM Task task WHERE task.endPeriod < :endDate AND task.visibility = 'PUBLIC' ORDER BY task.startPeriod ASC, task.workload DESC")
 	Collection<Task> findManyFinished(@Param("endDate") Date endDate);
 
-	@Query("SELECT task FROM Task task where task.id = ?1 and task.visibility = 'PUBLIC'")
-	Task findOneTaskById(@Param("id") int id);
+	@Query("SELECT task FROM Task task WHERE task.id = :id AND task.endPeriod < :endDate AND task.visibility = 'PUBLIC'")
+	Task findOneTaskFinishedById(@Param("id") int id, @Param("endDate") Date endDate);
 }
