@@ -30,11 +30,11 @@ public class Task extends DomainEntity {
 	static final long serialVersionUID = 8331441137571663368L;
 
 	@NotEmpty
-	@Length(max = 80, min = 0)
+	@Length(max = 80, min = 1)
 	String title;
 
 	@NotEmpty
-	@Length(max = 500, min = 0)
+	@Length(max = 500, min = 1)
 	@Column(length = 512)
 	String description;
 
