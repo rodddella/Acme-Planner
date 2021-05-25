@@ -1,43 +1,50 @@
-
 package acme.testing.administrator.dashboard;
 
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import acme.testing.AcmePlannerTest;
 
 public class AdministratorDashboardShowTest extends AcmePlannerTest {
-
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/dashboard/show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void showPositive(final int recordIndex, final Integer totalNumberOfPublicTasks, final Integer totalNumberOfPrivateTasks, final Integer totalNumberOfFinishedTasks, final Integer totalNumberOfNonFinishedTasks,
+	public void showPositive(final String totalNumberOfPublicTasks, final String totalNumberOfPrivateTasks, final String totalNumberOfFinishedTasks, final String totalNumberOfNonFinishedTasks,
 		final String averageNumberOfTaskExecutionPeriods, final String deviationNumberOfTaskExecutionPeriods, final String minimumNumberOfTaskExecutionPeriods, final String maximumNumberOfTaskExecutionPeriods, final String averageNumberOfTaskWorkloads,
 		final String deviationNumberOfTaskWorkloads, final String minimumNumberOfTaskWorkloads, final String maximumNumberOfTaskWorkloads) {
 
 		super.signIn("administrator", "administrator");
 		super.clickOnMenu("Administrator", "Dashboard");
 
-		final List<WebElement> attributesDashborad = super.locateMany(By.tagName("td"));
+		super.checkInputBoxHasValue("totalNumberOfPublicTasks", totalNumberOfPublicTasks);
+		super.checkInputBoxHasValue("totalNumberOfPrivateTasks", totalNumberOfPrivateTasks);
+		super.checkInputBoxHasValue("totalNumberOfFinishedTasks", totalNumberOfFinishedTasks);
+		super.checkInputBoxHasValue("totalNumberOfNonFinishedTasks", totalNumberOfNonFinishedTasks);
+		super.checkInputBoxHasValue("averageNumberOfTaskExecutionPeriods", averageNumberOfTaskExecutionPeriods);
+		super.checkInputBoxHasValue("deviationNumberOfTaskExecutionPeriods", deviationNumberOfTaskExecutionPeriods);
+		super.checkInputBoxHasValue("minimumNumberOfTaskExecutionPeriods", minimumNumberOfTaskExecutionPeriods);
+		super.checkInputBoxHasValue("maximumNumberOfTaskExecutionPeriods", maximumNumberOfTaskExecutionPeriods);
+		super.checkInputBoxHasValue("averageNumberOfTaskWorkloads", averageNumberOfTaskWorkloads);
+		super.checkInputBoxHasValue("deviationNumberOfTaskWorkloads", deviationNumberOfTaskWorkloads);
+		super.checkInputBoxHasValue("minimumNumberOfTaskWorkloads", minimumNumberOfTaskWorkloads);
+		super.checkInputBoxHasValue("maximumNumberOfTaskWorkloads", maximumNumberOfTaskWorkloads);
+		
+		super.signOut();
+	}
+	
+	@ParameterizedTest
+	@CsvFileSource(resources = "/administrator/dashboard/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void showNegative(final String user, final String password, final String totalNumberOfPublicTasks, final String totalNumberOfPrivateTasks, final String totalNumberOfFinishedTasks, final String totalNumberOfNonFinishedTasks,
+		final String averageNumberOfTaskExecutionPeriods, final String deviationNumberOfTaskExecutionPeriods, final String minimumNumberOfTaskExecutionPeriods, final String maximumNumberOfTaskExecutionPeriods, final String averageNumberOfTaskWorkloads,
+		final String deviationNumberOfTaskWorkloads, final String minimumNumberOfTaskWorkloads, final String maximumNumberOfTaskWorkloads) {
 
-		Assertions.assertEquals(Integer.valueOf(attributesDashborad.get(0).getText()), totalNumberOfPublicTasks);
-		Assertions.assertEquals(Integer.valueOf(attributesDashborad.get(1).getText()), totalNumberOfPrivateTasks);
-		Assertions.assertEquals(Integer.valueOf(attributesDashborad.get(2).getText()), totalNumberOfFinishedTasks);
-		Assertions.assertEquals(Integer.valueOf(attributesDashborad.get(3).getText()), totalNumberOfNonFinishedTasks);
-		Assertions.assertEquals(attributesDashborad.get(4).getText(), averageNumberOfTaskExecutionPeriods);
-		Assertions.assertEquals(attributesDashborad.get(5).getText(), deviationNumberOfTaskExecutionPeriods);
-		Assertions.assertEquals(attributesDashborad.get(6).getText(), minimumNumberOfTaskExecutionPeriods);
-		Assertions.assertEquals(attributesDashborad.get(7).getText(), maximumNumberOfTaskExecutionPeriods);
-		Assertions.assertEquals(attributesDashborad.get(8).getText(), averageNumberOfTaskWorkloads);
-		Assertions.assertEquals(attributesDashborad.get(9).getText(), deviationNumberOfTaskWorkloads);
-		Assertions.assertEquals(attributesDashborad.get(10).getText(), minimumNumberOfTaskWorkloads);
-		Assertions.assertEquals(attributesDashborad.get(11).getText(), maximumNumberOfTaskWorkloads);
+		super.signIn(user, password);
+		super.navigate("/administrator/dashboard/show", null);
 
+		super.checkPanicExists();
+		
+		super.signOut();
 	}
 }

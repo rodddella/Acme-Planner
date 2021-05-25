@@ -1,2 +1,3 @@
-recordIndex,totalNumberOfPublicTasks,totalNumberOfPrivateTasks,totalNumberOfFinishedTasks,totalNumberOfNonFinishedTasks,averageNumberOfTaskExecutionPeriods,deviationNumberOfTaskExecutionPeriods,minimumNumberOfTaskExecutionPeriods,maximumNumberOfTaskExecutionPeriods,averageNumberOfTaskWorkloads,deviationNumberOfTaskWorkloads,minimumNumberOfTaskWorkloads,maximumNumberOfTaskWorkloads
-0,18,2,11,9,18d 7h 14min,79d 13h 9min,0h 45min,365d 1h 0min,0h 59min,0h 13min,0h 30min,2h 0min
+user,password,totalNumberOfPublicTasks,totalNumberOfPrivateTasks,totalNumberOfFinishedTasks,totalNumberOfNonFinishedTasks,averageNumberOfTaskExecutionPeriods,deviationNumberOfTaskExecutionPeriods,minimumNumberOfTaskExecutionPeriods,maximumNumberOfTaskExecutionPeriods,averageNumberOfTaskWorkloads,deviationNumberOfTaskWorkloads,minimumNumberOfTaskWorkloads,maximumNumberOfTaskWorkloads
+manager1,manager1,18,2,11,9,18d 7h 14min,79d 13h 9min,0h 45min,365d 1h 0min,0h 59min,0h 13min,0h 30min,2h 0min
+authenticated,authenticated,18,2,11,9,18d 7h 14min,79d 13h 9min,0h 45min,365d 1h 0min,0h 59min,0h 13min,0h 30min,2h 0min
