@@ -8,11 +8,12 @@ import acme.testing.AcmePlannerTest;
 
 public class AuthenticatedTaskListTest extends AcmePlannerTest {
 	/*
-	 * Positive authenticated principal list tasks
-	 * 
-	 * The five tasks of the list will be checked for correct values
+	 * Principal: Authenticated
+	 * Entity: Task
+	 * Action: list (positive)
+	 * Cases: We test whether an authenticated principal is able to see
+	 * the first seven public tasks that are already finished in the task list.
 	 */
-
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

@@ -26,36 +26,22 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 
 	@Override
 	public boolean authorise(final Request<Task> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void bind(final Request<Task> request, final Task entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
 	public void unbind(final Request<Task> request, final Task entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
 				"visibility", "manager");
 	}
 
 	@Override
 	public void validate(final Request<Task> request, final Task entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-		
 		validator.validate(request, entity, errors);
 
 		if (!errors.hasErrors()) {
@@ -67,9 +53,6 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 
 	@Override
 	public void create(final Request<Task> request, final Task entity) {
-		assert request != null;
-		assert entity != null;
-
 		final Integer managerId = request.getPrincipal().getActiveRoleId();
 		final Manager manager = this.repository.findManagerById(managerId);
 		entity.setManager(manager);
@@ -83,8 +66,6 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 
 	@Override
 	public Task instantiate(final Request<Task> request) {
-		assert request != null;
-
 		return new Task();
 	}
 }

@@ -8,10 +8,12 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class ManagerTaskUpdateTest extends AcmePlannerTest {
-
 	/*
-	 * Positive manager task update test, we test various valid attributes and we
-	 * check the task is successfully created
+	 * Principal: Manager
+	 * Entity: Task
+	 * Action: update (positive)
+	 * Cases: We test whether a manager principal is able to update the details of
+	 * his own tasks.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/update-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -55,9 +57,15 @@ public class ManagerTaskUpdateTest extends AcmePlannerTest {
 	}
 
 	/*
-	 * Negative manager update task test. We check that empty validation works, in
-	 * addition to date and time constraints: start > end start = end end - start <
-	 * workload
+	 * Principal: Manager
+	 * Entity: Task
+	 * Action: update (positive)
+	 * Cases: We test whether a manager principal is unable to update their
+	 * own tasks whenever either:
+	 *   - Any mandatory attribute is empty
+	 *   - Start date is after end date
+	 *   - Start date is exactly the same as the end date
+	 *   - Workload doesn't fit in the execution period
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/update-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

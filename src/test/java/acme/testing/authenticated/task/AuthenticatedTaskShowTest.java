@@ -7,12 +7,12 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class AuthenticatedTaskShowTest extends AcmePlannerTest {
-
 	/*
-	 * Positive show-task-details test for authenticated principal
-	 * 
-	 * The details of the seven tasks will be shown and checked if their values
-	 * are correct
+	 * Principal: Authenticated
+	 * Entity: Task
+	 * Action: show (positive)
+	 * Cases: We test whether an authenticated principal is able to see
+	 * the details of the first seven public tasks that are already finished.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -33,10 +33,12 @@ public class AuthenticatedTaskShowTest extends AcmePlannerTest {
 	}
 	
 	/*
-	 * Negative show-task-details test for authenticated principal
-	 * 
-	 * This tests ensures that an anonymous principal can't display the details
-	 * of a task that is private or finished
+	 * Principal: Authenticated
+	 * Entity: Task
+	 * Action: show (negative)
+	 * Cases: We test whether an authenticated principal is unable to see the
+	 * details of the registered tasks in the system that are either private or
+	 * they aren't finished yet.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/task/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

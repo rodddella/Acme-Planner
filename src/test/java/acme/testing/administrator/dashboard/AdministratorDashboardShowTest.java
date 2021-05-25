@@ -7,6 +7,13 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class AdministratorDashboardShowTest extends AcmePlannerTest {
+	/*
+	 * Principal: Administrator
+	 * Entity: Dashboard
+	 * Action: show (positive)
+	 * Cases: We test if the statistics are calculated correctly according to the tasks created
+	 * in the system.
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/dashboard/show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -33,13 +40,18 @@ public class AdministratorDashboardShowTest extends AcmePlannerTest {
 		super.signOut();
 	}
 	
+	/*
+	 * Principal: Administrator
+	 * Entity: Dashboard
+	 * Action: show (negative)
+	 * Cases: 
+	 * - We test whether any principal (authenticated or manager) that is not an administrator
+	 * doesn't have access to the administrator dashboard.
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/dashboard/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void showNegative(final String user, final String password, final String totalNumberOfPublicTasks, final String totalNumberOfPrivateTasks, final String totalNumberOfFinishedTasks, final String totalNumberOfNonFinishedTasks,
-		final String averageNumberOfTaskExecutionPeriods, final String deviationNumberOfTaskExecutionPeriods, final String minimumNumberOfTaskExecutionPeriods, final String maximumNumberOfTaskExecutionPeriods, final String averageNumberOfTaskWorkloads,
-		final String deviationNumberOfTaskWorkloads, final String minimumNumberOfTaskWorkloads, final String maximumNumberOfTaskWorkloads) {
-
+	public void showNegative(final String user, final String password) {
 		super.signIn(user, password);
 		super.navigate("/administrator/dashboard/show", null);
 

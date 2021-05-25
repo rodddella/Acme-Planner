@@ -8,10 +8,11 @@ import acme.testing.AcmePlannerTest;
 
 public class AdministratorSpamWordShowTest extends AcmePlannerTest {
 	/*
-	 * Positive administrator spam word list (customization parameters)
-	 * 
-	 * This test will check that all the initial registered words are correctly
-	 * shown in the list
+	 * Principal: Administrator
+	 * Entity: SpamWord
+	 * Action: show (positive)
+	 * Cases: We test whether every spam word text initially registered in the system
+	 * is shown in the form view.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamWord/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -26,18 +27,23 @@ public class AdministratorSpamWordShowTest extends AcmePlannerTest {
 	}
 	
 	/*
-	 * Positive administrator spam word list (customization parameters)
-	 * 
-	 * This test will check that spam threshold value is not shown to
-	 * anybody that is not an administrator principal
+	 * Principal: Administrator
+	 * Entity: SpamWord
+	 * Action: show (negative)
+	 * Cases: We test whether every principal in the system that is not an administrator
+	 * (manager, authenticated) is unable to see the text of every spam word initially
+	 * registered in the system.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamWord/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void showNegative(final int id) {
+	public void showNegative(final int id, final String user, final String password) {
+		super.signIn(user, password);
 		super.navigate("/administrator/spam-word/show", String.format("id=%d", id));
 		
 		super.checkPanicExists();
+		
+		super.signOut();
 	}
 	
 }

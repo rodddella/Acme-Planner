@@ -17,27 +17,14 @@ public class ManagerTaskShowService implements AbstractShowService<Manager, Task
 
 	@Override
 	public boolean authorise(final Request<Task> request) {
-		assert request != null;
-
 		final Integer managerId = request.getPrincipal().getActiveRoleId();
 		final Integer taskId = request.getModel().getInteger("id");
-
-		assert managerId != null;
-		assert taskId != null;
-
 		final Task task = this.repository.findTaskById(taskId);
-		
-		assert task != null;
-		
 		return task.getManager().getId() == managerId.intValue();
 	}
 
 	@Override
 	public void unbind(final Request<Task> request, final Task entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-		
 		try {
 			entity.setWorkload(HoursAndMinutes.fromDecimalTime(entity.getWorkload()).getFormattedTime());
 		} catch (Exception e) {}
@@ -48,8 +35,6 @@ public class ManagerTaskShowService implements AbstractShowService<Manager, Task
 
 	@Override
 	public Task findOne(final Request<Task> request) {
-		assert request != null;
-
 		final Integer taskId = request.getModel().getInteger("id");
 
 		return this.repository.findTaskById(taskId);

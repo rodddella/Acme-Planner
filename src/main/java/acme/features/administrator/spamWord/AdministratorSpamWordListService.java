@@ -18,17 +18,11 @@ public class AdministratorSpamWordListService implements AbstractListService<Adm
 
 	@Override
 	public boolean authorise(Request<SpamWord> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void unbind(Request<SpamWord> request, SpamWord entity, Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "text");
 	}
 

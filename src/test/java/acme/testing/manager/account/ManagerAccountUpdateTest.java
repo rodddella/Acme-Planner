@@ -8,8 +8,11 @@ import acme.testing.AcmePlannerTest;
 
 public class ManagerAccountUpdateTest extends AcmePlannerTest{
 	/*
-	 * Positive case of updating a manager account
-	 * The attributes tested are valid the account is updated
+	 * Principal: Manager
+	 * Entity: Manager
+	 * Action: update (positive)
+	 * Cases: We test whether a manager principal is able to update his
+	 * manager data successfully.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/account/update-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -29,10 +32,15 @@ public class ManagerAccountUpdateTest extends AcmePlannerTest{
 		
 		super.signOut();
 	}
+
 	/*
-	 * Negative case of updating a manager account
-	 * Checked that the attributes sector and company cannot be blank when updating
-	 * Checked that the attributes String sector and String company cannot have a length > 255 when updating
+	 * Principal: Manager
+	 * Entity: Manager
+	 * Action: update (negative)
+	 * Cases: We test whether a manager principal is unable to update his
+	 * manager data whenever either:
+	 *   - The sector or company attributes are blank
+	 *   - The sector or company attributes have more than 255 characters
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/account/update-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

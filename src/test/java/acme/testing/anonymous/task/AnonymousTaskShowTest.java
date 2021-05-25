@@ -8,10 +8,11 @@ import acme.testing.AcmePlannerTest;
 
 public class AnonymousTaskShowTest extends AcmePlannerTest {
 	/*
-	 * Positive show-task-details test
-	 * 
-	 * The details of the first five Task will be shown and checked if their values
-	 * are correct
+	 * Principal: Anonymous
+	 * Entity: Shout
+	 * Action: show (positive)
+	 * Cases: We test whether an anonymous principal is able to see the details
+	 * of the first five public tasks that aren't finished yet.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -30,10 +31,11 @@ public class AnonymousTaskShowTest extends AcmePlannerTest {
 	}
 	
 	/*
-	 * Negative show-task-details test
-	 * 
-	 * This tests ensures that an anonymous principal can't display the details
-	 * of a task that is private or finished
+	 * Principal: Anonymous
+	 * Entity: Shout
+	 * Action: show (positive)
+	 * Cases: We test whether an anonymous principal is unable to see the details
+	 * of the tasks that either are private or are already finished.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/task/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

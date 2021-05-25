@@ -23,40 +23,26 @@ public class AuthenticatedManagerCreateService implements AbstractCreateService<
 
 	@Override
 	public boolean authorise(final Request<Manager> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void validate(final Request<Manager> request, final Manager entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
+		//Not used
 	}
 
 	@Override
 	public void bind(final Request<Manager> request, final Manager entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
 	public void unbind(final Request<Manager> request, final Manager entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "company", "sector");
 	}
 
 	@Override
 	public Manager instantiate(final Request<Manager> request) {
-		assert request != null;
-
 		Manager result;
 		Principal principal;
 		int userAccountId;
@@ -74,17 +60,11 @@ public class AuthenticatedManagerCreateService implements AbstractCreateService<
 
 	@Override
 	public void create(final Request<Manager> request, final Manager entity) {
-		assert request != null;
-		assert entity != null;
-
 		this.repository.save(entity);
 	}
 
 	@Override
 	public void onSuccess(final Request<Manager> request, final Response<Manager> response) {
-		assert request != null;
-		assert response != null;
-
 		if (request.isMethod(HttpMethod.POST)) {
 			PrincipalHelper.handleUpdate();
 		}

@@ -16,24 +16,16 @@ public class AdministratorSpamThresholdShowService implements AbstractShowServic
 
 	@Override
 	public boolean authorise(Request<SpamThreshold> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void unbind(Request<SpamThreshold> request, SpamThreshold entity, Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "value");
 	}
 
 	@Override
 	public SpamThreshold findOne(Request<SpamThreshold> request) {
-		assert request != null;
-
 		return repository.getSpamThresholds().get(0);
 	}
 }
