@@ -315,7 +315,7 @@ public abstract class AbstractTest {
 		this.navigate(() -> {
 			String url;
 						
-			url = String.format("%s%s%s%s", this.baseUrl, path, this.contextQuery, query);
+			url = String.format("%s%s%s&%s", this.baseUrl, path, this.contextQuery, query);
 			this.driver.get(url);
 			this.longSleep();
 		});

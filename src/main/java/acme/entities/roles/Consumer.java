@@ -33,11 +33,11 @@ public class Consumer extends UserRole {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	@Length(min = 0, max = 255)
+	@Length(min = 1, max = 255)
 	protected String company;
 
 	@NotBlank
-	@Length(min = 0, max = 255)
+	@Length(min = 1, max = 255)
 	protected String sector;
 
 	// Derived attributes -----------------------------------------------------
