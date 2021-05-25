@@ -44,5 +44,5 @@ acme.validation.script = El script "{0}" debe devolver true
 acme.validation.spam = El mensaje contiene demasiadas palabras consideradas como spam
 acme.validation.already-exists = Ya existe
 acme.validation.start-after-end = La fecha de inicio no puede ser posterior a la fecha de fin
-acme.validation.invalid-time-format = Formato de tiempo inválido. Use hh.mm
+acme.validation.invalid-time-format = Formato de tiempo inválido. Use hhhh.mm
 acme.validation.too-big-workload = La carga de trabajo no puede ser mayor que el periodo de ejecución

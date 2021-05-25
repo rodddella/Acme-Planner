@@ -16,12 +16,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:list>
-	<acme:list-column code="authenticated.task.list.label.title" path="title" />
-	<acme:list-column code="authenticated.task.list.label.workload" path="workload" />
-	<acme:list-column code="authenticated.task.list.label.link" path="link" />
-	<acme:list-column code="authenticated.task.list.label.start_period" path="startPeriod" />
-	<acme:list-column code="authenticated.task.list.label.end_period" path="endPeriod" />
-	<acme:list-column code="authenticated.task.list.label.visibility" path="visibility" />
+	<acme:list-column code="authenticated.task.list.label.title" path="title" width="30%" />
+	<acme:list-column code="authenticated.task.list.label.workload" path="workload" width="15%" />
+	<acme:list-column code="authenticated.task.list.label.link" path="link" width="15%" />
+	<acme:list-column code="authenticated.task.list.label.start_period" path="startPeriod" width="15%" />
+	<acme:list-column code="authenticated.task.list.label.end_period" path="endPeriod" width="15%" />
+	<acme:list-column code="authenticated.task.list.label.visibility" path="visibility" width="10%" />
 </acme:list>
 
 

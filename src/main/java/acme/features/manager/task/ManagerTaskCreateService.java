@@ -62,7 +62,6 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 			spamService.validate(request, "title", entity.getTitle(), errors);
 			spamService.validate(request, "description", entity.getDescription(), errors);
 			spamService.validate(request, "link", entity.getLink(), errors);
-
 		}
 	}
 
