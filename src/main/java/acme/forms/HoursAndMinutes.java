@@ -1,5 +1,6 @@
 package acme.forms;
 
+import java.math.BigDecimal;
 
 public class HoursAndMinutes {
 	static final Double DECIMAL_CONVERTER = 1 / 0.6;
@@ -21,11 +22,8 @@ public class HoursAndMinutes {
     public static HoursAndMinutes fromFormattedTime(final Double formattedTime) throws Exception {
         Integer hours = (int) Math.floor(formattedTime);
         Integer minutes = (int) Math.round((formattedTime - Math.floor(formattedTime)) * 100);
-        if (minutes > 60) {
+        if (minutes >= 60 || BigDecimal.valueOf(formattedTime).scale() > 2) {
             throw new Exception("Input range is invalid");
-        } else if (minutes == 60) {
-        	hours++;
-        	minutes = 0;
         }
         return new HoursAndMinutes(hours, minutes);
     }

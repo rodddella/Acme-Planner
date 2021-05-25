@@ -37,7 +37,7 @@ public class TaskValidator {
 				errors.state(request, startPeriod.before(endPeriod), "startPeriod", "acme.validation.start-after-end");
 			}
 			
-			if (!errors.hasErrors("startPeriod")) {
+			if (!errors.hasErrors("startPeriod") && !errors.hasErrors("endPeriod")) {
 				final long periodDuration = endPeriod.getTime() - startPeriod.getTime();
 				final long workLoadMilis = (long) (workLoad * TaskValidator.HOUR_TO_MILLIS);
 				errors.state(request, workLoadMilis <= periodDuration, "workload", "acme.validation.too-big-workload");
