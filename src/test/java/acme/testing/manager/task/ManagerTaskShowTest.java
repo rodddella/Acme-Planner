@@ -15,7 +15,7 @@ public class ManagerTaskShowTest extends AcmePlannerTest {
 	 * The details of the task will be shown and check if their values are correct
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/manager/task/show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/manager/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void showPositive(final int recordIndex,final String user, final String password, final String title, final String description, final String workload,
 			final String link, final String startPeriod, final String endPeriod, final String visibility) {

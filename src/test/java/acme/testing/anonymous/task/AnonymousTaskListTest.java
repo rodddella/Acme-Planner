@@ -10,7 +10,7 @@ public class AnonymousTaskListTest extends AcmePlannerTest {
 	/*
 	 * Positive anonymous principal list tasks
 	 * 
-	 * The first five tasks of the list will be checked for correct values
+	 * The eight tasks of the list will be checked for correct values
 	 */
 
 	@ParameterizedTest
