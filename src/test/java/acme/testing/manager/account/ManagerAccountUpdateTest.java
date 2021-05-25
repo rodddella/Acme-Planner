@@ -27,7 +27,11 @@ public class ManagerAccountUpdateTest extends AcmePlannerTest{
 		
 		super.signOut();
 	}
-	
+	/*
+	 * Checked that the attributes sector and company cannot be blank 
+	 * Checked that the attributes String sector and String company cannot have a length > 255 
+	 * 
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/account/update-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
