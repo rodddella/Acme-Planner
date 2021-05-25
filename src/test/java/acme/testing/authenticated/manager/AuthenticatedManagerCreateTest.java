@@ -1,4 +1,4 @@
-package acme.testing.manager.account;
+package acme.testing.authenticated.manager;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.AcmePlannerTest;
 
-public class ManagerAccountCreateTest extends AcmePlannerTest{
+public class AuthenticatedManagerCreateTest extends AcmePlannerTest{
 	/*
 	 * Principal: Authenticated
 	 * Entity: Manager
@@ -15,7 +15,7 @@ public class ManagerAccountCreateTest extends AcmePlannerTest{
 	 * as a manager successfully.
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/manager/account/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/manager/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void createPositive(final int recordIndex, final String company, final String sector){
 		super.signIn("authenticated", "authenticated");
@@ -44,7 +44,7 @@ public class ManagerAccountCreateTest extends AcmePlannerTest{
 	 *   - The sector or company attributes have more than 255 characters
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/manager/account/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/manager/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
 	public void createNegative(final int recordIndex, final String company, final String sector){
 		
