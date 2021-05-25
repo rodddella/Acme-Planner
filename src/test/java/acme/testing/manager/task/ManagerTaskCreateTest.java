@@ -65,6 +65,8 @@ public class ManagerTaskCreateTest extends AcmePlannerTest {
 	 *   - Start date is after end date
 	 *   - Start date is exactly the same as the end date
 	 *   - Workload doesn't fit in the execution period
+	 *   - Workload is greater than 9999 hours
+	 *   - Workload has more than 2 decimal digits
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
