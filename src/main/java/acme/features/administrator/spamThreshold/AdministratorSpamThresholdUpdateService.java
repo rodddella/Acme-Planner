@@ -17,48 +17,31 @@ public class AdministratorSpamThresholdUpdateService implements AbstractUpdateSe
 
 	@Override
 	public boolean authorise(Request<SpamThreshold> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void bind(Request<SpamThreshold> request, SpamThreshold entity, Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
 	public void unbind(Request<SpamThreshold> request, SpamThreshold entity, Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
-		request.unbind(entity, model, "value");
+		//Not used
 	}
 
 	@Override
 	public SpamThreshold findOne(Request<SpamThreshold> request) {
-		assert request != null;
-
 		return repository.getSpamThresholds().get(0);
 	}
 
 	@Override
 	public void validate(Request<SpamThreshold> request, SpamThreshold entity, Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
+		//Not used
 	}
 
 	@Override
 	public void update(Request<SpamThreshold> request, SpamThreshold entity) {
-		assert request != null;
-		assert entity != null;
-
 		repository.save(entity);
 	}
 }

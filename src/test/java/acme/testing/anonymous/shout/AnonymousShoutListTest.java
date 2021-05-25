@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class AnonymousShoutListTest extends AcmePlannerTest {
-
 	/*
-	 * Shout list test
-	 * 
-	 * The six shouts that are already present in the list on the page have been 
-	 * introduced in the csv , thus verifying that the list works.
+	 * Principal: Anonymous
+	 * Entity: Shout
+	 * Action: list (positive)
+	 * Cases: We test whether an anonymous principal is able to list all the shouts
+	 * registered in the system that aren't older than one month.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/list-all.csv", encoding = "utf-8", numLinesToSkip = 1)

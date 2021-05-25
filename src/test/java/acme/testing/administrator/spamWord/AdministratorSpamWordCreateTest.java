@@ -8,10 +8,11 @@ import acme.testing.AcmePlannerTest;
 
 public class AdministratorSpamWordCreateTest extends AcmePlannerTest {
 	/*
-	 * Positive administrator spam word create (customization parameters)
-	 * 
-	 * This test will check that an administrator principal can create
-	 * new words for the spam filter
+	 * Principal: Administrator
+	 * Entity: SpamWord
+	 * Action: create (positive)
+	 * Cases: We test whether an administrator principal is able to create new words
+	 * and register them as spam words in the system.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamWord/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -34,10 +35,11 @@ public class AdministratorSpamWordCreateTest extends AcmePlannerTest {
 	}
 	
 	/*
-	 * Negative administrator spam word create (customization parameters)
-	 * 
-	 * This test will check that an administrator principal can't create
-	 * words that are already in the database, or register empty words
+	 * Principal: Administrator
+	 * Entity: SpamWord
+	 * Action: create (negative)
+	 * Cases: We test whether an administrator principal is unable to register
+	 * empty words or words that are already registered in the system.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamWord/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

@@ -298,7 +298,7 @@
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/04/20 14:30" />
 		<property name="endPeriod" value="2021/04/20 15:30" />
-		<property name="visibility" value="PUBLIC" />
+		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole1" />
 	</bean>
 
@@ -306,12 +306,12 @@
 		<property name="title" value="Bake the crust" />
 		<property name="description"
 			value="Place the pan on a baking sheet and bake at 350°F (175°C) for 10 minutes. Remove from the oven and let cool. While the crust is cooling, you can skip ahead and start on the filling. Wait until the crust has cooled to wrap the pan in foil in the next step." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="8.00" />
 		<property name="link"
-			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
+			value="" />
 		<property name="startPeriod" value="2021/04/23 14:00" />
-		<property name="endPeriod" value="2021/04/23 15:15" />
-		<property name="visibility" value="PUBLIC" />
+		<property name="endPeriod" value="2021/04/24 15:15" />
+		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole2" />
 	</bean>
 
@@ -319,11 +319,11 @@
 		<property name="title" value="Beat cream cheese, then sugar" />
 		<property name="description"
 			value="Cut the cream cheese into chunks and place in the bowl of an electric mixer, with the paddle attachment. Mix on medium speed for 4 minutes until smooth, soft and creamy. Add the sugar, beat for 4 minutes more." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="8.00" />
 		<property name="link"
-			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
+			value="" />
 		<property name="startPeriod" value="2021/04/24 00:30" />
-		<property name="endPeriod" value="2021/04/24 01:15" />
+		<property name="endPeriod" value="2021/04/25 01:15" />
 		<property name="visibility" value="PUBLIC" />
 		<property name="manager" ref="managerRole1" />
 	</bean>
@@ -332,10 +332,10 @@
 		<property name="title" value="Prepare the sour cream topping" />
 		<property name="description"
 			value="Place sour cream in a medium sized bowl, stir in the powdered sugar and vanilla, until smooth. Chill until you are ready to serve the cake." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="9999.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
-		<property name="startPeriod" value="2021/04/24 07:30" />
+		<property name="startPeriod" value="2019/04/24 07:30" />
 		<property name="endPeriod" value="2021/04/24 09:15" />
 		<property name="visibility" value="PUBLIC" />
 		<property name="manager" ref="managerRole2" />
@@ -345,7 +345,7 @@
 		<property name="title" value="Prepare the raspberry sauce" />
 		<property name="description"
 			value="Place raspberries, sugar, and water in a small saucepan. Use a potato masher to mash the raspberries. Heat on medium, whisking, about 5 minutes, until the sauce begins to thicken. Remove from heat. Let cool." />
-		<property name="workload" value="2.00" />
+		<property name="workload" value="0.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/04/25 14:30" />
@@ -359,12 +359,12 @@
 			value="Prepare the cheesecake to serve" />
 		<property name="description"
 			value="Remove the cake from the refrigerator. Remove the foil from the sides of the pan, and place the cake on your cake serving dish. Run the side of a blunt knife between the edge of the cake and the pan." />
-		<property name="workload" value="0.5" />
+		<property name="workload" value="0.02" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/04/25 17:30" />
 		<property name="endPeriod" value="2021/04/25 18:15" />
-		<property name="visibility" value="PUBLIC" />
+		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole2" />
 	</bean>
 
@@ -372,12 +372,12 @@
 		<property name="title" value="Sauté the onion and garlic" />
 		<property name="description"
 			value="Heat the olive oil in a large skillet over medium. Add 3/4 of the sliced onion and sauté until nearly tender, about 5 minutes. Add the garlic and sauté to soften, 2 minutes." />
-		<property name="workload" value="0.5" />
+		<property name="workload" value="0.02" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/04/25 19:30" />
 		<property name="endPeriod" value="2021/04/25 20:15" />
-		<property name="visibility" value="PUBLIC" />
+		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole1" />
 	</bean>
 
@@ -385,12 +385,12 @@
 		<property name="title" value="Blend the sauce" />
 		<property name="description"
 			value="Transfer the cooked onion and garlic to a blender along with the beans, including the bean liquid, chipotle, lime juice, cumin, salt, and 1/2 cup water. Blend until smooth and creamy. Taste and add more salt if needed, then blend again." />
-		<property name="workload" value="0.5" />
+		<property name="workload" value="9998.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/04/26 00:30" />
-		<property name="endPeriod" value="2021/04/26 01:15" />
-		<property name="visibility" value="PUBLIC" />
+		<property name="endPeriod" value="2023/04/26 01:15" />
+		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole2" />
 	</bean>
 
@@ -401,11 +401,11 @@
 			value="Triple wrap pan in heavy duty foil" />
 		<property name="description"
 			value="Prepare the springform pan so that no water leaks into it while cooking. Place a large 18-inch by 18-inch square of heavy duty aluminum foil on a flat surface. Place the springform pan in the middle of the foil. Gently fold up the sides of the foil around the pan. Make sure to do this gently so that you don't create any holes in the foil." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="9998.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/04/25 20:10" />
-		<property name="endPeriod" value="2021/04/25 22:30" />
+		<property name="endPeriod" value="2023/04/25 22:30" />
 		<property name="visibility" value="PRIVATE" />
 		<property name="manager" ref="managerRole1" />
 	</bean>
@@ -443,9 +443,9 @@
 		<property name="title" value="Prepare pan and boiling water" />
 		<property name="description"
 			value="Place the foil-wrapped springform pan in a large, high-sided roasting pan. Prepare 2 quarts of boiling water. Heat the oven to 325°F (160°C)." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="0.5" />
 		<property name="link"
-			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
+			value="" />
 		<property name="startPeriod" value="2021/06/13 20:30" />
 		<property name="endPeriod" value="2021/06/13 21:30" />
 		<property name="visibility" value="PUBLIC" />
@@ -469,7 +469,7 @@
 		<property name="title" value="Place in oven" />
 		<property name="description"
 			value="Place the roasting pan with the springform pan in it, in the oven, on the lower rack." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="1211.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/06/13 22:30" />
@@ -483,7 +483,7 @@
 			value="Carefully pour the hot water into the roasting pan." />
 		<property name="description"
 			value="(Without touching the hot oven), to create a water bath for the cheesecake, pouring until the water reaches halfway up the side of the springform pan, about 1 1/4 inches. (Alternatively you can add the water before putting the pan in the oven, whichever is easier for you.)" />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="1211.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/06/13 23:30" />
@@ -496,24 +496,24 @@
 		<property name="title"
 			value="Bake at 325°F (160°C) for 1 1/2 hours" />
 		<property name="description" value="Hot stuff!" />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="9999.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/06/14 00:30" />
-		<property name="endPeriod" value="2021/06/14 01:30" />
+		<property name="endPeriod" value="2023/06/14 01:30" />
 		<property name="visibility" value="PUBLIC" />
 		<property name="manager" ref="managerRole2" />
 	</bean>
 
 	<bean id="task018" class="acme.entities.tasks.Task">
-		<property name="title" value="Turn off the heat of the oven." />
+		<property name="title" value="A" />
 		<property name="description"
 			value="Crack open the oven door 1-inch, and let the cake cool in the oven, as the oven cools, for another hour. This gentle cooling will help prevent the cheesecake surface from cracking." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="9998.00" />
 		<property name="link"
 			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
 		<property name="startPeriod" value="2021/06/13 01:30" />
-		<property name="endPeriod" value="2021/06/13 02:30" />
+		<property name="endPeriod" value="2023/06/13 02:30" />
 		<property name="visibility" value="PUBLIC" />
 		<property name="manager" ref="managerRole1" />
 	</bean>
@@ -522,11 +522,11 @@
 		<property name="title" value="Chill 4 hours" />
 		<property name="description"
 			value="Cover the top of the cheesecake with foil, so that it doesn't actually touch the cheesecake. Chill in the refrigerator for a minimum of 4 hours, or overnight." />
-		<property name="workload" value="1.00" />
+		<property name="workload" value="3.00" />
 		<property name="link"
-			value="https://www.simplyrecipes.com/recipes/perfect_cheesecake/" />
+			value="http://example.org" />
 		<property name="startPeriod" value="2021/06/13 02:30" />
-		<property name="endPeriod" value="2021/06/13 03:30" />
+		<property name="endPeriod" value="2021/06/13 07:30" />
 		<property name="visibility" value="PUBLIC" />
 		<property name="manager" ref="managerRole2" />
 	</bean>

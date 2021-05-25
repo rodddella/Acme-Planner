@@ -22,17 +22,11 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 	@Override
 	public boolean authorise(final Request<Dashboard> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void unbind(final Request<Dashboard> request, final Dashboard entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks",
 				"totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageNumberOfTaskExecutionPeriods",
 				"deviationNumberOfTaskExecutionPeriods", "minimumNumberOfTaskExecutionPeriods",
@@ -41,8 +35,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getAverageNumberOfTaskWorkloads(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -61,8 +53,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getDeviationNumberOfTaskWorkloads(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -83,8 +73,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getMinimumNumberOfTaskWorkloads(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -104,8 +92,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getMaximumNumberOfTaskWorkloads(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -124,8 +110,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getAverageNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -144,8 +128,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getDeviationNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -167,8 +149,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getMinNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Set<Task> tasks = this.repository.findAllTasks();
 
 		if (tasks.isEmpty()) {
@@ -189,7 +169,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	}
 
 	public Double getMaxNumberOfTaskExecutionPeriods(final Request<Dashboard> request) {
-		assert request != null;
 		final Set<Task> tasks = this.repository.findAllTasks();
 		if (tasks.isEmpty()) {
 			return 0.0;
@@ -208,8 +187,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 	@Override
 	public Dashboard findOne(final Request<Dashboard> request) {
-		assert request != null;
-
 		final Dashboard result = new Dashboard();
 
 		result.setTotalNumberOfPublicTasks(this.repository.totalNumberOfPublicTasks());

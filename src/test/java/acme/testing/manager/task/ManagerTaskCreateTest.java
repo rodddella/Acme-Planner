@@ -8,10 +8,12 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class ManagerTaskCreateTest extends AcmePlannerTest {
-
 	/*
-	 * Positive manager task create test, we test various valid attributes and we
-	 * check the task is successfully created
+	 * Principal: Manager
+	 * Entity: Task
+	 * Action: create (positive)
+	 * Cases: We test whether a manager principal is able to create and register
+	 * tasks in the system.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -54,9 +56,17 @@ public class ManagerTaskCreateTest extends AcmePlannerTest {
 	}
 
 	/*
-	 * Negative manager create task test. We check that empty validation works, in
-	 * addition to date and time constraints: start > end start = end end - start <
-	 * workload
+	 * Principal: Manager
+	 * Entity: Task
+	 * Action: create (negative)
+	 * Cases: We test whether a manager principal is unable to create and
+	 * register tasks in the system whenever either:
+	 *   - Any mandatory attribute is empty
+	 *   - Start date is after end date
+	 *   - Start date is exactly the same as the end date
+	 *   - Workload doesn't fit in the execution period
+	 *   - Workload is greater than 9999 hours
+	 *   - Workload has more than 2 decimal digits
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

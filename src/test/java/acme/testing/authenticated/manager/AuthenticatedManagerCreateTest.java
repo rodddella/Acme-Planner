@@ -1,4 +1,4 @@
-package acme.testing.manager.account;
+package acme.testing.authenticated.manager;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -6,16 +6,18 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.AcmePlannerTest;
 
-public class ManagerAccountCreateTest extends AcmePlannerTest{
+public class AuthenticatedManagerCreateTest extends AcmePlannerTest{
 	/*
-	 * Positive case of creating a manager account
-	 * The attributes tested are valid the account is created
+	 * Principal: Authenticated
+	 * Entity: Manager
+	 * Action: create (positive)
+	 * Cases: We test whether an authenticated principal is able to register himself
+	 * as a manager successfully.
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/manager/account/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/manager/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void createPositive(final int recordIndex, final String company, final String sector){
-		
 		super.signIn("authenticated", "authenticated");
 		super.clickOnMenu("Account", "Become a manager");
 		
@@ -33,12 +35,16 @@ public class ManagerAccountCreateTest extends AcmePlannerTest{
 	}
 	
 	/*
-	 * Negative case of creating a manager account
-	 * Checked that the attributes sector and company cannot be blank 
-	 * Checked that the attributes String sector and String company cannot have a length > 255 
+	 * Principal: Authenticated
+	 * Entity: Manager
+	 * Action: create (negative)
+	 * Cases: We test whether an authenticated principal is unable to register himself
+	 * as a manager whenever either:
+	 *   - The sector or company attributes are blank
+	 *   - The sector or company attributes have more than 255 characters
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/manager/account/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/manager/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
 	public void createNegative(final int recordIndex, final String company, final String sector){
 		

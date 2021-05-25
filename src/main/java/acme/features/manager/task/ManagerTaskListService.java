@@ -25,10 +25,6 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 
 	@Override
 	public void unbind(final Request<Task> request, final Task entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		try {
 			entity.setWorkload(HoursAndMinutes.fromDecimalTime(entity.getWorkload()).getFormattedTime());
 		} catch (final Exception e) {}
@@ -39,13 +35,7 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 
 	@Override
 	public Collection<Task> findMany(final Request<Task> request) {
-		assert request != null;
-
 		final Integer managerId = request.getPrincipal().getActiveRoleId();
-		final Manager manager = this.repository.findManagerById(managerId);
-
-		assert manager != null;
-
 		return this.repository.findManagerTasks(managerId);
 	}
 }

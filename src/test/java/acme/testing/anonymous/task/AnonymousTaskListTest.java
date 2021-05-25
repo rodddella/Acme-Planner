@@ -8,11 +8,12 @@ import acme.testing.AcmePlannerTest;
 
 public class AnonymousTaskListTest extends AcmePlannerTest {
 	/*
-	 * Positive anonymous principal list tasks
-	 * 
-	 * The first five tasks of the list will be checked for correct values
+	 * Principal: Anonymous
+	 * Entity: Task
+	 * Action: list (positive)
+	 * Cases: We test whether an anonymous principal is able to list the first five
+	 * public tasks registered in the system that aren't finished yet.
 	 */
-
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/task/list-show-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

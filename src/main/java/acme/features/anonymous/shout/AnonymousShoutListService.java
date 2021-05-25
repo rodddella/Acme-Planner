@@ -26,23 +26,16 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 
 	@Override
 	public boolean authorise(final Request<Shout> request) {
-		assert request != null;
 		return true;
 	}
 
 	@Override
 	public void unbind(final Request<Shout> request, final Shout entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "author", "text", "info", "moment");
 	}
 
 	@Override
 	public Collection<Shout> findMany(final Request<Shout> request) {
-		assert request != null;
-
 		Collection<Shout> result;
 
 		final Date referenceDate = new Date();

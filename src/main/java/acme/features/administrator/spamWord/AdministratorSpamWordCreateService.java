@@ -17,33 +17,21 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 
 	@Override
 	public boolean authorise(Request<SpamWord> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void bind(Request<SpamWord> request, SpamWord entity, Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
 	public void unbind(Request<SpamWord> request, SpamWord entity, Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "text");
 	}
 
 	@Override
 	public SpamWord instantiate(Request<SpamWord> request) {
-		assert request != null;
-
 		SpamWord word = new SpamWord();
 		word.setText("");
 
@@ -52,10 +40,6 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 
 	@Override
 	public void validate(Request<SpamWord> request, SpamWord entity, Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		if (!errors.hasErrors()) {
 			errors.state(request, repository.getSpamWordsByText(entity.getText()).isEmpty(), "text",
 					"acme.validation.already-exists");
@@ -64,9 +48,6 @@ public class AdministratorSpamWordCreateService implements AbstractCreateService
 
 	@Override
 	public void create(Request<SpamWord> request, SpamWord entity) {
-		assert request != null;
-		assert entity != null;
-
 		repository.save(entity);
 	}
 }

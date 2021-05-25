@@ -8,10 +8,11 @@ import acme.testing.AcmePlannerTest;
 
 public class AdministratorSpamThresholdUpdateTest extends AcmePlannerTest {
 	/*
-	 * Positive administrator spam threshold update (customization parameters)
-	 * 
-	 * This test will check that the spam threshold value can be successfully changed
-	 * when the entered value is correct (between 0 and 100)
+	 * Principal: Administrator
+	 * Entity: SpamThreshold
+	 * Action: update (positive)
+	 * Cases: We test whether an administrator principal can change the value of the
+	 * spam threshold with values between 0.0 and 100.0 successfully.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamThreshold/update-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -30,10 +31,11 @@ public class AdministratorSpamThresholdUpdateTest extends AcmePlannerTest {
 	}
 	
 	/*
-	 * Negative administrator spam threshold update (customization parameters)
-	 * 
-	 * This test will check that the spam threshold value can NOT be successfully changed
-	 * when the entered value is incorrect (lower than 0 or greater than 100)
+	 * Principal: Administrator
+	 * Entity: SpamThreshold
+	 * Action: update (negative)
+	 * Cases: We test whether an administrator principal can't change the value of the
+	 * spam threshold when it is out-of-range (lower than 0.0 or greater than 100.0)
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/spamThreshold/update-negative.csv", encoding = "utf-8", numLinesToSkip = 1)

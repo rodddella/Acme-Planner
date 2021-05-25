@@ -28,33 +28,21 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 	@Override
 	public boolean authorise(final Request<Shout> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void bind(final Request<Shout> request, final Shout entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
 	public void unbind(final Request<Shout> request, final Shout entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "author", "text", "info");
 	}
 
 	@Override
 	public Shout instantiate(final Request<Shout> request) {
-		assert request != null;
-
 		Shout result;
 		Date moment;
 
@@ -71,10 +59,6 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 	@Override
 	public void validate(final Request<Shout> request, final Shout entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		if (!errors.hasErrors()) {
 			this.spamService.validate(request, "author", entity.getAuthor(), errors);
 			this.spamService.validate(request, "text", entity.getText(), errors);
@@ -84,9 +68,6 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 	@Override
 	public void create(final Request<Shout> request, final Shout entity) {
-		assert request != null;
-		assert entity != null;
-
 		Date moment;
 
 		moment = new Date(System.currentTimeMillis() - 1);

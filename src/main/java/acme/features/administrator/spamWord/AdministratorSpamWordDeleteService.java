@@ -17,48 +17,31 @@ public class AdministratorSpamWordDeleteService implements AbstractDeleteService
 
 	@Override
 	public boolean authorise(Request<SpamWord> request) {
-		assert request != null;
-
 		return true;
 	}
 
 	@Override
 	public void bind(Request<SpamWord> request, SpamWord entity, Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
 	public void unbind(Request<SpamWord> request, SpamWord entity, Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
-		request.unbind(entity, model, "text");
+		//Not used
 	}
 
 	@Override
 	public SpamWord findOne(Request<SpamWord> request) {
-		assert request != null;
-
 		return repository.getSpamWordById(request.getModel().getInteger("id"));
 	}
 
 	@Override
 	public void validate(Request<SpamWord> request, SpamWord entity, Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
+		//Not used
 	}
 
 	@Override
 	public void delete(Request<SpamWord> request, SpamWord entity) {
-		assert request != null;
-		assert entity != null;
-
 		repository.delete(entity);
 	}
 }
