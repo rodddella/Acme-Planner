@@ -1,11 +1,13 @@
 
 package acme.features.authenticated.task;
 
+import java.time.Instant;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.tasks.Task;
-import acme.enums.Visibility;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -13,7 +15,6 @@ import acme.framework.services.AbstractShowService;
 
 @Service
 public class AuthenticatedTaskShowService implements AbstractShowService<Authenticated, Task> {
-
 	@Autowired
 	protected AuthenticatedTaskRepository repository;
 
@@ -31,7 +32,6 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 
 		request.unbind(entity, model, "title", "description", "workload", "link", "startPeriod", "endPeriod",
 				"visibility");
-
 	}
 
 	@Override
@@ -41,14 +41,7 @@ public class AuthenticatedTaskShowService implements AbstractShowService<Authent
 		int id;
 
 		id = request.getModel().getInteger("id");
-		result = this.repository.findOneTaskById(id);
-		assert this.isAccesible(result);
+		result = this.repository.findOneTaskFinishedById(id, Date.from(Instant.now()));
 		return result;
-
-	}
-
-	private Boolean isAccesible(final Task task) {
-		return task.getEndPeriod().getTime() < (System.currentTimeMillis())
-				&& task.getVisibility() == Visibility.PUBLIC;
 	}
 }

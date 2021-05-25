@@ -19,6 +19,6 @@ public interface AnonymousTaskRepository extends AbstractRepository {
 	@Query("SELECT task FROM Task task WHERE task.endPeriod >= :endDate AND task.visibility = 'PUBLIC' ORDER BY task.startPeriod ASC, task.workload DESC")
 	Collection<Task> findManyUnfinished(@Param("endDate") Date endDate);
 
-	@Query("SELECT task FROM Task task where task.id = :id AND task.visibility = 'PUBLIC'")
-	Task findOneTaskById(@Param("id") int id);
+	@Query("SELECT task FROM Task task where task.id = :id AND task.endPeriod > :endDate AND task.visibility = 'PUBLIC'")
+	Task findOneTaskUnfinishedById(@Param("id") int id, @Param("endDate") Date endDate);
 }
