@@ -38,7 +38,7 @@ public class AdministratorSpamThresholdShowTest extends AcmePlannerTest {
 	@Order(10)
 	public void showNegative(final String user, final String password) {
 		super.signIn(user, password);
-		super.navigate("/administrator/spam-threshold/show", "");
+		super.navigate("/administrator/spam-threshold/show", null);
 
 		super.checkPanicExists();
 		

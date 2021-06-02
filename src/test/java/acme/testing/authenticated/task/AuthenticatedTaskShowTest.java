@@ -44,7 +44,7 @@ public class AuthenticatedTaskShowTest extends AcmePlannerTest {
 	@CsvFileSource(resources = "/authenticated/task/show-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void showNegative(final int id) {
-		super.navigate("/authenticated/task/show", String.format("id=%d", id));
+		super.navigate("/authenticated/task/show", String.format(".&id=%d", id));
 		
 		super.checkPanicExists();
 	}

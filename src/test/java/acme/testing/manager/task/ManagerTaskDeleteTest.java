@@ -21,11 +21,11 @@ public class ManagerTaskDeleteTest extends AcmePlannerTest {
 	public void deletePositive(final int id) {
 		super.signIn("manager2", "manager2");
 
-		super.navigate("/managers/task/show", String.format("id=%d", id));
+		super.navigate("/managers/task/show", String.format(".&id=%d", id));
 		
 		super.clickOnSubmitButton("Delete task");
 		
-		super.navigate("/managers/task/show", String.format("id=%d", id));
+		super.navigate("/managers/task/show", String.format(".&id=%d", id));
 
 		super.checkPanicExists();
 		
@@ -46,7 +46,7 @@ public class ManagerTaskDeleteTest extends AcmePlannerTest {
 	public void deleteNegative(final int id, final String user, final String password) {
 		super.signIn(user, password);
 
-		super.navigate("/managers/task/show", String.format("id=%d", id));
+		super.navigate("/managers/task/show", String.format(".&id=%d", id));
 		super.checkPanicExists();
 
 		super.signOut();

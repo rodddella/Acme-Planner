@@ -47,7 +47,7 @@ public class ManagerTaskShowTest extends AcmePlannerTest {
 	@Order(10)
 	public void createNegative(final int id, final String user, final String password) {
 		super.signIn(user, password);
-		super.navigate("/managers/task/show", String.format("id=%d", id));
+		super.navigate("/managers/task/show", String.format(".&id=%d", id));
 
 		super.checkPanicExists();
 	}

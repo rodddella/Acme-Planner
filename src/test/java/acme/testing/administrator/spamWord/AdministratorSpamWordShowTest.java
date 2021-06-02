@@ -21,11 +21,12 @@ public class AdministratorSpamWordShowTest extends AcmePlannerTest {
 		super.signIn("administrator", "administrator");
 		super.clickOnMenu("Administrator", "Spam words");
 		
-		super.checkColumnHasValue(recordIndex, 0, text);
+		super.clickOnListingRecord(recordIndex);
+		super.checkInputBoxHasValue("text", text);
 		
 		super.signOut();
 	}
-	
+
 	/*
 	 * Principal: Administrator
 	 * Entity: SpamWord
@@ -39,7 +40,7 @@ public class AdministratorSpamWordShowTest extends AcmePlannerTest {
 	@Order(10)
 	public void showNegative(final int id, final String user, final String password) {
 		super.signIn(user, password);
-		super.navigate("/administrator/spam-word/show", String.format("id=%d", id));
+		super.navigate("/administrator/spam-word/show", String.format(".&id=%d", id));
 		
 		super.checkPanicExists();
 		
