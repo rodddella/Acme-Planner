@@ -13,3 +13,5 @@ recordIndex,title,description,workload,link,startPeriod,endPeriod,visibility
 11,Example title,Example description,15000,http://example.org,2021/09/13 10:30,2022/09/13 11:30,PUBLIC
 12,Example title,Example description,0.502,http://example.org,2021/09/13 10:30,2021/09/13 11:30,PUBLIC
 13,Example title,Example description,0.5026,http://example.org,2021/09/13 10:30,2021/09/13 11:30,PRIVATE
+14,Example title,Example description,-1,http://example.org,2021/09/13 10:30,2021/09/13 11:30,PRIVATE
+15,Example title,Example description,1.01,http://example.org,2021/09/13 10:30,2021/09/13 11:30,PRIVATE
