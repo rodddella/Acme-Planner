@@ -21,11 +21,11 @@ public class Manager extends UserRole {
 	protected static final long serialVersionUID = 1L;
 
 	@NotBlank
-	@Length(min = 0, max = 255)
+	@Length(min = 1, max = 255)
 	protected String company;
 
 	@NotBlank
-	@Length(min = 0, max = 255)
+	@Length(min = 1, max = 255)
 	protected String sector;
 
 	@OneToMany(mappedBy = "manager", fetch = FetchType.EAGER)
